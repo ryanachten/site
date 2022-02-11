@@ -1,0 +1,11 @@
+projects:
+  - name: whosagoodboy
+  - name: Echo
+  - name: Robic
+    branch: master
+  - name: Oscil
+    branch: master
+  - name: Lucid
+    branch: master
+  - name: Vertice
+    branch: master
