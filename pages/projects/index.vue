@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <h1>Projects</h1>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'IndexPage',
+  name: 'ProjectPage',
 })
 </script>
