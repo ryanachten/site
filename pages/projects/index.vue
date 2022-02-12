@@ -2,25 +2,21 @@
   <div>
     <h1>Projects</h1>
     <NuxtLink to="/">Home</NuxtLink>
-    <ul>
-      <li v-for="{name, heroImage} in page.projects" :key="name">
-        <NuxtLink :to="`/projects/${name.toLowerCase()}`">
-          <img v-if="heroImage" :src="heroImage" :alt="name" />
-          <span>{{name}}</span>
-        </NuxtLink>
-      </li>
-    </ul>
+    <ProjectGrid :projects="page.projects" />
   </div>
 </template>
-<script>
-export default {
-  name: "ProjectPage",
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'ProjectPage',
   async asyncData({ $content }) {
-    const page = await $content("projects", "index")
-      .fetch()
+    const page = await $content('projects', 'index').fetch()
     return {
-      page
-    };
-  }
-}
+      page,
+    }
+  },
+})
 </script>
+
+
