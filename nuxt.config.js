@@ -32,10 +32,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxt/content',
-  ],
+  modules: ['@nuxtjs/axios', '@nuxt/content'],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -45,4 +42,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  target: 'static',
 }

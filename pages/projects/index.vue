@@ -1,12 +1,13 @@
 <template>
   <div>
     <h1>Projects</h1>
+    <NuxtLink to="/">Home</NuxtLink>
     <ul>
       <li v-for="{name, heroImage} in page.projects" :key="name">
-        <a :href="`projects/${name.toLowerCase()}`">
+        <NuxtLink :to="`/projects/${name.toLowerCase()}`">
           <img v-if="heroImage" :src="heroImage" :alt="name" />
           <span>{{name}}</span>
-        </a>
+        </NuxtLink>
       </li>
     </ul>
   </div>
