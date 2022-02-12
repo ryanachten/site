@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a href="/projects">Back to projects</a>
     <h1>{{ page.title }}</h1>
     <p>{{ page.description }}</p>
     <nuxt-content :document="page"/>

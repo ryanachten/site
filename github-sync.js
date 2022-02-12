@@ -23,8 +23,8 @@ try {
   console.error('Error reading projects yaml file', error)
 }
 
-projects.forEach(async ({ name, branch = 'main' }) => {
-  const projectName = name.toLowerCase()
+projects.forEach(async ({ name, repo, branch = 'main' }) => {
+  const projectName = repo ?? name.toLowerCase()
   try {
     const res = await fetch(`${GITHUB_URL}/${projectName}/${branch}/README.md`)
     if (res.ok && res.body !== null) {
@@ -40,17 +40,19 @@ projects.forEach(async ({ name, branch = 'main' }) => {
       body.on('finish', () => {
         // Replace all local file instances in the markdown,
         // and replace them with the versions hosted remotely
-
         // regex looks for md links and files like: ](./abc.ext
         const localFileRegExp = /\]\(\.\/[\w\/]+.[\w]+/g
-        const updatedReadMe = rawReadMe.replaceAll(localFileRegExp, (str) => {
+        let updatedReadMe = rawReadMe.replaceAll(localFileRegExp, (str) => {
           const path = str.replace('](./', '')
           const extension = path.substring(path.length - 3, path.length)
           const isMarkdown = extension === '.md'
           const newPath = getGithubUrl(projectName, branch, path, isMarkdown)
-          console.log('replacing', path, 'with', newPath)
           return `${']('}${newPath}`
         })
+
+        // Replace images sitting in blob with raw to avoid CORS issues
+        updatedReadMe = updatedReadMe.replaceAll('/blob/', '/raw/')
+
         // Once we're done postprocessing, we can write the file to disk
         fs.writeFile(
           `${CONTENT_DIR}/${projectName}.md`,
