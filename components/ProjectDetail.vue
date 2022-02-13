@@ -22,6 +22,8 @@ export default Vue.extend({
 
 <style lang="scss">
 .project-detail {
+  margin: 0 $l;
+
   img {
     width: 100%;
   }

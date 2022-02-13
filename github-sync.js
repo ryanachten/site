@@ -41,7 +41,7 @@ projects.forEach(async ({ name, repo, branch = 'main' }) => {
         // Replace all local file instances in the markdown,
         // and replace them with the versions hosted remotely
         // regex looks for md links and files like: ](./abc.ext
-        const localFileRegExp = /\]\(\.\/[\w\/]+.[\w]+/g
+        const localFileRegExp = /\]\(\.\/[\w/-]+.[\w]+/g
         let updatedReadMe = rawReadMe.replaceAll(localFileRegExp, (str) => {
           const path = str.replace('](./', '')
           const extension = path.substring(path.length - 3, path.length)

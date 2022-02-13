@@ -1,7 +1,9 @@
 projects:
   - name: whosagoodboy
     heroImage: https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
-  - name: Echo
+  - name: echo
+    branch: master
+    heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
   - name: Robic
     heroImage: https://github.com/ryanachten/Robic/raw/master/info/images/Robic_Flow_1.jpg
     branch: master

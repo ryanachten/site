@@ -11,7 +11,8 @@
     "lint:style": "stylelint \"**/*.{css,scss,sass,html,vue}\" --ignore-path .gitignore",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:style && yarn lint:prettier",
-    "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix"
+    "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
+    "sync": "node github-sync.js"
   },
   "dependencies": {
     "@nuxt/content": "^1.15.1",
@@ -29,6 +30,7 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^8.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/style-resources": "^1.2.1",
     "@nuxtjs/stylelint-module": "^4.1.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
