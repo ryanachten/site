@@ -1,3 +1,13 @@
+---
+name: whosagoodboy
+heroImage: https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
+languages:
+  - Jupyter Notebook
+  - TypeScript
+  - SCSS
+  - HCL
+  - JavaScript
+---
 ![Loading](https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif?raw=true)
 
 # whosagoodboy

@@ -1,3 +1,11 @@
+---
+name: Robic
+languages:
+  - TypeScript
+  - JavaScript
+heroImage: https://github.com/ryanachten/Robic/raw/master/info/images/Robic_Flow_1.jpg
+branch: master
+---
 # Robic
 
 ![Robic Feature Image](https://github.com/ryanachten/robic/raw/master/info/images/Robic_FeatureImage_2.jpg?raw=true "Robic Feature Image")

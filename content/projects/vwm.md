@@ -1,3 +1,13 @@
+---
+name: VWM
+branch: master
+languages:
+  - JavaScript
+  - CSS
+  - HTML
+heroImage: >-
+  https://camo.githubusercontent.com/f80d0f598e083c6251135d4f3d0637976868dc46ffeddb7427810a4b6d58e327/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f63643231656636343134343638312e356163393566383036623335622e6a7067
+---
 # Visual Working Memory
 ## Psychology Web App
 

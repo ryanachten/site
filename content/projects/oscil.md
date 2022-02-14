@@ -1,3 +1,13 @@
+---
+name: Oscil
+branch: master
+languages:
+  - JavaScript
+  - CSS
+  - HTML
+heroImage: >-
+  https://camo.githubusercontent.com/091374e53d9c0733a742386a3fd26996027cb2a1ca1ee580fb6f5a0a45074f64/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f66732f66646638396436343031393436332e356164393962386534393430612e6a7067
+---
 # Oscil
 ## Audio-Visual Web Application
 

@@ -1,3 +1,13 @@
+---
+name: Lucid
+branch: master
+languages:
+  - JavaScript
+  - CSS
+  - HTML
+heroImage: >-
+  https://camo.githubusercontent.com/5d2b7dc1854bd8e5633f76a30d7380e79a797f0aafd7d1e97cff98d9b9adb977/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f64353765323136363038343933392e356230613833313062343137382e6a7067
+---
 # Lucid
 ## Mixed-Reality Psychedelia
 

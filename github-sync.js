@@ -23,7 +23,36 @@ try {
   console.error('Error reading projects yaml file', error)
 }
 
-projects.forEach(async ({ name, repo, branch = 'main' }) => {
+const cleanReadMe = (rawReadMe, projectName, branch) => {
+  // Replace all local file instances in the markdown,
+  // and replace them with the versions hosted remotely
+  // regex looks for md links and files like: ](./abc.ext
+  const localFileRegExp = /\]\(\.\/[\w/-]+.[\w]+/g
+  let updatedReadMe = rawReadMe.replaceAll(localFileRegExp, (str) => {
+    const path = str.replace('](./', '')
+    const extension = path.substring(path.length - 3, path.length)
+    const isMarkdown = extension === '.md'
+    const newPath = getGithubUrl(projectName, branch, path, isMarkdown)
+    return `${']('}${newPath}`
+  })
+
+  // Replace images sitting in blob with raw to avoid CORS issues
+  updatedReadMe = updatedReadMe.replaceAll('/blob/', '/raw/')
+  return updatedReadMe
+}
+
+// Add "Front Matter" metadata block for filtering and searching
+const addMetadataHeader = (readMe, project) => {
+  let header = '---\n'
+  const headerYaml = yaml.dump(project)
+  header += headerYaml
+  header += '---\n'
+  header += readMe
+  return header
+}
+
+projects.forEach(async (project) => {
+  const { name, repo, branch = 'main' } = project
   const projectName = repo ?? name.toLowerCase()
   try {
     const res = await fetch(`${GITHUB_URL}/${projectName}/${branch}/README.md`)
@@ -38,21 +67,8 @@ projects.forEach(async ({ name, repo, branch = 'main' }) => {
       })
 
       body.on('finish', () => {
-        // Replace all local file instances in the markdown,
-        // and replace them with the versions hosted remotely
-        // regex looks for md links and files like: ](./abc.ext
-        const localFileRegExp = /\]\(\.\/[\w/-]+.[\w]+/g
-        let updatedReadMe = rawReadMe.replaceAll(localFileRegExp, (str) => {
-          const path = str.replace('](./', '')
-          const extension = path.substring(path.length - 3, path.length)
-          const isMarkdown = extension === '.md'
-          const newPath = getGithubUrl(projectName, branch, path, isMarkdown)
-          return `${']('}${newPath}`
-        })
-
-        // Replace images sitting in blob with raw to avoid CORS issues
-        updatedReadMe = updatedReadMe.replaceAll('/blob/', '/raw/')
-
+        let updatedReadMe = cleanReadMe(rawReadMe, projectName, branch)
+        updatedReadMe = addMetadataHeader(updatedReadMe, project)
         // Once we're done postprocessing, we can write the file to disk
         fs.writeFile(
           `${CONTENT_DIR}/${projectName}.md`,

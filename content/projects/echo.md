@@ -1,3 +1,14 @@
+---
+name: echo
+branch: master
+languages:
+  - TypeScript
+  - C#
+  - HTML
+  - Dockerfile
+  - CSS
+heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
+---
 # echo
 ![Echo loading](https://github.com/ryanachten/echo/raw/master/docs/echo_loading.gif?raw=true)
 

@@ -1,7 +1,13 @@
 <template>
   <article class="project-detail">
-    <h1>{{ content.title }}</h1>
-    <p>{{ content.description }}</p>
+    <div class="project-detail__languages">
+      <span
+        v-for="language in content.languages"
+        :key="language"
+        class="project-detail__language-item"
+        >{{ language }}</span
+      >
+    </div>
     <nuxt-content :document="content" />
   </article>
 </template>
@@ -26,6 +32,12 @@ export default Vue.extend({
 
   img {
     width: 100%;
+  }
+}
+
+.project-detail__language-item {
+  &:not(:last-child) {
+    margin-right: $s;
   }
 }
 </style>
