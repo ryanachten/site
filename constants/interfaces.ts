@@ -5,3 +5,7 @@ export interface Project {
   branch?: 'master' | 'main' // if not set, assume main
   repo?: string // repository name - only set if differs from name
 }
+
+export interface ProjectIndex {
+  projects: Project[]
+}
