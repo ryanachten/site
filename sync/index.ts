@@ -3,7 +3,7 @@ import * as yaml from 'js-yaml'
 
 import { Project, ProjectIndex } from '../constants/interfaces'
 import { CONTENT_DIR } from './constants'
-import { getProjectLanguages } from './metadata'
+import { getProjectLanguages, getProjectTopics } from './metadata'
 import { downloadReadMe } from './readme'
 
 let projects: Project[] = []
@@ -17,8 +17,17 @@ try {
   console.error('Error reading projects yaml file', error)
 }
 
-projects.forEach(async (project) => {
-  await getProjectLanguages(project.name)
+projects.forEach(async (project, index) => {
+  const languages = await getProjectLanguages(project.name)
+  const topics = await getProjectTopics(project.name)
+
+  // Update project with metadata from GitHub
+  projects[index] = {
+    ...projects[index],
+    tools: topics,
+    languages,
+  }
+
   await downloadReadMe(project)
 
   // // write data back to file with update project information

@@ -12,7 +12,8 @@
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:style && yarn lint:prettier",
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
-    "sync": "tsc --lib esnext --outDir dist --skipLibCheck ./sync/index.ts && node ./dist/sync/index.js"
+    "build:sync": "tsc --lib esnext --outDir dist --skipLibCheck ./sync/index.ts",
+    "sync": "node ./dist/sync/index.js"
   },
   "dependencies": {
     "@nuxt/content": "^1.15.1",

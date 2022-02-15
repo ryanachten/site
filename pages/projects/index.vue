@@ -13,12 +13,20 @@
         {{ `${language} (${count})` }}
       </option>
     </select>
+    <label for="tools">Tool</label>
+    <select id="tools" v-model="selectedTool" name="tools">
+      <option selected value="">All</option>
+      <option v-for="(count, tool) in tools" :key="tool" :value="tool">
+        {{ `${tool} (${count})` }}
+      </option>
+    </select>
     <ProjectGrid :projects="filteredProjects" />
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import { Project, ProjectIndex } from '~/constants/interfaces'
+import { getSortedTotals } from '~/helpers'
 
 export default Vue.extend({
   name: 'ProjectPage',
@@ -28,46 +36,44 @@ export default Vue.extend({
       'projects',
       'index'
     ).fetch<ProjectIndex>()) as ProjectIndex
-    const projects = page.projects
 
-    // Create dict of all languages and their number of uses
-    let languages: Record<string, number> = {}
-    projects.forEach((x) =>
-      x.languages.forEach((l) => {
-        if (Object.keys(languages).includes(l)) {
-          languages[l]++
-        } else {
-          languages[l] = 1
-        }
-      })
-    )
-    // Sort languages by count
-    languages = Object.fromEntries(
-      Object.entries(languages).sort(([, a], [, b]) => b - a)
-    )
+    const projects = page.projects
+    const unsortedLanguages = projects.map((x) => x.languages).flat()
+    const unsortedTools = projects.map((x) => x.tools).flat()
+    const sortedLanguages = getSortedTotals(unsortedLanguages)
+    const sortedTools = getSortedTotals(unsortedTools)
 
     return {
       projects,
-      languages,
+      languages: sortedLanguages,
+      tools: sortedTools,
     }
   },
 
-  data(): { projects: Project[]; selectedLanguage: string } {
+  data(): {
+    projects: Project[]
+    selectedLanguage: string
+    selectedTool: string
+  } {
     return {
       projects: [],
       selectedLanguage: '',
+      selectedTool: '',
     }
   },
 
   computed: {
     filteredProjects(): Project[] {
-      if (!this.selectedLanguage) return this.projects
-      return this.projects.filter((x) =>
-        x.languages.includes(this.selectedLanguage)
-      )
+      return this.projects.filter((x) => {
+        const containsLanguage = this.selectedLanguage
+          ? x.languages.includes(this.selectedLanguage)
+          : true
+        const containsTool = this.selectedTool
+          ? x.tools.includes(this.selectedTool)
+          : true
+        return containsLanguage && containsTool
+      })
     },
   },
 })
 </script>
-
-
