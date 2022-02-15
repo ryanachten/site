@@ -2,6 +2,7 @@
   <div>
     <h1>Projects</h1>
     <NuxtLink to="/">Home</NuxtLink>
+    <label for="languages">Language</label>
     <select id="languages" v-model="selectedLanguage" name="languages">
       <option selected value="">All</option>
       <option

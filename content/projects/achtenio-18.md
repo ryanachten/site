@@ -2,9 +2,15 @@
 name: achtenio
 repo: achtenio-18
 languages:
+  - PHP
   - JavaScript
   - CSS
+  - Scheme
   - HTML
+  - Gherkin
+  - Shell
+  - ApacheConf
+  - Ruby
 heroImage: >-
   https://camo.githubusercontent.com/e54fc3b6d87c1ecfc089bea97ed98b316f5e8a25386ae7539e70c62b2963eb04/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f30306634623736343937353730372e356165353135386461376631312e6a7067
 branch: master

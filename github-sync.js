@@ -4,20 +4,19 @@
 const fs = require('fs')
 const fetch = require('node-fetch')
 const yaml = require('js-yaml')
+const { Octokit } = require('@octokit/core')
+
+const octokit = new Octokit({
+  auth: process.env.TF_VAR_github_access_token,
+})
 
 const GITHUB_URL = 'https://raw.githubusercontent.com/ryanachten'
 const CONTENT_DIR = 'content/projects'
 
-const getGithubUrl = (project, branch, path, markdown = false) =>
-  `https://github.com/ryanachten/${project}/blob/${branch}/${path}${
-    markdown ? '' : '?raw=true'
-  }`
-
 let projects
+let yamlFile
 try {
-  const yamlFile = yaml.load(
-    fs.readFileSync(`./${CONTENT_DIR}/index.yml`, 'utf8')
-  )
+  yamlFile = yaml.load(fs.readFileSync(`./${CONTENT_DIR}/index.yml`, 'utf8'))
   projects = yamlFile.projects
 } catch (error) {
   console.error('Error reading projects yaml file', error)
@@ -51,7 +50,14 @@ const addMetadataHeader = (readMe, project) => {
   return header
 }
 
-projects.forEach(async (project) => {
+// projects.forEach(async (project) => {
+//   const { name, repo, branch = 'main' } = project
+const getGithubUrl = (project, branch, path, markdown = false) =>
+  `https://github.com/ryanachten/${project}/blob/${branch}/${path}${
+    markdown ? '' : '?raw=true'
+  }`
+
+const downloadReadMe = async (project) => {
   const { name, repo, branch = 'main' } = project
   const projectName = repo ?? name.toLowerCase()
   try {
@@ -89,4 +95,28 @@ projects.forEach(async (project) => {
   } catch (error) {
     console.error(`Error retrieving ${name}`, error)
   }
+}
+
+const getProjectLanguages = async (repo) => {
+  try {
+    const res = await octokit.request('GET /repos/{owner}/{repo}/languages', {
+      owner: 'ryanachten',
+      repo,
+    })
+    if (res.status === 200) {
+      const index = projects.findIndex((project) => project.name === repo)
+      projects[index].languages = Object.keys(res.data)
+    }
+  } catch (error) {
+    console.log('Error fetching languages for project', repo, error)
+  }
+}
+
+projects.forEach(async (project) => {
+  await getProjectLanguages(project.name)
+  await downloadReadMe(project)
+
+  // write data back to file with update project information
+  const updatedYaml = yaml.dump({ ...yamlFile, projects })
+  fs.writeFileSync(`./${CONTENT_DIR}/index.yml`, updatedYaml)
 })

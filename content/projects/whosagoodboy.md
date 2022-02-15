@@ -3,6 +3,7 @@ name: whosagoodboy
 heroImage: https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
 languages:
   - Jupyter Notebook
+  - PureBasic
   - TypeScript
   - SCSS
   - HCL
