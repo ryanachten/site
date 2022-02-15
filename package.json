@@ -12,7 +12,7 @@
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:style && yarn lint:prettier",
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
-    "sync": "node github-sync.js"
+    "sync": "tsc --lib esnext --outDir dist --skipLibCheck ./sync/index.ts && node ./dist/sync/index.js"
   },
   "dependencies": {
     "@nuxt/content": "^1.15.1",
@@ -33,6 +33,7 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "@nuxtjs/stylelint-module": "^4.1.0",
     "@octokit/core": "^3.5.1",
+    "@types/node-fetch": "2",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^3.1.0",

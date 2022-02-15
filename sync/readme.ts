@@ -1,28 +1,27 @@
-// Sync project README's data from GitHub repositories
-// Warning - will overwrite existing content data!
+import * as fs from 'fs'
+import * as yaml from 'js-yaml'
+import fetch from 'node-fetch'
 
-const fs = require('fs')
-const fetch = require('node-fetch')
-const yaml = require('js-yaml')
-const { Octokit } = require('@octokit/core')
-
-const octokit = new Octokit({
-  auth: process.env.TF_VAR_github_access_token,
-})
+import { Project } from '../constants/interfaces'
+import { CONTENT_DIR } from './constants'
 
 const GITHUB_URL = 'https://raw.githubusercontent.com/ryanachten'
-const CONTENT_DIR = 'content/projects'
 
-let projects
-let yamlFile
-try {
-  yamlFile = yaml.load(fs.readFileSync(`./${CONTENT_DIR}/index.yml`, 'utf8'))
-  projects = yamlFile.projects
-} catch (error) {
-  console.error('Error reading projects yaml file', error)
-}
+const getGithubUrl = (
+  project: string,
+  branch: string,
+  path: string,
+  markdown = false
+) =>
+  `https://github.com/ryanachten/${project}/blob/${branch}/${path}${
+    markdown ? '' : '?raw=true'
+  }`
 
-const cleanReadMe = (rawReadMe, projectName, branch) => {
+const cleanReadMe = (
+  rawReadMe: string,
+  projectName: string,
+  branch: string
+) => {
   // Replace all local file instances in the markdown,
   // and replace them with the versions hosted remotely
   // regex looks for md links and files like: ](./abc.ext
@@ -41,7 +40,7 @@ const cleanReadMe = (rawReadMe, projectName, branch) => {
 }
 
 // Add "Front Matter" metadata block for filtering and searching
-const addMetadataHeader = (readMe, project) => {
+const addMetadataHeader = (readMe: string, project: Project) => {
   let header = '---\n'
   const headerYaml = yaml.dump(project)
   header += headerYaml
@@ -50,14 +49,7 @@ const addMetadataHeader = (readMe, project) => {
   return header
 }
 
-// projects.forEach(async (project) => {
-//   const { name, repo, branch = 'main' } = project
-const getGithubUrl = (project, branch, path, markdown = false) =>
-  `https://github.com/ryanachten/${project}/blob/${branch}/${path}${
-    markdown ? '' : '?raw=true'
-  }`
-
-const downloadReadMe = async (project) => {
+export const downloadReadMe = async (project: Project) => {
   const { name, repo, branch = 'main' } = project
   const projectName = repo ?? name.toLowerCase()
   try {
@@ -67,7 +59,7 @@ const downloadReadMe = async (project) => {
       // - we need to wait for all chunks to be loaded before postprocessing
       const body = res.body
       let rawReadMe = ''
-      body.on('data', (chunk) => {
+      body.on('data', (chunk: Buffer) => {
         const data = chunk.toString()
         rawReadMe += data
       })
@@ -96,27 +88,3 @@ const downloadReadMe = async (project) => {
     console.error(`Error retrieving ${name}`, error)
   }
 }
-
-const getProjectLanguages = async (repo) => {
-  try {
-    const res = await octokit.request('GET /repos/{owner}/{repo}/languages', {
-      owner: 'ryanachten',
-      repo,
-    })
-    if (res.status === 200) {
-      const index = projects.findIndex((project) => project.name === repo)
-      projects[index].languages = Object.keys(res.data)
-    }
-  } catch (error) {
-    console.log('Error fetching languages for project', repo, error)
-  }
-}
-
-projects.forEach(async (project) => {
-  await getProjectLanguages(project.name)
-  await downloadReadMe(project)
-
-  // write data back to file with update project information
-  const updatedYaml = yaml.dump({ ...yamlFile, projects })
-  fs.writeFileSync(`./${CONTENT_DIR}/index.yml`, updatedYaml)
-})
