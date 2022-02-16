@@ -1,13 +1,17 @@
-export const getSortedTotals = (record: string[]): Record<string, number> => {
-  const totals: Record<string, number> = {}
-  record.forEach((x) => {
-    if (Object.keys(totals).includes(x)) {
-      totals[x]++
+import { Count } from '~/constants/interfaces'
+
+export const getSortedTotals = (records: string[]): Count[] => {
+  const totals: Count[] = []
+  records.forEach((record) => {
+    const existingIndex = totals.findIndex((x) => x.name === record)
+    if (existingIndex === -1) {
+      totals.push({
+        name: record,
+        count: 1,
+      })
     } else {
-      totals[x] = 1
+      totals[existingIndex].count++
     }
   })
-  return Object.fromEntries(
-    Object.entries(totals).sort(([, a], [, b]) => b - a)
-  )
+  return totals.sort((a, b) => b.count - a.count)
 }

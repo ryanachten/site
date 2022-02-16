@@ -6,18 +6,18 @@
     <select id="languages" v-model="selectedLanguage" name="languages">
       <option selected value="">All</option>
       <option
-        v-for="(count, language) in languages"
-        :key="language"
-        :value="language"
+        v-for="language in filteredLanguages"
+        :key="language.name"
+        :value="language.name"
       >
-        {{ `${language} (${count})` }}
+        {{ `${language.name} (${language.count})` }}
       </option>
     </select>
     <label for="tools">Tool</label>
     <select id="tools" v-model="selectedTool" name="tools">
       <option selected value="">All</option>
-      <option v-for="(count, tool) in tools" :key="tool" :value="tool">
-        {{ `${tool} (${count})` }}
+      <option v-for="tool in filteredTools" :key="tool.name" :value="tool.name">
+        {{ `${tool.name} (${tool.count})` }}
       </option>
     </select>
     <ProjectGrid :projects="filteredProjects" />
@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { Project, ProjectIndex } from '~/constants/interfaces'
+import { Count, Project, ProjectIndex } from '~/constants/interfaces'
 import { getSortedTotals } from '~/helpers'
 
 export default Vue.extend({
@@ -52,11 +52,15 @@ export default Vue.extend({
 
   data(): {
     projects: Project[]
+    languages: Count[]
+    tools: Count[]
     selectedLanguage: string
     selectedTool: string
   } {
     return {
       projects: [],
+      languages: [],
+      tools: [],
       selectedLanguage: '',
       selectedTool: '',
     }
@@ -73,6 +77,16 @@ export default Vue.extend({
           : true
         return containsLanguage && containsTool
       })
+    },
+    filteredLanguages(): Count[] {
+      const selectedLanguages = this.filteredProjects
+        .map((x) => x.languages)
+        .flat()
+      return this.languages.filter((x) => selectedLanguages.includes(x.name))
+    },
+    filteredTools(): Count[] {
+      const selectedTools = this.filteredProjects.map((x) => x.tools).flat()
+      return this.tools.filter((x) => selectedTools.includes(x.name))
     },
   },
 })

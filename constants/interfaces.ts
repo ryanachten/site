@@ -10,3 +10,8 @@ export interface Project {
 export interface ProjectIndex {
   projects: Project[]
 }
+
+export interface Count {
+  name: string
+  count: number
+}
