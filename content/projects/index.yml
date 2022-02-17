@@ -9,10 +9,13 @@ projects:
       - HCL
       - JavaScript
     tools:
-      - python
-      - tensorflow
       - image-classification
       - nextjs
+      - python
+      - tensorflow
+    archived: false
+    homepage: https://thatsagoodboy.herokuapp.com/
+    githubUrl: https://github.com/ryanachten/whosagoodboy
   - name: echo
     branch: master
     languages:
@@ -23,10 +26,13 @@ projects:
       - CSS
     heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
     tools:
-      - webrtc
-      - signalr
       - dotnet
+      - signalr
       - video-streaming
+      - webrtc
+    archived: false
+    homepage: ''
+    githubUrl: https://github.com/ryanachten/echo
   - name: Robic
     languages:
       - TypeScript
@@ -35,9 +41,12 @@ projects:
       https://github.com/ryanachten/Robic/raw/master/info/images/Robic_Flow_1.jpg
     branch: master
     tools:
-      - react-native
       - expo
+      - react-native
       - typescript
+    archived: false
+    homepage: ''
+    githubUrl: https://github.com/ryanachten/Robic
   - name: Oscil
     branch: master
     languages:
@@ -47,13 +56,16 @@ projects:
     heroImage: >-
       https://camo.githubusercontent.com/091374e53d9c0733a742386a3fd26996027cb2a1ca1ee580fb6f5a0a45074f64/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f66732f66646638396436343031393436332e356164393962386534393430612e6a7067
     tools:
-      - web-audio-api
       - canvas-api
       - p5js
-      - three-js
       - react
       - redux
+      - three-js
+      - web-audio-api
       - webpack
+    archived: false
+    homepage: https://oscil.herokuapp.com/
+    githubUrl: https://github.com/ryanachten/Oscil
   - name: Lucid
     branch: master
     languages:
@@ -63,12 +75,15 @@ projects:
     heroImage: >-
       https://camo.githubusercontent.com/5d2b7dc1854bd8e5633f76a30d7380e79a797f0aafd7d1e97cff98d9b9adb977/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f64353765323136363038343933392e356230613833313062343137382e6a7067
     tools:
-      - three-js
-      - reactjs
-      - material-design
-      - webpack
-      - redux
       - babel
+      - material-design
+      - reactjs
+      - redux
+      - three-js
+      - webpack
+    archived: true
+    homepage: ''
+    githubUrl: https://github.com/ryanachten/Lucid
   - name: Vertice
     branch: master
     languages:
@@ -81,9 +96,12 @@ projects:
     heroImage: >-
       https://camo.githubusercontent.com/94724b9e7eb6c02a7c16ec3f8a2913fed55fcaed2a998afcf8c98b6cbae5b2d3/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f6d61785f313230302f38356665626136303134393438392e356133653137386139643863382e706e67
     tools:
+      - csharp
       - unity3d
       - webgl
-      - csharp
+    archived: false
+    homepage: ''
+    githubUrl: https://github.com/ryanachten/Vertice
   - name: achtenio
     repo: achtenio-18
     languages:
@@ -100,6 +118,8 @@ projects:
       https://camo.githubusercontent.com/e54fc3b6d87c1ecfc089bea97ed98b316f5e8a25386ae7539e70c62b2963eb04/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f30306634623736343937353730372e356165353135386461376631312e6a7067
     branch: master
     tools: []
+    archived: false
+    githubUrl: https://github.com/ryanachten/achtenio-17
   - name: Hiko
     branch: master
     languages:
@@ -111,9 +131,12 @@ projects:
     heroImage: >-
       https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg?raw=true
     tools:
-      - wordpress
-      - jointswp
       - foundation6
+      - jointswp
+      - wordpress
+    archived: false
+    homepage: ''
+    githubUrl: https://github.com/ryanachten/Hiko
   - name: VWM
     branch: master
     languages:
@@ -123,16 +146,24 @@ projects:
     heroImage: >-
       https://camo.githubusercontent.com/f80d0f598e083c6251135d4f3d0637976868dc46ffeddb7427810a4b6d58e327/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f63643231656636343134343638312e356163393566383036623335622e6a7067
     tools:
+      - d3js
       - firebase
       - three-js
-      - d3js
+    archived: false
+    homepage: ''
+    githubUrl: https://github.com/ryanachten/VWM
   - name: SomaVision
     branch: master
     languages:
       - Pure Data
     tools: []
+    archived: false
+    githubUrl: https://github.com/ryanachten/SomaVision
   - name: Oskelate
     branch: master
     languages:
       - Pure Data
     tools: []
+    archived: false
+    homepage: ''
+    githubUrl: https://github.com/ryanachten/Oskelate

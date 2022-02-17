@@ -93,3 +93,5 @@ sw.*
 .terraform/
 .terraform.tfstate.lock.info
 terraform.tfstate*
+
+setup.ps1

@@ -5,6 +5,13 @@ languages:
   - JavaScript
 heroImage: https://github.com/ryanachten/Robic/raw/master/info/images/Robic_Flow_1.jpg
 branch: master
+tools:
+  - expo
+  - react-native
+  - typescript
+archived: false
+homepage: ''
+githubUrl: https://github.com/ryanachten/Robic
 ---
 # Robic
 

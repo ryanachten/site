@@ -8,6 +8,14 @@ languages:
   - Dockerfile
   - CSS
 heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
+tools:
+  - dotnet
+  - signalr
+  - video-streaming
+  - webrtc
+archived: false
+homepage: ''
+githubUrl: https://github.com/ryanachten/echo
 ---
 # echo
 ![Echo loading](https://github.com/ryanachten/echo/raw/master/docs/echo_loading.gif?raw=true)

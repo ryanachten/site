@@ -1,5 +1,8 @@
 export interface Project {
   name: string
+  githubUrl: string
+  homepage?: string
+  archived: boolean
   languages: string[]
   tools: string[]
   heroImage?: string // TODO: this shouldn't be optional

@@ -3,6 +3,10 @@ name: Oskelate
 branch: master
 languages:
   - Pure Data
+tools: []
+archived: false
+homepage: ''
+githubUrl: https://github.com/ryanachten/Oskelate
 ---
 
 =======

@@ -1,13 +1,28 @@
 <template>
   <article class="project-detail">
-    <div class="project-detail__languages">
+    <p><strong>Archived:</strong> {{ content.archived }}</p>
+    <p v-if="content.homepage">
+      <strong>Homepage:</strong> {{ content.homepage }}
+    </p>
+    <p><strong>Repo:</strong> {{ content.githubUrl }}</p>
+    <p>
+      <strong>Languages:</strong>
       <span
         v-for="language in content.languages"
         :key="language"
-        class="project-detail__language-item"
+        class="project-detail__list-item"
         >{{ language }}</span
       >
-    </div>
+    </p>
+    <p>
+      <strong>Tools:</strong>
+      <span
+        v-for="tool in content.tools"
+        :key="tool"
+        class="project-detail__list-item"
+        >{{ tool }}</span
+      >
+    </p>
     <nuxt-content :document="content" />
   </article>
 </template>
@@ -35,7 +50,7 @@ export default Vue.extend({
   }
 }
 
-.project-detail__language-item {
+.project-detail__list-item {
   &:not(:last-child) {
     margin-right: $s;
   }
