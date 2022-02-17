@@ -1,9 +1,4 @@
-import { Octokit } from '@octokit/core'
-import { GITHUB_OWNER } from './constants'
-
-const octokit = new Octokit({
-  auth: process.env.TF_VAR_github_access_token,
-})
+import { GITHUB_OWNER, octokit } from './constants'
 
 export const getProjectRepo = async (repo: string) => {
   try {
@@ -12,8 +7,14 @@ export const getProjectRepo = async (repo: string) => {
       repo,
     })
     if (res.status === 200) {
-      const { homepage, archived, topics, html_url: url } = res.data
-      return { homepage, archived, topics, url }
+      const {
+        homepage,
+        archived,
+        topics,
+        html_url: url,
+        default_branch: branch,
+      } = res.data
+      return { homepage, archived, topics, url, branch }
     }
   } catch (error) {
     console.log('Error fetching project repo', repo, error)

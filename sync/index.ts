@@ -20,22 +20,22 @@ try {
 projects.forEach(async (project, index) => {
   // TODO: these should probably be consolidated into a single getMetadata function
   const repoMetadata = await getProjectRepo(project.name)
+  if (!repoMetadata) return
+
   const languages = await getProjectLanguages(project.name)
 
-  if (repoMetadata) {
-    const { homepage, topics = [], archived, url } = repoMetadata
-    // Update project with metadata from GitHub
-    projects[index] = {
-      ...projects[index],
-      archived,
-      languages,
-      homepage: homepage ?? undefined,
-      githubUrl: url,
-      tools: topics,
-    }
+  const { homepage, topics = [], archived, url, branch } = repoMetadata
+  // Update project with metadata from GitHub
+  projects[index] = {
+    ...projects[index],
+    archived,
+    languages,
+    homepage: homepage ?? undefined,
+    githubUrl: url,
+    tools: topics,
   }
 
-  await downloadReadMe(project)
+  await downloadReadMe(project, branch)
 
   // // write data back to file with update project information
   const updatedYaml = yaml.dump({ ...yamlFile, projects })

@@ -1,11 +1,8 @@
 import * as fs from 'fs'
 import * as yaml from 'js-yaml'
-import fetch from 'node-fetch'
 
 import { Project } from '../constants/interfaces'
-import { CONTENT_DIR } from './constants'
-
-const GITHUB_URL = 'https://raw.githubusercontent.com/ryanachten'
+import { CONTENT_DIR, GITHUB_OWNER, octokit } from './constants'
 
 const getGithubUrl = (
   project: string,
@@ -49,42 +46,30 @@ const addMetadataHeader = (readMe: string, project: Project) => {
   return header
 }
 
-export const downloadReadMe = async (project: Project) => {
-  const { name, repo, branch = 'main' } = project
-  const projectName = repo ?? name.toLowerCase()
+export const downloadReadMe = async (project: Project, branch: string) => {
   try {
-    const res = await fetch(`${GITHUB_URL}/${projectName}/${branch}/README.md`)
-    if (res.ok && res.body !== null) {
-      // File data is provided in buffer chunks
-      // - we need to wait for all chunks to be loaded before postprocessing
-      const body = res.body
-      let rawReadMe = ''
-      body.on('data', (chunk: Buffer) => {
-        const data = chunk.toString()
-        rawReadMe += data
-      })
+    const res = await octokit.request('GET /repos/{owner}/{repo}/readme', {
+      owner: GITHUB_OWNER,
+      repo: project.name,
+    })
+    const rawReadMe = Buffer.from(res.data.content, 'base64').toString()
+    let updatedReadMe = cleanReadMe(rawReadMe, project.name, branch)
+    updatedReadMe = addMetadataHeader(updatedReadMe, project)
 
-      body.on('finish', () => {
-        let updatedReadMe = cleanReadMe(rawReadMe, projectName, branch)
-        updatedReadMe = addMetadataHeader(updatedReadMe, project)
-        // Once we're done postprocessing, we can write the file to disk
-        fs.writeFile(
-          `${CONTENT_DIR}/${projectName}.md`,
-          updatedReadMe,
-          (error) => {
-            if (error) {
-              console.error(`Error writing file for ${projectName}`, error)
-            } else {
-              console.log('Completed writing', projectName, '\n')
-              console.log('******\n')
-            }
-          }
-        )
-      })
-    } else {
-      console.error(`Error retrieving ${name}`, res.status)
-    }
+    // Once we're done postprocessing, we can write the file to disk
+    fs.writeFile(
+      `${CONTENT_DIR}/${project.name}.md`,
+      updatedReadMe,
+      (error) => {
+        if (error) {
+          console.error(`Error writing file for ${project.name}`, error)
+        } else {
+          console.log('Completed writing', project.name, '\n')
+          console.log('******\n')
+        }
+      }
+    )
   } catch (error) {
-    console.error(`Error retrieving ${name}`, error)
+    console.error(`Error retrieving ${project.name}`, error)
   }
 }
