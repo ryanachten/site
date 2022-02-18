@@ -1,3 +1,22 @@
+---
+name: Hiko
+branch: master
+languages:
+  - PHP
+  - JavaScript
+  - CSS
+  - Shell
+  - Ruby
+heroImage: >-
+  https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg?raw=true
+tools:
+  - foundation6
+  - jointswp
+  - wordpress
+archived: false
+homepage: ''
+githubUrl: https://github.com/ryanachten/Hiko
+---
 ![Hiko home page](https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg)
 
 # Hiko

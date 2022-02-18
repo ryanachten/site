@@ -1,3 +1,22 @@
+---
+name: whosagoodboy
+heroImage: https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
+languages:
+  - Jupyter Notebook
+  - PureBasic
+  - TypeScript
+  - SCSS
+  - HCL
+  - JavaScript
+tools:
+  - image-classification
+  - nextjs
+  - python
+  - tensorflow
+archived: false
+homepage: https://thatsagoodboy.herokuapp.com/
+githubUrl: https://github.com/ryanachten/whosagoodboy
+---
 ![Loading](https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif?raw=true)
 
 # whosagoodboy
