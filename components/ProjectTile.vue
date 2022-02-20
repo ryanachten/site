@@ -6,7 +6,6 @@
       :alt="project.name"
       class="project-title__img"
     />
-    <span>{{ project.name }}</span>
   </NuxtLink>
 </template>
 

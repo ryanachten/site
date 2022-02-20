@@ -31,6 +31,7 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/style-resources',
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -49,5 +50,12 @@ export default {
 
   server: {
     port: 8000,
+  },
+
+  googleFonts: {
+    families: {
+      Poppins: true,
+      Philosopher: [400, 700],
+    },
   },
 }

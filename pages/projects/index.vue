@@ -1,26 +1,23 @@
 <template>
   <div>
-    <h1>Projects</h1>
-    <NuxtLink to="/">Home</NuxtLink>
-    <label for="languages">Language</label>
-    <select id="languages" v-model="selectedLanguage" name="languages">
-      <option selected value="">All</option>
-      <option
-        v-for="language in filteredLanguages"
-        :key="language.name"
-        :value="language.name"
-      >
-        {{ `${language.name} (${language.count})` }}
-      </option>
-    </select>
-    <label for="tools">Tool</label>
-    <select id="tools" v-model="selectedTool" name="tools">
-      <option selected value="">All</option>
-      <option v-for="tool in filteredTools" :key="tool.name" :value="tool.name">
-        {{ `${tool.name} (${tool.count})` }}
-      </option>
-    </select>
-    <ProjectGrid :projects="filteredProjects" />
+    <NavBar />
+    <div class="all-projects">
+      <ProjectGrid :projects="filteredProjects" />
+      <aside>
+        <ProjectFilter
+          v-model="selectedLanguage"
+          title="Languages"
+          :options="filteredLanguages"
+          :selected-value="selectedLanguage"
+        />
+        <ProjectFilter
+          v-model="selectedTool"
+          title="Tools"
+          :options="filteredTools"
+          :selected-value="selectedTool"
+        />
+      </aside>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -91,3 +88,9 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.all-projects {
+  display: flex;
+}
+</style>
