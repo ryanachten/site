@@ -1,13 +1,13 @@
 <template>
   <section>
     <span>{{ title }}</span>
-    <button @click="$emit('input', '')">Clear</button>
+    <button @click="$emit('input', [])">Clear</button>
     <ul>
       <li
         v-for="option in restrictedOptions"
         :key="option.name"
         :class="`project-filter__item ${listItemClassName(option.name)}`"
-        @click="$emit('input', option.name)"
+        @click="toggleSelectedValue(option.name)"
       >
         {{ `${option.name} (${option.count})` }}
       </li>
@@ -32,8 +32,8 @@ export default Vue.extend({
       required: true,
     },
     // TODO: refactor this as selectedValue*s* w/ array
-    selectedValue: {
-      type: String,
+    selectedValues: {
+      type: Array as PropType<Array<String>>,
       required: true,
     },
   },
@@ -60,7 +60,17 @@ export default Vue.extend({
       this.expanded = !this.expanded
     },
     listItemClassName(name: string): string {
-      return name === this.selectedValue ? 'selected' : ''
+      return this.selectedValues.includes(name) ? 'selected' : ''
+    },
+    toggleSelectedValue(name: string) {
+      const containsValue = this.selectedValues.includes(name)
+      let newValues = [...this.selectedValues]
+      if (containsValue) {
+        newValues = newValues.filter((x) => x !== name)
+      } else {
+        newValues.push(name)
+      }
+      this.$emit('input', newValues)
     },
   },
 })

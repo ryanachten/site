@@ -1,12 +1,19 @@
-export interface Project {
-  name: string
+interface GitHubRepoMetadata {
   githubUrl: string
   homepage?: string
   archived: boolean
   languages: string[]
   tools: string[]
-  heroImage?: string // TODO: this shouldn't be optional
 }
+
+interface CustomProjectMetadata {
+  name: string
+  heroImage: string
+  year: number
+  featured?: boolean
+}
+
+export interface Project extends GitHubRepoMetadata, CustomProjectMetadata {}
 
 export interface ProjectIndex {
   projects: Project[]
