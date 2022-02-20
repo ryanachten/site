@@ -56,6 +56,7 @@ export default {
     families: {
       Poppins: true,
       Philosopher: [400, 700],
+      'Material Icons': true,
     },
   },
 }

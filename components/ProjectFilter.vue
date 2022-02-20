@@ -1,8 +1,16 @@
 <template>
-  <section>
-    <span>{{ title }}</span>
-    <button @click="$emit('input', [])">Clear</button>
-    <ul>
+  <section class="project-filter">
+    <div class="project-filter__header">
+      <span>{{ title }}</span>
+      <span
+        v-if="selectedValues.length > 0"
+        role="button"
+        class="material-icons project-filter__close-button"
+        @click="$emit('input', [])"
+        >close</span
+      >
+    </div>
+    <ul class="project-filter__list">
       <li
         v-for="option in restrictedOptions"
         :key="option.name"
@@ -12,9 +20,13 @@
         {{ `${option.name} (${option.count})` }}
       </li>
     </ul>
-    <button @click="toggleExpand">
+    <span
+      class="project-filter__more-button"
+      role="button"
+      @click="toggleExpand"
+    >
       {{ `${expanded ? 'Less' : 'More'}` }}
-    </button>
+    </span>
   </section>
 </template>
 
@@ -31,7 +43,6 @@ export default Vue.extend({
       type: Array as PropType<Array<Count>>,
       required: true,
     },
-    // TODO: refactor this as selectedValue*s* w/ array
     selectedValues: {
       type: Array as PropType<Array<String>>,
       required: true,
@@ -77,12 +88,45 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.project-filter {
+  min-width: 150px;
+  text-align: right;
+}
+
+.project-filter__header {
+  display: flex;
+  flex-flow: row-reverse;
+  font-weight: bold;
+  justify-content: space-between;
+  margin-bottom: $s;
+}
+
+.project-filter__close-button {
+  cursor: pointer;
+}
+
+.project-filter__list {
+  margin: 0;
+  padding: 0;
+  margin-bottom: $s;
+}
+
 .project-filter__item {
   cursor: pointer;
+  display: block;
+  list-style: none;
   opacity: 50%;
+
+  &:not(:last-child) {
+    margin-bottom: $xs;
+  }
 
   &.selected {
     opacity: 100%;
   }
+}
+
+.project-filter__more-button {
+  cursor: pointer;
 }
 </style>

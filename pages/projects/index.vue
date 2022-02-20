@@ -1,23 +1,29 @@
 <template>
   <div>
     <NavBar />
-    <div class="all-projects">
-      <ProjectGrid :projects="filteredProjects" />
+    <div class="projects__all-projects">
+      <ProjectGrid
+        class="projects__project-grid"
+        :projects="filteredProjects"
+      />
       <aside>
         <ProjectFilter
           v-model="selectedYears"
+          class="projects__filter"
           title="Years"
           :options="filteredYears"
           :selected-values="selectedYears"
         />
         <ProjectFilter
           v-model="selectedLanguages"
+          class="projects__filter"
           title="Languages"
           :options="filteredLanguages"
           :selected-values="selectedLanguages"
         />
         <ProjectFilter
           v-model="selectedTools"
+          class="projects__filter"
           title="Tools"
           :options="filteredTools"
           :selected-values="selectedTools"
@@ -112,7 +118,17 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.all-projects {
+.projects__all-projects {
   display: flex;
+}
+
+.projects__filter {
+  &:not(:last-child) {
+    margin-bottom: $m;
+  }
+}
+
+.projects__project-grid {
+  flex-grow: 1;
 }
 </style>
