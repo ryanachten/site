@@ -11,7 +11,7 @@ projects:
     tools:
       - image-classification
       - nextjs
-      - python
+      - react
       - tensorflow
     archived: false
     homepage: https://thatsagoodboy.herokuapp.com/
@@ -43,7 +43,6 @@ projects:
     tools:
       - expo
       - react-native
-      - typescript
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Robic
@@ -56,12 +55,11 @@ projects:
     heroImage: >-
       https://camo.githubusercontent.com/091374e53d9c0733a742386a3fd26996027cb2a1ca1ee580fb6f5a0a45074f64/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f66732f66646638396436343031393436332e356164393962386534393430612e6a7067
     tools:
-      - canvas-api
+      - audio-visualizer
       - p5js
       - react
       - redux
       - three-js
-      - web-audio-api
       - webpack
     archived: false
     homepage: https://oscil.herokuapp.com/
@@ -75,13 +73,11 @@ projects:
     heroImage: >-
       https://camo.githubusercontent.com/5d2b7dc1854bd8e5633f76a30d7380e79a797f0aafd7d1e97cff98d9b9adb977/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f64353765323136363038343933392e356230613833313062343137382e6a7067
     tools:
-      - babel
-      - material-design
-      - reactjs
+      - react
       - redux
       - three-js
       - webpack
-    archived: true
+    archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Lucid
   - name: Vertice
@@ -96,8 +92,7 @@ projects:
     heroImage: >-
       https://camo.githubusercontent.com/94724b9e7eb6c02a7c16ec3f8a2913fed55fcaed2a998afcf8c98b6cbae5b2d3/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f6d61785f313230302f38356665626136303134393438392e356133653137386139643863382e706e67
     tools:
-      - csharp
-      - unity3d
+      - unity
       - webgl
     archived: false
     homepage: ''
@@ -105,21 +100,19 @@ projects:
   - name: achtenio
     repo: achtenio-18
     languages:
-      - PHP
       - JavaScript
       - CSS
-      - Scheme
       - HTML
-      - Gherkin
-      - Shell
-      - ApacheConf
-      - Ruby
     heroImage: >-
       https://camo.githubusercontent.com/e54fc3b6d87c1ecfc089bea97ed98b316f5e8a25386ae7539e70c62b2963eb04/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f30306634623736343937353730372e356165353135386461376631312e6a7067
     branch: master
-    tools: []
+    tools:
+      - react
+      - three-js
+      - webpack
     archived: false
-    githubUrl: https://github.com/ryanachten/achtenio-17
+    githubUrl: https://github.com/ryanachten/achtenio
+    homepage: ''
   - name: Hiko
     branch: master
     languages:
@@ -153,17 +146,26 @@ projects:
     homepage: ''
     githubUrl: https://github.com/ryanachten/VWM
   - name: SomaVision
+    heroImage: https://github.com/ryanachten/SomaVision/raw/master/docs/SomVis_01.jpg
     branch: master
-    languages:
-      - Pure Data
-    tools: []
+    languages: []
+    tools:
+      - arduino
+      - music-visualisation
     archived: false
     githubUrl: https://github.com/ryanachten/SomaVision
+    homepage: ''
   - name: Oskelate
+    heroImage: >-
+      https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif
     branch: master
     languages:
-      - Pure Data
-    tools: []
+      - Java
+      - Rich Text Format
+      - SuperCollider
+    tools:
+      - kinect
+      - music-visualizer
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Oskelate

@@ -11,7 +11,7 @@ languages:
 tools:
   - image-classification
   - nextjs
-  - python
+  - react
   - tensorflow
 archived: false
 homepage: https://thatsagoodboy.herokuapp.com/

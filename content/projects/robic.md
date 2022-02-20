@@ -8,7 +8,6 @@ branch: master
 tools:
   - expo
   - react-native
-  - typescript
 archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/Robic

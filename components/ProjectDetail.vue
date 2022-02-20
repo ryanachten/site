@@ -4,7 +4,12 @@
     <p v-if="content.homepage">
       <strong>Homepage:</strong> {{ content.homepage }}
     </p>
-    <p><strong>Repo:</strong> {{ content.githubUrl }}</p>
+    <p>
+      <strong>Repo:</strong>
+      <a :href="content.githubUrl" target="_blank" rel="noopener noreferrer">{{
+        content.githubUrl
+      }}</a>
+    </p>
     <p>
       <strong>Languages:</strong>
       <span
@@ -46,7 +51,7 @@ export default Vue.extend({
   margin: 0 $l;
 
   img {
-    width: 100%;
+    max-width: 100%;
   }
 }
 

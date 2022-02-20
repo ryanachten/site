@@ -38,5 +38,6 @@ export default Vue.extend({
   object-fit: cover;
   height: 100%;
   width: 100%;
+  max-height: 200px;
 }
 </style>

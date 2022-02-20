@@ -29,6 +29,6 @@ export default Vue.extend({
   flex-flow: row wrap;
 }
 .project-grid__tile {
-  max-width: 300px;
+  width: 300px;
 }
 </style>
