@@ -1,6 +1,7 @@
 <template>
   <article class="page__container">
     <NavBar />
+    <ProjectFeatured class="projects__featured" :projects="featuredProjects" />
     <div class="projects__all-projects">
       <ProjectGrid
         class="projects__project-grid"
@@ -47,6 +48,8 @@ export default Vue.extend({
     ).fetch<ProjectIndex>()) as ProjectIndex
 
     const projects = page.projects
+    const featuredProjects = page.projects.filter((x) => x.featured)
+
     const unsortedLanguages = projects.map((x) => x.languages).flat()
     const unsortedTools = projects.map((x) => x.tools).flat()
     const unsortedYears = projects.map((x) => x.year)
@@ -67,6 +70,7 @@ export default Vue.extend({
       selectedYears,
       selectedLanguages,
       selectedTools,
+      featuredProjects,
     }
   },
 
@@ -136,6 +140,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.projects__featured {
+  @include divider;
+  padding-bottom: $l;
+  margin-bottom: $l;
+}
+
 .projects__all-projects {
   display: flex;
 }
@@ -146,7 +156,7 @@ export default Vue.extend({
 
 .projects__filter {
   &:not(:last-child) {
-    border-bottom: 1px solid $dark-grey;
+    @include divider;
     margin-bottom: $m;
     padding-bottom: $m;
   }

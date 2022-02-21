@@ -28,9 +28,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .project-tile {
-  background-size: cover;
-  background-position: center;
-  border-radius: 2px;
+  @include responsive-background;
   display: block;
   height: 200px;
   width: 100%;

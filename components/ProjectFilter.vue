@@ -6,7 +6,7 @@
         v-if="selectedValues.length > 0"
         role="button"
         class="material-icons project-filter__close-button"
-        @click="$emit('input', [])"
+        @click="clearSelectedValues()"
         >close</span
       >
     </div>
@@ -14,7 +14,10 @@
       <li
         v-for="option in restrictedOptions"
         :key="option.name"
-        :class="`project-filter__item ${listItemClassName(option.name)}`"
+        :class="{
+          'project-filter__item': true,
+          selected: selectedValues.includes(option.name),
+        }"
         @click="toggleSelectedValue(option.name)"
       >
         {{ `${option.name} (${option.count})` }}
@@ -70,26 +73,32 @@ export default Vue.extend({
     toggleExpand() {
       this.expanded = !this.expanded
     },
-    listItemClassName(name: string): string {
-      return this.selectedValues.includes(name) ? 'selected' : ''
-    },
     toggleSelectedValue(name: string) {
       const containsValue = this.selectedValues.includes(name)
-      let newValues = [...this.selectedValues]
+      let newValues = [...this.selectedValues] as string[]
       if (containsValue) {
         newValues = newValues.filter((x) => x !== name)
       } else {
         newValues.push(name)
       }
       this.$emit('input', newValues)
-
-      // Update URL with selected parameters
+      this.updateQueryParams(newValues)
+    },
+    clearSelectedValues() {
+      this.$emit('input', [])
+      this.updateQueryParams([])
+    },
+    updateQueryParams(values: string[]) {
       const existingQueryParameters = this.$route.query
+      const query = { ...existingQueryParameters }
+      const paramKey = this.title.toLowerCase()
+      if (values.length) {
+        query[paramKey] = values.toString()
+      } else {
+        delete query[paramKey]
+      }
       this.$router.push({
-        query: {
-          ...existingQueryParameters,
-          [this.title.toLowerCase()]: newValues.toString(),
-        },
+        query,
       })
     },
   },
@@ -98,10 +107,13 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .project-filter {
-  min-width: 150px;
-  text-align: right;
+  @include styled-scrollbar;
   max-height: 250px;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: none;
+  min-width: 150px;
+  padding: 0 $s;
+  text-align: right;
 }
 
 .project-filter__header {
@@ -118,16 +130,14 @@ export default Vue.extend({
 }
 
 .project-filter__list {
+  @include list-reset;
   font-size: $font-xs;
-  margin: 0;
-  padding: 0;
   margin-bottom: $s;
 }
 
 .project-filter__item {
   cursor: pointer;
   display: block;
-  list-style: none;
   opacity: 50%;
 
   &:not(:last-child) {

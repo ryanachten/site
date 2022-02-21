@@ -7,12 +7,6 @@ $font-l: 24px;
 $font-regular: 'Poppins', Arial, sans-serif;
 $font-title: 'Philosopher', serif;
 
-@mixin subheader {
-  color: $grey;
-  text-decoration: none;
-  text-transform: lowercase;
-}
-
 // Spacing
 $xs: 5px;
 $s: 10px;

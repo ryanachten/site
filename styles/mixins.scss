@@ -1,0 +1,36 @@
+@mixin subheader {
+  color: $grey;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+@mixin divider {
+  border-bottom: 1px solid $dark-grey;
+}
+
+@mixin responsive-background {
+  border-radius: 2px;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin styled-scrollbar {
+  // Chromium styles
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: $xs;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $dark-grey;
+    border-radius: $s;
+  }
+  // Firefox
+  scrollbar-width: thin;
+  scrollbar-color: $dark-grey transparent;
+}
