@@ -1,11 +1,9 @@
 <template>
-  <NuxtLink :to="projectLink" class="project-tile">
-    <img
-      v-if="project.heroImage"
-      :src="project.heroImage"
-      :alt="project.name"
-      class="project-title__img"
-    />
+  <NuxtLink
+    :to="projectLink"
+    :style="{ backgroundImage: `url(${project.heroImage})` }"
+    class="project-tile"
+  >
   </NuxtLink>
 </template>
 
@@ -30,13 +28,11 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .project-tile {
-  display: flex;
-  flex-flow: column;
-}
-.project-title__img {
-  object-fit: cover;
-  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+  display: block;
+  height: 200px;
   width: 100%;
-  max-height: 200px;
 }
 </style>

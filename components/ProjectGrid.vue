@@ -4,7 +4,6 @@
       v-for="project in projects"
       :key="project.name"
       :project="project"
-      class="project-grid__tile"
     />
   </div>
 </template>
@@ -25,10 +24,10 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .project-grid {
-  display: flex;
-  flex-flow: row wrap;
-}
-.project-grid__tile {
-  width: 300px;
+  column-gap: $m;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: 200px;
+  row-gap: $m;
 }
 </style>

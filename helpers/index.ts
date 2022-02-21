@@ -1,4 +1,4 @@
-import { Count } from '~/constants/interfaces'
+import { Count } from '../constants/interfaces'
 
 export enum SortTotal {
   BY_COUNT,
@@ -33,4 +33,16 @@ export const getSortedTotals = (
 
     return b.count - a.count
   })
+}
+
+export const parseQueryParameters = (
+  params: string | (string | null)[] | null
+): string[] => {
+  if (!params) {
+    return []
+  }
+  if (typeof params === 'string') {
+    return params.split(',')
+  }
+  return params.filter((x) => typeof x === 'string') as string[]
 }

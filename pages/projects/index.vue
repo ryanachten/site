@@ -1,46 +1,46 @@
 <template>
-  <div>
+  <article class="page__container">
     <NavBar />
     <div class="projects__all-projects">
       <ProjectGrid
         class="projects__project-grid"
         :projects="filteredProjects"
       />
-      <aside>
+      <aside class="projects__filters">
         <ProjectFilter
           v-model="selectedYears"
           class="projects__filter"
           title="Years"
-          :options="filteredYears"
+          :options="years"
           :selected-values="selectedYears"
         />
         <ProjectFilter
           v-model="selectedLanguages"
           class="projects__filter"
           title="Languages"
-          :options="filteredLanguages"
+          :options="languages"
           :selected-values="selectedLanguages"
         />
         <ProjectFilter
           v-model="selectedTools"
           class="projects__filter"
           title="Tools"
-          :options="filteredTools"
+          :options="tools"
           :selected-values="selectedTools"
         />
       </aside>
     </div>
-  </div>
+  </article>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import { Count, Project, ProjectIndex } from '~/constants/interfaces'
-import { getSortedTotals, SortTotal } from '~/helpers'
+import { getSortedTotals, parseQueryParameters, SortTotal } from '~/helpers'
 
 export default Vue.extend({
   name: 'ProjectPage',
 
-  async asyncData({ $content }) {
+  async asyncData({ $content, route }) {
     const page = (await $content(
       'projects',
       'index'
@@ -54,11 +54,19 @@ export default Vue.extend({
     const sortedTools = getSortedTotals(unsortedTools)
     const sortedYears = getSortedTotals(unsortedYears, SortTotal.BY_NAME_DESC)
 
+    const selectedFilters = route.query
+    const selectedYears = parseQueryParameters(selectedFilters.years)
+    const selectedLanguages = parseQueryParameters(selectedFilters.languages)
+    const selectedTools = parseQueryParameters(selectedFilters.tools)
+
     return {
       projects,
       languages: sortedLanguages,
       tools: sortedTools,
       years: sortedYears,
+      selectedYears,
+      selectedLanguages,
+      selectedTools,
     }
   },
 
@@ -84,20 +92,30 @@ export default Vue.extend({
 
   computed: {
     filteredProjects(): Project[] {
-      return this.projects
-        .filter((x) => {
-          const containsLanguage = this.selectedLanguages.length
-            ? x.languages.some((lang) => this.selectedLanguages.includes(lang))
-            : true
-          const containsTool = this.selectedTools.length
-            ? x.tools.some((tool) => this.selectedTools.includes(tool))
-            : true
-          const containsYear = this.selectedYears.length
-            ? this.selectedYears.includes(x.year.toString())
-            : true
-          return containsLanguage && containsTool && containsYear
-        })
-        .sort((a, b) => b.year - a.year)
+      const hasFilters =
+        this.selectedLanguages.length ||
+        this.selectedTools.length ||
+        this.selectedYears.length
+      const filteredProjects = hasFilters
+        ? this.projects.filter((x) => {
+            if (!hasFilters) {
+              return true
+            }
+            const containsLanguage = this.selectedLanguages.length
+              ? x.languages.some((lang) =>
+                  this.selectedLanguages.includes(lang)
+                )
+              : false
+            const containsTool = this.selectedTools.length
+              ? x.tools.some((tool) => this.selectedTools.includes(tool))
+              : false
+            const containsYear = this.selectedYears.length
+              ? this.selectedYears.includes(x.year.toString())
+              : false
+            return containsLanguage || containsTool || containsYear
+          })
+        : this.projects
+      return filteredProjects.sort((a, b) => b.year - a.year)
     },
     filteredLanguages(): Count[] {
       const selectedLanguages = this.filteredProjects
@@ -122,9 +140,15 @@ export default Vue.extend({
   display: flex;
 }
 
+.projects__filters {
+  margin-left: $l;
+}
+
 .projects__filter {
   &:not(:last-child) {
+    border-bottom: 1px solid $dark-grey;
     margin-bottom: $m;
+    padding-bottom: $m;
   }
 }
 

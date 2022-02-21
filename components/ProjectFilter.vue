@@ -82,6 +82,15 @@ export default Vue.extend({
         newValues.push(name)
       }
       this.$emit('input', newValues)
+
+      // Update URL with selected parameters
+      const existingQueryParameters = this.$route.query
+      this.$router.push({
+        query: {
+          ...existingQueryParameters,
+          [this.title.toLowerCase()]: newValues.toString(),
+        },
+      })
     },
   },
 })
@@ -91,6 +100,8 @@ export default Vue.extend({
 .project-filter {
   min-width: 150px;
   text-align: right;
+  max-height: 250px;
+  overflow: scroll;
 }
 
 .project-filter__header {
@@ -99,6 +110,7 @@ export default Vue.extend({
   font-weight: bold;
   justify-content: space-between;
   margin-bottom: $s;
+  text-transform: lowercase;
 }
 
 .project-filter__close-button {
@@ -106,6 +118,7 @@ export default Vue.extend({
 }
 
 .project-filter__list {
+  font-size: $font-xs;
   margin: 0;
   padding: 0;
   margin-bottom: $s;
@@ -128,5 +141,8 @@ export default Vue.extend({
 
 .project-filter__more-button {
   cursor: pointer;
+  font-size: $font-xs;
+  text-decoration: underline;
+  text-transform: lowercase;
 }
 </style>

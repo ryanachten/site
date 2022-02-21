@@ -15,7 +15,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: $m;
+  margin-bottom: $l;
 
   a {
     @include subheader;
