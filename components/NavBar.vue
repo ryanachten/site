@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav :class="{ navbar: true, 'navbar--inverted': invertColors }">
     <NuxtLink to="/" aria-label="home page">
       <LogoText />
     </NuxtLink>
@@ -10,6 +10,17 @@
     </div>
   </nav>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  props: {
+    invertColors: {
+      type: Boolean,
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .navbar {
@@ -25,6 +36,12 @@
 
     &.nuxt-link-active {
       font-weight: bold;
+    }
+  }
+
+  &.navbar--inverted {
+    a {
+      @include inverted-colors;
     }
   }
 }

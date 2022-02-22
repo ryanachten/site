@@ -7,6 +7,10 @@ html {
   font-size: $font-s;
 }
 
+body {
+  margin: 0;
+}
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -22,9 +26,9 @@ html {
 }
 
 .page__container {
-  margin: $m;
+  padding: $m;
   @media screen and (min-width: 1200px) {
     max-width: 85%;
-    margin: $m auto;
+    margin: 0 auto;
   }
 }

@@ -48,8 +48,6 @@ export default Vue.extend({
 
 <style lang="scss">
 .project-detail {
-  margin: 0 $l;
-
   img {
     max-width: 100%;
   }

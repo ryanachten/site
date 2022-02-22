@@ -1,3 +1,8 @@
+@mixin inverted-colors {
+  background-color: $grey;
+  color: $black;
+}
+
 @mixin subheader {
   color: $grey;
   text-decoration: none;

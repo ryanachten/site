@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <a href="/projects">Back to projects</a>
-    <ProjectDetail v-if="page" :content="page" />
+  <div class="page">
+    <main class="page__container">
+      <NavBar invert-colors />
+      <ProjectDetail v-if="page" :content="page" />
+    </main>
   </div>
 </template>
 
@@ -25,3 +27,9 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.page {
+  @include inverted-colors;
+}
+</style>

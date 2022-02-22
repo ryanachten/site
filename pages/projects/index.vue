@@ -1,37 +1,42 @@
 <template>
-  <article class="page__container">
-    <NavBar />
-    <ProjectFeatured class="projects__featured" :projects="featuredProjects" />
-    <div class="projects__all-projects">
-      <ProjectGrid
-        class="projects__project-grid"
-        :projects="filteredProjects"
+  <div class="page">
+    <main class="page__container">
+      <NavBar />
+      <ProjectFeatured
+        class="projects__featured"
+        :projects="featuredProjects"
       />
-      <aside class="projects__filters">
-        <ProjectFilter
-          v-model="selectedYears"
-          class="projects__filter"
-          title="Years"
-          :options="years"
-          :selected-values="selectedYears"
+      <div class="projects__all-projects">
+        <ProjectGrid
+          class="projects__project-grid"
+          :projects="filteredProjects"
         />
-        <ProjectFilter
-          v-model="selectedLanguages"
-          class="projects__filter"
-          title="Languages"
-          :options="languages"
-          :selected-values="selectedLanguages"
-        />
-        <ProjectFilter
-          v-model="selectedTools"
-          class="projects__filter"
-          title="Tools"
-          :options="tools"
-          :selected-values="selectedTools"
-        />
-      </aside>
-    </div>
-  </article>
+        <aside class="projects__filters">
+          <ProjectFilter
+            v-model="selectedYears"
+            class="projects__filter"
+            title="Years"
+            :options="years"
+            :selected-values="selectedYears"
+          />
+          <ProjectFilter
+            v-model="selectedLanguages"
+            class="projects__filter"
+            title="Languages"
+            :options="languages"
+            :selected-values="selectedLanguages"
+          />
+          <ProjectFilter
+            v-model="selectedTools"
+            class="projects__filter"
+            title="Tools"
+            :options="tools"
+            :selected-values="selectedTools"
+          />
+        </aside>
+      </div>
+    </main>
+  </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
