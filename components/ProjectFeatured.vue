@@ -1,5 +1,5 @@
 <template>
-  <div class="project-featured">
+  <section class="project-featured">
     <ul class="project-featured__list">
       <li
         v-for="project in projects"
@@ -13,16 +13,24 @@
         {{ project.name }}
       </li>
     </ul>
-    <div
-      :style="{ backgroundImage: `url(${selectedProject.heroImage})` }"
-      class="project-featured__banner"
-    ></div>
-  </div>
+    <NuxtLink :to="projectLink" class="project-featured__selected-feature">
+      <div
+        :style="{ backgroundImage: `url(${selectedProject.heroImage})` }"
+        class="project-featured__banner"
+      ></div>
+      <p class="project-featured__description">
+        <strong>{{ selectedProject.name }}</strong
+        ><span class="project-featured__description-divider">-</span>
+        {{ selectedProject.description }} ({{ selectedProject.year }})
+      </p>
+    </NuxtLink>
+  </section>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 import { Project } from '~/constants/interfaces'
+import { getProjectLink } from '~/helpers'
 export default Vue.extend({
   props: {
     projects: {
@@ -37,6 +45,12 @@ export default Vue.extend({
     return {
       selectedProject: this.projects[0],
     }
+  },
+
+  computed: {
+    projectLink(): string {
+      return getProjectLink(this.selectedProject.name)
+    },
   },
 })
 </script>
@@ -62,12 +76,29 @@ export default Vue.extend({
   &.selected {
     opacity: 100%;
   }
+
+  &:not(:last-child) {
+    margin-bottom: $s;
+  }
+}
+
+.project-featured__selected-feature {
+  color: $grey;
+  text-decoration: none;
+  width: 70%;
 }
 
 .project-featured__banner {
   @include responsive-background;
-  min-height: 100%;
-  height: 400px;
-  width: 70%;
+  margin-bottom: $m;
+  height: 50vh;
+}
+
+.project-featured__description {
+  text-align: center;
+}
+
+.project-featured__description-divider {
+  margin: 0 $s;
 }
 </style>

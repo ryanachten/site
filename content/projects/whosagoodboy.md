@@ -1,5 +1,7 @@
 ---
 name: whosagoodboy
+featured: true
+year: 2022
 heroImage: https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
 languages:
   - Jupyter Notebook
@@ -9,13 +11,16 @@ languages:
   - HCL
   - JavaScript
 tools:
-  - image-classification
+  - image-classfication
   - nextjs
   - react
   - tensorflow
+  - tensorflowjs
+  - terraform
 archived: false
 homepage: https://thatsagoodboy.herokuapp.com/
 githubUrl: https://github.com/ryanachten/whosagoodboy
+description: Dog breed classification web app 🐶
 ---
 ![Loading](https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif?raw=true)
 

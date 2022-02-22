@@ -13,8 +13,9 @@ export const getProjectRepo = async (repo: string) => {
         topics,
         html_url: url,
         default_branch: branch,
+        description,
       } = res.data
-      return { homepage, archived, topics, url, branch }
+      return { homepage, archived, topics, url, branch, description }
     }
   } catch (error) {
     console.log('Error fetching project repo', repo, error)

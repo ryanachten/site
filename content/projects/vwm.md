@@ -1,5 +1,6 @@
 ---
 name: VWM
+year: 2017
 branch: master
 languages:
   - JavaScript
@@ -11,9 +12,12 @@ tools:
   - d3js
   - firebase
   - three-js
-archived: false
+archived: true
 homepage: ''
 githubUrl: https://github.com/ryanachten/VWM
+description: >-
+  Development of Visual Working Memory, a psychology test web app. Built using
+  Firebase, ThreeJS and D3
 ---
 # Visual Working Memory
 ## Psychology Web App

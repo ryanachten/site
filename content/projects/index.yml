@@ -11,13 +11,16 @@ projects:
       - HCL
       - JavaScript
     tools:
-      - image-classification
+      - image-classfication
       - nextjs
       - react
       - tensorflow
+      - tensorflowjs
+      - terraform
     archived: false
     homepage: https://thatsagoodboy.herokuapp.com/
     githubUrl: https://github.com/ryanachten/whosagoodboy
+    description: Dog breed classification web app 🐶
   - name: echo
     year: 2021
     featured: true
@@ -37,6 +40,7 @@ projects:
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/echo
+    description: DIY video conferencing ⚡
   - name: Robic
     year: 2020
     featured: true
@@ -52,6 +56,7 @@ projects:
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Robic
+    description: Exercise app for people who like data 🏃‍♀️
   - name: Oscil
     year: 2018
     branch: master
@@ -71,6 +76,7 @@ projects:
     archived: false
     homepage: https://oscil.herokuapp.com/
     githubUrl: https://github.com/ryanachten/Oscil
+    description: 'Audio visualisation experiments 🌈 '
   - name: Lucid
     year: 2018
     branch: master
@@ -88,6 +94,7 @@ projects:
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Lucid
+    description: Realtime web-based mixed-reality 👓 ✨
   - name: Vertice
     year: 2016
     branch: master
@@ -106,6 +113,7 @@ projects:
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Vertice
+    description: Virtual artefact 3D archive 🏺
   - name: achtenio
     year: 2018
     repo: achtenio-18
@@ -123,6 +131,9 @@ projects:
     archived: false
     githubUrl: https://github.com/ryanachten/achtenio
     homepage: ''
+    description: >-
+      Personal portfolio site for Ryan Achten using React, Three.js and SVG
+      filters.
   - name: Hiko
     year: 2017
     branch: master
@@ -141,6 +152,9 @@ projects:
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Hiko
+    description: >-
+      Digital publishing platform for Victoria University of Wellington. Built
+      on top of Wordpress
   - name: VWM
     year: 2017
     branch: master
@@ -154,9 +168,12 @@ projects:
       - d3js
       - firebase
       - three-js
-    archived: false
+    archived: true
     homepage: ''
     githubUrl: https://github.com/ryanachten/VWM
+    description: >-
+      Development of Visual Working Memory, a psychology test web app. Built
+      using Firebase, ThreeJS and D3
   - name: SomaVision
     year: 2014
     heroImage: https://github.com/ryanachten/SomaVision/raw/master/docs/SomVis_01.jpg
@@ -168,6 +185,7 @@ projects:
     archived: false
     githubUrl: https://github.com/ryanachten/SomaVision
     homepage: ''
+    description: Hardware interface for music visualisation
   - name: Oskelate
     year: 2014
     heroImage: >-
@@ -183,3 +201,4 @@ projects:
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Oskelate
+    description: Interactive music visualiser responsive to both audio and performer

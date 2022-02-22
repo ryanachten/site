@@ -1,5 +1,7 @@
 ---
 name: echo
+year: 2021
+featured: true
 branch: master
 languages:
   - TypeScript
@@ -16,6 +18,7 @@ tools:
 archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/echo
+description: DIY video conferencing ⚡
 ---
 # echo
 ![Echo loading](https://github.com/ryanachten/echo/raw/master/docs/echo_loading.gif?raw=true)

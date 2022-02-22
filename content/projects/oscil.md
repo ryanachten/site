@@ -1,5 +1,6 @@
 ---
 name: Oscil
+year: 2018
 branch: master
 languages:
   - JavaScript
@@ -17,6 +18,7 @@ tools:
 archived: false
 homepage: https://oscil.herokuapp.com/
 githubUrl: https://github.com/ryanachten/Oscil
+description: 'Audio visualisation experiments 🌈 '
 ---
 # Oscil
 ## Audio-Visual Web Application

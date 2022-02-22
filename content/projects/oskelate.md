@@ -1,5 +1,6 @@
 ---
 name: Oskelate
+year: 2014
 heroImage: https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif
 branch: master
 languages:
@@ -12,6 +13,7 @@ tools:
 archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/Oskelate
+description: Interactive music visualiser responsive to both audio and performer
 ---
 # Oskelate
 

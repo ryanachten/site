@@ -10,6 +10,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 import { Project } from '~/constants/interfaces'
+import { getProjectLink } from '~/helpers'
 
 export default Vue.extend({
   props: {
@@ -20,7 +21,7 @@ export default Vue.extend({
   },
   computed: {
     projectLink(): string {
-      return `/projects/${this.project.name.toLowerCase()}`
+      return getProjectLink(this.project.name)
     },
   },
 })

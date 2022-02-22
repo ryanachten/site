@@ -1,5 +1,7 @@
 ---
 name: Robic
+year: 2020
+featured: true
 languages:
   - TypeScript
   - JavaScript
@@ -11,6 +13,7 @@ tools:
 archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/Robic
+description: Exercise app for people who like data 🏃‍♀️
 ---
 # Robic
 

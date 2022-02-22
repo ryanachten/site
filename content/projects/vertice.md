@@ -1,5 +1,6 @@
 ---
 name: Vertice
+year: 2016
 branch: master
 languages:
   - C#
@@ -11,12 +12,12 @@ languages:
 heroImage: >-
   https://camo.githubusercontent.com/94724b9e7eb6c02a7c16ec3f8a2913fed55fcaed2a998afcf8c98b6cbae5b2d3/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f6d61785f313230302f38356665626136303134393438392e356133653137386139643863382e706e67
 tools:
-  - csharp
   - unity
   - webgl
 archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/Vertice
+description: Virtual artefact 3D archive 🏺
 ---
 # Vertice
 ## 3D Archive Interface

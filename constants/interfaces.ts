@@ -1,6 +1,7 @@
 interface GitHubRepoMetadata {
   githubUrl: string
   homepage?: string
+  description?: string
   archived: boolean
   languages: string[]
   tools: string[]

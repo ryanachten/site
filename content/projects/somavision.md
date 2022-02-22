@@ -1,5 +1,6 @@
 ---
 name: SomaVision
+year: 2014
 heroImage: https://github.com/ryanachten/SomaVision/raw/master/docs/SomVis_01.jpg
 branch: master
 languages: []
@@ -9,6 +10,7 @@ tools:
 archived: false
 githubUrl: https://github.com/ryanachten/SomaVision
 homepage: ''
+description: Hardware interface for music visualisation
 ---
 ![promocover](https://github.com/ryanachten/SomaVision/raw/master/docs/PromoCoverUpload.jpg?raw=true)
 

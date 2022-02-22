@@ -46,3 +46,6 @@ export const parseQueryParameters = (
   }
   return params.filter((x) => typeof x === 'string') as string[]
 }
+
+export const getProjectLink = (projectName: string) =>
+  `/projects/${projectName.toLowerCase()}`
