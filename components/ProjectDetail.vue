@@ -1,33 +1,5 @@
 <template>
   <article class="project-detail">
-    <p><strong>Archived:</strong> {{ content.archived }}</p>
-    <p v-if="content.homepage">
-      <strong>Homepage:</strong> {{ content.homepage }}
-    </p>
-    <p>
-      <strong>Repo:</strong>
-      <a :href="content.githubUrl" target="_blank" rel="noopener noreferrer">{{
-        content.githubUrl
-      }}</a>
-    </p>
-    <p>
-      <strong>Languages:</strong>
-      <span
-        v-for="language in content.languages"
-        :key="language"
-        class="project-detail__list-item"
-        >{{ language }}</span
-      >
-    </p>
-    <p>
-      <strong>Tools:</strong>
-      <span
-        v-for="tool in content.tools"
-        :key="tool"
-        class="project-detail__list-item"
-        >{{ tool }}</span
-      >
-    </p>
     <nuxt-content :document="content" />
   </article>
 </template>
@@ -49,13 +21,28 @@ export default Vue.extend({
 <style lang="scss">
 .project-detail {
   img {
+    border-radius: $border-radius;
+    display: block;
+    margin: $m auto;
     max-width: 100%;
   }
-}
 
-.project-detail__list-item {
-  &:not(:last-child) {
-    margin-right: $s;
+  h1 {
+    font-family: $font-title;
+    font-size: $font-l;
+    text-align: center;
+    text-transform: lowercase;
+  }
+
+  h2 {
+    font-family: $font-title;
+    font-size: $font-m;
+    text-transform: lowercase;
+    margin-top: $l;
+  }
+
+  a {
+    color: $black;
   }
 }
 </style>

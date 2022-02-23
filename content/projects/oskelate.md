@@ -9,7 +9,6 @@ languages:
   - SuperCollider
 tools:
   - kinect
-  - music-visualizer
 archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/Oskelate

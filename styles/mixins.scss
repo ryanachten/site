@@ -1,5 +1,5 @@
 @mixin inverted-colors {
-  background-color: $grey;
+  background-color: $light-grey;
   color: $black;
 }
 
@@ -14,7 +14,7 @@
 }
 
 @mixin responsive-background {
-  border-radius: 2px;
+  border-radius: $border-radius;
   background-size: cover;
   background-position: center;
 }

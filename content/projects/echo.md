@@ -11,12 +11,13 @@ languages:
   - CSS
 heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
 tools:
+  - docker
   - dotnet
   - signalr
-  - video-streaming
+  - tensorflowjs
   - webrtc
 archived: false
-homepage: ''
+homepage: http://strangeecho.herokuapp.com/
 githubUrl: https://github.com/ryanachten/echo
 description: DIY video conferencing ⚡
 ---

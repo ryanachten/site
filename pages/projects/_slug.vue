@@ -2,7 +2,10 @@
   <div class="page">
     <main class="page__container">
       <NavBar invert-colors />
-      <ProjectDetail v-if="page" :content="page" />
+      <div class="project__wrapper">
+        <ProjectDetail :content="page" class="project__detail" />
+        <ProjectMetadata :project="page" class="project__metadata" />
+      </div>
     </main>
   </div>
 </template>
@@ -31,5 +34,13 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .page {
   @include inverted-colors;
+}
+
+.project__wrapper {
+  display: flex;
+}
+
+.project__metadata {
+  margin-left: $l;
 }
 </style>

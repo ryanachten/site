@@ -33,15 +33,17 @@ projects:
       - CSS
     heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
     tools:
+      - docker
       - dotnet
+      - react
       - signalr
-      - video-streaming
+      - tensorflowjs
       - webrtc
     archived: false
-    homepage: ''
+    homepage: http://strangeecho.herokuapp.com/
     githubUrl: https://github.com/ryanachten/echo
     description: DIY video conferencing ⚡
-  - name: Robic
+  - name: robic
     year: 2020
     featured: true
     languages:
@@ -52,10 +54,11 @@ projects:
     branch: master
     tools:
       - expo
+      - react
       - react-native
     archived: false
     homepage: ''
-    githubUrl: https://github.com/ryanachten/Robic
+    githubUrl: https://github.com/ryanachten/robic
     description: Exercise app for people who like data 🏃‍♀️
   - name: Oscil
     year: 2018
@@ -67,7 +70,6 @@ projects:
     heroImage: >-
       https://camo.githubusercontent.com/091374e53d9c0733a742386a3fd26996027cb2a1ca1ee580fb6f5a0a45074f64/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f66732f66646638396436343031393436332e356164393962386534393430612e6a7067
     tools:
-      - audio-visualizer
       - p5js
       - react
       - redux
@@ -146,8 +148,6 @@ projects:
     heroImage: >-
       https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg?raw=true
     tools:
-      - foundation6
-      - jointswp
       - wordpress
     archived: false
     homepage: ''
@@ -181,7 +181,6 @@ projects:
     languages: []
     tools:
       - arduino
-      - music-visualisation
     archived: false
     githubUrl: https://github.com/ryanachten/SomaVision
     homepage: ''
@@ -197,7 +196,6 @@ projects:
       - SuperCollider
     tools:
       - kinect
-      - music-visualizer
     archived: false
     homepage: ''
     githubUrl: https://github.com/ryanachten/Oskelate

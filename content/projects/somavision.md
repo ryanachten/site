@@ -6,7 +6,6 @@ branch: master
 languages: []
 tools:
   - arduino
-  - music-visualisation
 archived: false
 githubUrl: https://github.com/ryanachten/SomaVision
 homepage: ''
