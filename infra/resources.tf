@@ -12,7 +12,7 @@ resource "aws_amplify_app" "ryanachten" {
             - yarn install
         build:
           commands:
-            - yarn run generate
+            - yarn run build
       artifacts:
         baseDirectory: dist
         files:
