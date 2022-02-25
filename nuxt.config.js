@@ -15,9 +15,9 @@ export default {
   },
 
   // Global styles
-  css: ['~/styles/main.scss'],
+  css: ['~/styles/global.scss'],
   styleResources: {
-    scss: ['~/styles/variables.scss'],
+    scss: ['~/styles/main.scss'],
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -31,6 +31,7 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/style-resources',
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -49,5 +50,13 @@ export default {
 
   server: {
     port: 8000,
+  },
+
+  googleFonts: {
+    families: {
+      Poppins: true,
+      Philosopher: [400, 700],
+      'Material Icons': true,
+    },
   },
 }

@@ -1,5 +1,7 @@
 ---
 name: echo
+year: 2021
+featured: true
 branch: master
 languages:
   - TypeScript
@@ -9,13 +11,16 @@ languages:
   - CSS
 heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
 tools:
+  - docker
   - dotnet
+  - react
   - signalr
-  - video-streaming
+  - tensorflowjs
   - webrtc
 archived: false
-homepage: ''
+homepage: http://strangeecho.herokuapp.com/
 githubUrl: https://github.com/ryanachten/echo
+description: DIY video conferencing ⚡
 ---
 # echo
 ![Echo loading](https://github.com/ryanachten/echo/raw/master/docs/echo_loading.gif?raw=true)

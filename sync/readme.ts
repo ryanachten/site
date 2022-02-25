@@ -58,7 +58,7 @@ export const downloadReadMe = async (project: Project, branch: string) => {
 
     // Once we're done postprocessing, we can write the file to disk
     fs.writeFile(
-      `${CONTENT_DIR}/${project.name}.md`,
+      `${CONTENT_DIR}/${project.name.toLowerCase()}.md`,
       updatedReadMe,
       (error) => {
         if (error) {

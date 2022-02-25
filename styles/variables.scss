@@ -1,7 +1,11 @@
 // Typography
-$font-s: 12px;
-$font-m: 16px;
-$font-l: 24px;
+$font-xs: 12px;
+$font-s: 14px;
+$font-m: 24px;
+$font-l: 48px;
+
+$font-regular: 'Poppins', Arial, sans-serif;
+$font-title: 'Philosopher', serif;
 
 // Spacing
 $xs: 5px;
@@ -9,3 +13,11 @@ $s: 10px;
 $m: 20px;
 $l: 50px;
 $xl: 100px;
+
+// Colors
+$light-grey: #f3f3f3;
+$grey: #e7e7e7;
+$dark-grey: #949494;
+$black: #4a4646;
+
+$border-radius: 2px;

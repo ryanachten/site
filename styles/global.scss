@@ -1,0 +1,36 @@
+@import './variables.scss';
+
+html {
+  color: $grey;
+  background-color: $black;
+  font-family: $font-regular;
+  font-size: $font-s;
+}
+
+body {
+  margin: 0;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.page__container {
+  padding: $m;
+
+  // TODO: improve widescreen and mobile experiences
+  @media screen and (min-width: 1400px) {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}

@@ -1,7 +1,12 @@
 <template>
-  <div>
-    <a href="/projects">Back to projects</a>
-    <ProjectDetail v-if="page" :content="page" />
+  <div class="page">
+    <main class="page__container">
+      <NavBar invert-colors />
+      <div class="project__wrapper">
+        <ProjectDetail :content="page" class="project__detail" />
+        <ProjectMetadata :project="page" class="project__metadata" />
+      </div>
+    </main>
   </div>
 </template>
 
@@ -13,8 +18,6 @@ export default Vue.extend({
     const slug = params.slug
     const page = await $content('projects', slug)
       .fetch()
-      // TODO: handle this properly
-      // eslint-disable-next-line node/handle-callback-err
       .catch((_) => {
         error({ statusCode: 404, message: 'Page not found' })
       })
@@ -25,3 +28,17 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.page {
+  @include inverted-colors;
+}
+
+.project__wrapper {
+  display: flex;
+}
+
+.project__metadata {
+  margin-left: $l;
+}
+</style>

@@ -24,12 +24,20 @@ projects.forEach(async (project, index) => {
 
   const languages = await getProjectLanguages(project.name)
 
-  const { homepage, topics = [], archived, url, branch } = repoMetadata
+  const {
+    homepage,
+    topics = [],
+    archived,
+    url,
+    branch,
+    description,
+  } = repoMetadata
   // Update project with metadata from GitHub
   projects[index] = {
     ...projects[index],
     archived,
     languages,
+    description: description ?? undefined,
     homepage: homepage ?? undefined,
     githubUrl: url,
     tools: topics,

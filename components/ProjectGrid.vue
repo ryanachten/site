@@ -1,11 +1,13 @@
 <template>
-  <div class="project-grid">
-    <ProjectTile
-      v-for="project in projects"
-      :key="project.name"
-      :project="project"
-      class="project-grid__tile"
-    />
+  <div>
+    <p class="project-grid__header">All projects</p>
+    <div class="project-grid__wrapper">
+      <ProjectTile
+        v-for="project in projects"
+        :key="project.name"
+        :project="project"
+      />
+    </div>
   </div>
 </template>
 
@@ -24,11 +26,17 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.project-grid {
-  display: flex;
-  flex-flow: row wrap;
+.project-grid__header {
+  @include subheader;
+  font-size: $font-s;
+  margin: 0 0 $m 0;
 }
-.project-grid__tile {
-  max-width: 300px;
+
+.project-grid__wrapper {
+  column-gap: $m;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: 200px;
+  row-gap: $m;
 }
 </style>

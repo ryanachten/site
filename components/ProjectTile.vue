@@ -1,18 +1,16 @@
 <template>
-  <NuxtLink :to="projectLink" class="project-tile">
-    <img
-      v-if="project.heroImage"
-      :src="project.heroImage"
-      :alt="project.name"
-      class="project-title__img"
-    />
-    <span>{{ project.name }}</span>
+  <NuxtLink
+    :to="projectLink"
+    :style="{ backgroundImage: `url(${project.heroImage})` }"
+    class="project-tile"
+  >
   </NuxtLink>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 import { Project } from '~/constants/interfaces'
+import { getProjectLink } from '~/helpers'
 
 export default Vue.extend({
   props: {
@@ -23,7 +21,7 @@ export default Vue.extend({
   },
   computed: {
     projectLink(): string {
-      return `/projects/${this.project.name.toLowerCase()}`
+      return getProjectLink(this.project.name)
     },
   },
 })
@@ -31,12 +29,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .project-tile {
-  display: flex;
-  flex-flow: column;
-}
-.project-title__img {
-  object-fit: cover;
-  height: 100%;
+  @include responsive-background;
+  display: block;
+  height: 200px;
   width: 100%;
 }
 </style>
