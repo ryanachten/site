@@ -1,34 +1,30 @@
 <template>
   <aside>
     <ProjectMetadataSection
-      title="Status"
-      :options="[project.archived ? 'Archived' : 'Active']"
-      class="project-metadata__section"
-    />
-    <ProjectMetadataSection
-      v-if="project.homepage"
+      external
       title="Homepage"
-      :options="[project.homepage]"
+      :options="homepage"
       class="project-metadata__section"
     />
     <ProjectMetadataSection
+      external
       title="Repository"
-      :options="[project.githubUrl]"
+      :options="repository"
       class="project-metadata__section"
     />
     <ProjectMetadataSection
       title="Year"
-      :options="[project.year]"
+      :options="year"
       class="project-metadata__section"
     />
     <ProjectMetadataSection
       title="Languages"
-      :options="project.languages"
+      :options="languages"
       class="project-metadata__section"
     />
     <ProjectMetadataSection
       title="Tools"
-      :options="project.tools"
+      :options="tools"
       class="project-metadata__section"
     />
   </aside>
@@ -37,11 +33,56 @@
 <script lang="ts">
 import { FetchReturn } from '@nuxt/content/types/query-builder'
 import Vue, { PropType } from 'vue'
+import { MetaLink } from './ProjectMetadataSection.vue'
+const projectPageUrl = '/projects?'
 export default Vue.extend({
   props: {
     project: {
       type: Object as PropType<FetchReturn>,
       required: true,
+    },
+  },
+  computed: {
+    languages(): MetaLink[] {
+      return this.project.languages.map(
+        (x: string): MetaLink => ({
+          name: x,
+          href: `${projectPageUrl}languages=${x}`,
+        })
+      )
+    },
+    tools(): MetaLink[] {
+      return this.project.tools.map(
+        (x: string): MetaLink => ({
+          name: x,
+          href: `${projectPageUrl}tools=${x}`,
+        })
+      )
+    },
+    year(): MetaLink[] {
+      const year = this.project.year
+      return [
+        {
+          name: year,
+          href: `${projectPageUrl}years=${year}`,
+        },
+      ]
+    },
+    repository(): MetaLink[] {
+      return [
+        {
+          name: this.project.name,
+          href: this.project.githubUrl,
+        },
+      ]
+    },
+    homepage(): MetaLink[] {
+      return [
+        {
+          name: this.project.homepage,
+          href: this.project.homepage,
+        },
+      ]
     },
   },
 })

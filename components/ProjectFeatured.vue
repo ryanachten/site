@@ -1,18 +1,21 @@
 <template>
   <section class="project-featured">
-    <ul class="project-featured__list">
-      <li
-        v-for="project in projects"
-        :key="project.name"
-        :class="{
-          'project-featured__list-item': true,
-          selected: project.name === selectedProject.name,
-        }"
-        @click="selectedProject = project"
-      >
-        {{ project.name }}
-      </li>
-    </ul>
+    <div>
+      <p class="project-featured__header">Selected projects</p>
+      <ul class="project-featured__list">
+        <li
+          v-for="project in projects"
+          :key="project.name"
+          :class="{
+            'project-featured__list-item': true,
+            selected: project.name === selectedProject.name,
+          }"
+          @click="selectedProject = project"
+        >
+          {{ project.name }}
+        </li>
+      </ul>
+    </div>
     <NuxtLink :to="projectLink" class="project-featured__selected-feature">
       <div
         :style="{ backgroundImage: `url(${selectedProject.heroImage})` }"
@@ -58,6 +61,12 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .project-featured {
   display: flex;
+}
+
+.project-featured__header {
+  @include subheader;
+  font-size: $font-s;
+  margin: 0 0 $m 0;
 }
 
 .project-featured__list {

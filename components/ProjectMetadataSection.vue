@@ -4,8 +4,17 @@
       <span>{{ title }}</span>
     </div>
     <ul class="project-metadata-section__list">
-      <li v-for="option in options" :key="option">
-        {{ option }}
+      <li
+        v-for="option in options"
+        :key="option.name"
+        class="project-metadata-section__item"
+      >
+        <a v-if="external" target="_blank" rel="noopener" :href="option.href">{{
+          option.name
+        }}</a>
+        <NuxtLink v-else :to="option.href">
+          {{ option.name }}
+        </NuxtLink>
       </li>
     </ul>
   </section>
@@ -13,6 +22,10 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
+export interface MetaLink {
+  name: string
+  href: string
+}
 export default Vue.extend({
   props: {
     title: {
@@ -20,8 +33,11 @@ export default Vue.extend({
       required: true,
     },
     options: {
-      type: Array as PropType<Array<string>>,
+      type: Array as PropType<Array<MetaLink>>,
       required: true,
+    },
+    external: {
+      type: Boolean,
     },
   },
 })
@@ -49,9 +65,12 @@ export default Vue.extend({
 }
 
 .project-metadata-section__item {
-  cursor: pointer;
   display: block;
-  opacity: 100%;
+
+  a {
+    color: $black;
+    text-decoration: none;
+  }
 
   &:not(:last-child) {
     margin-bottom: $xs;

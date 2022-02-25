@@ -13,6 +13,7 @@ heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
 tools:
   - docker
   - dotnet
+  - react
   - signalr
   - tensorflowjs
   - webrtc

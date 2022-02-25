@@ -11,7 +11,6 @@ languages:
   - HCL
   - JavaScript
 tools:
-  - image-classfication
   - nextjs
   - react
   - tensorflow

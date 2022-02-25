@@ -27,8 +27,10 @@ body {
 
 .page__container {
   padding: $m;
-  @media screen and (min-width: 1200px) {
-    max-width: 80%;
+
+  // TODO: improve widescreen and mobile experiences
+  @media screen and (min-width: 1400px) {
+    max-width: 1400px;
     margin: 0 auto;
   }
 }
