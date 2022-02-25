@@ -6,7 +6,6 @@
     <div>
       <NuxtLink to="/projects">Projects</NuxtLink>
       <NuxtLink to="/cv">CV</NuxtLink>
-      <NuxtLink to="/about">About</NuxtLink>
     </div>
   </nav>
 </template>

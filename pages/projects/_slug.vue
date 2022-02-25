@@ -18,8 +18,6 @@ export default Vue.extend({
     const slug = params.slug
     const page = await $content('projects', slug)
       .fetch()
-      // TODO: handle this properly
-      // eslint-disable-next-line node/handle-callback-err
       .catch((_) => {
         error({ statusCode: 404, message: 'Page not found' })
       })

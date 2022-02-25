@@ -15,9 +15,9 @@ export default {
   },
 
   // Global styles
-  css: ['~/styles/main.scss'],
+  css: ['~/styles/global.scss'],
   styleResources: {
-    scss: ['~/styles/variables.scss', '~/styles/mixins.scss'],
+    scss: ['~/styles/main.scss'],
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

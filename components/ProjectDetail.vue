@@ -27,20 +27,6 @@ export default Vue.extend({
     max-width: 100%;
   }
 
-  h1 {
-    font-family: $font-title;
-    font-size: $font-l;
-    text-align: center;
-    text-transform: lowercase;
-  }
-
-  h2 {
-    font-family: $font-title;
-    font-size: $font-m;
-    text-transform: lowercase;
-    margin-top: $l;
-  }
-
   a {
     color: $black;
   }
