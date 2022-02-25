@@ -80,10 +80,9 @@ export default Vue.extend({
   cursor: pointer;
   font-size: $l;
   font-family: $font-title;
-  opacity: 50%;
 
-  &.selected {
-    opacity: 100%;
+  &:not(.selected) {
+    color: darken($grey, 25%);
   }
 
   &:not(:last-child) {

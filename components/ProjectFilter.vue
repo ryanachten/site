@@ -138,14 +138,13 @@ export default Vue.extend({
 .project-filter__item {
   cursor: pointer;
   display: block;
-  opacity: 50%;
 
   &:not(:last-child) {
     margin-bottom: $xs;
   }
 
-  &.selected {
-    opacity: 100%;
+  &:not(.selected) {
+    color: darken($grey, 25%);
   }
 }
 
