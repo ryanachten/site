@@ -6,7 +6,7 @@
         class="projects__featured"
         :projects="featuredProjects"
       />
-      <div class="projects__all-projects">
+      <div v-if="loaded" class="projects__all-projects">
         <ProjectGrid
           class="projects__project-grid"
           :projects="filteredProjects"
@@ -46,7 +46,7 @@ import { getSortedTotals, parseQueryParameters, SortTotal } from '~/helpers'
 export default Vue.extend({
   name: 'ProjectPage',
 
-  async asyncData({ $content, route }) {
+  async asyncData({ $content }) {
     const page = (await $content(
       'projects',
       'index'
@@ -62,19 +62,11 @@ export default Vue.extend({
     const sortedTools = getSortedTotals(unsortedTools)
     const sortedYears = getSortedTotals(unsortedYears, SortTotal.BY_NAME_DESC)
 
-    const selectedFilters = route.query
-    const selectedYears = parseQueryParameters(selectedFilters.years)
-    const selectedLanguages = parseQueryParameters(selectedFilters.languages)
-    const selectedTools = parseQueryParameters(selectedFilters.tools)
-
     return {
       projects,
       languages: sortedLanguages,
       tools: sortedTools,
       years: sortedYears,
-      selectedYears,
-      selectedLanguages,
-      selectedTools,
       featuredProjects,
     }
   },
@@ -87,6 +79,7 @@ export default Vue.extend({
     selectedLanguages: string[]
     selectedTools: string[]
     selectedYears: string[]
+    loaded: boolean
   } {
     return {
       projects: [],
@@ -96,6 +89,7 @@ export default Vue.extend({
       selectedLanguages: [],
       selectedTools: [],
       selectedYears: [],
+      loaded: false,
     }
   },
 
@@ -140,6 +134,14 @@ export default Vue.extend({
       const selectedYears = this.filteredProjects.map((x) => x.year)
       return this.years.filter((x) => selectedYears.includes(parseInt(x.name)))
     },
+  },
+
+  mounted() {
+    const queryParams = this.$route.query
+    this.selectedYears = parseQueryParameters(queryParams.years)
+    this.selectedLanguages = parseQueryParameters(queryParams.languages)
+    this.selectedTools = parseQueryParameters(queryParams.tools)
+    this.loaded = true
   },
 })
 </script>
