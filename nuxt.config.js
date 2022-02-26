@@ -1,4 +1,5 @@
 export default {
+  dev: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'ryanachten',
@@ -44,9 +45,8 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
 
-  target: 'static',
+  target: 'server',
 
   server: {
     port: 8000,
