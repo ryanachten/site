@@ -18,7 +18,7 @@
     </div>
     <NuxtLink :to="projectLink" class="project-featured__selected-feature">
       <div
-        :style="{ backgroundImage: `url(${selectedProject.heroImage})` }"
+        :style="{ backgroundImage: `url(${selectedProject.heroImage.local})` }"
         class="project-featured__banner"
       ></div>
       <p class="project-featured__description">

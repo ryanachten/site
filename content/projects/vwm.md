@@ -6,8 +6,6 @@ languages:
   - JavaScript
   - HTML
   - CSS
-heroImage: >-
-  https://camo.githubusercontent.com/f80d0f598e083c6251135d4f3d0637976868dc46ffeddb7427810a4b6d58e327/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f63643231656636343134343638312e356163393566383036623335622e6a7067
 tools:
   - d3js
   - firebase
@@ -18,6 +16,10 @@ githubUrl: https://github.com/ryanachten/VWM
 description: >-
   Development of Visual Working Memory, a psychology test web app. Built using
   Firebase, ThreeJS and D3
+heroImage:
+  remote: >-
+    https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/cd21ef64144681.5ac95f806b35b.jpg
+  local: assets/images/hero-images/vwm.jpg
 ---
 # Visual Working Memory
 ## Psychology Web App

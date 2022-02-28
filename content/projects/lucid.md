@@ -6,8 +6,6 @@ languages:
   - JavaScript
   - CSS
   - HTML
-heroImage: >-
-  https://camo.githubusercontent.com/5d2b7dc1854bd8e5633f76a30d7380e79a797f0aafd7d1e97cff98d9b9adb977/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f64353765323136363038343933392e356230613833313062343137382e6a7067
 tools:
   - react
   - redux
@@ -17,6 +15,10 @@ archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/Lucid
 description: Realtime web-based mixed-reality 👓 ✨
+heroImage:
+  remote: >-
+    https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/d57e2166084939.5b0a8310b4178.jpg
+  local: assets/images/hero-images/lucid.jpg
 ---
 # Lucid
 ## Mixed-Reality Psychedelia

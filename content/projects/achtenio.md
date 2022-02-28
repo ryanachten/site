@@ -6,8 +6,6 @@ languages:
   - JavaScript
   - CSS
   - HTML
-heroImage: >-
-  https://camo.githubusercontent.com/e54fc3b6d87c1ecfc089bea97ed98b316f5e8a25386ae7539e70c62b2963eb04/68747470733a2f2f6d69722d73332d63646e2d63662e626568616e63652e6e65742f70726f6a6563745f6d6f64756c65732f313430302f30306634623736343937353730372e356165353135386461376631312e6a7067
 branch: master
 tools:
   - react
@@ -17,6 +15,10 @@ archived: false
 githubUrl: https://github.com/ryanachten/achtenio
 homepage: ''
 description: Personal portfolio site for Ryan Achten using React, Three.js and SVG filters.
+heroImage:
+  remote: >-
+    https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/00f4b764975707.5ae5158da7f11.jpg
+  local: assets/images/hero-images/achtenio.jpg
 ---
 # R/A Portfolio Site
 

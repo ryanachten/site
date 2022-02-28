@@ -9,7 +9,6 @@ languages:
   - HTML
   - Dockerfile
   - CSS
-heroImage: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
 tools:
   - docker
   - dotnet
@@ -21,9 +20,12 @@ archived: false
 homepage: http://strangeecho.herokuapp.com/
 githubUrl: https://github.com/ryanachten/echo
 description: DIY video conferencing ⚡
+heroImage:
+  remote: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
+  local: assets/images/hero-images/echo.jpg
 ---
 # echo
-![Echo loading](https://github.com/ryanachten/echo/raw/master/docs/echo_loading.gif?raw=true)
+![Echo loading](https://github.com/ryanachten/echo/raw/master/docs/echo_loading.gif)
 
 **echo** is a DIY video conferencing software hacked together while coping with endless online meetings during COVID lockdowns.
 
@@ -33,7 +35,7 @@ echo currently provides the following features:
 - Limited video effects, such as background blurring and replacement
 - Muting of video and audio
 
-![Echo call](https://github.com/ryanachten/echo/raw/master/docs/echo_call.jpg?raw=true)
+![Echo call](https://github.com/ryanachten/echo/raw/master/docs/echo_call.jpg)
 
 In the future, the following features might be considered:
 - Inserting images into background replacement
@@ -42,17 +44,17 @@ In the future, the following features might be considered:
   
 However, I've moved onto other projects now, so will have to see if this ever happens 😉 
 
-![Echo group call](https://github.com/ryanachten/echo/raw/master/docs/echo_group.jpg?raw=true)
+![Echo group call](https://github.com/ryanachten/echo/raw/master/docs/echo_group.jpg)
 ## Architecture
 
-![Echo architecture](https://github.com/ryanachten/echo/raw/master/docs/echo_architecture.png?raw=true)
+![Echo architecture](https://github.com/ryanachten/echo/raw/master/docs/echo_architecture.png)
 
 Echo is comprised of the following components:
 
 ### Backend
 .NET and SignalR are used for websockets communication. Websockets makes it easier and more efficient to fulfill the necessary peer-2-peer handshakes required as part of the WebRTC signaling process.
 
-![Echo network components](https://github.com/ryanachten/echo/raw/master/docs/echo_network1.png?raw=true)
+![Echo network components](https://github.com/ryanachten/echo/raw/master/docs/echo_network1.png)
 
 ### Frontend
 React is used as the front-end library in this project, alongside SignalR to receive and send Websockets signals to the SignalR hub on the backend. `simple-peer` is used to help handle the peer-2-peer negotiations when setting up WebRTC connections.
@@ -61,7 +63,7 @@ Grommet is used as the UI component and theming library, allowing us to make use
 
 ## Connection lifecycle
 
-![Echo network flow](https://github.com/ryanachten/echo/raw/master/docs/echo_network2.png?raw=true)
+![Echo network flow](https://github.com/ryanachten/echo/raw/master/docs/echo_network2.png)
 
 The process for a new peer joining a call can broken down into the following lifecycle phases:
 1. **Initialisation** (blue)
@@ -80,13 +82,13 @@ The process for a new peer joining a call can broken down into the following lif
 
 ## Effects
 
-![Echo video pipeline](https://github.com/ryanachten/echo/raw/master/docs/echo_video-pipeline.png?raw=true)
+![Echo video pipeline](https://github.com/ryanachten/echo/raw/master/docs/echo_video-pipeline.png)
 
 To achieve modern video chat features such as background removal or blurring, we used Tensorflow.js and the Tensorflow BodyPix model to track figures in the video feed and use this outline to blur or change the colour of the background.
 
 The updated video feed is then rendered using the HTML canvas API and streamed via WebRTC.
 
-![Echo effects](https://github.com/ryanachten/echo/raw/master/docs/echo_effects.jpg?raw=true)
+![Echo effects](https://github.com/ryanachten/echo/raw/master/docs/echo_effects.jpg)
 
 ## Developing
 ### Requirements
@@ -104,4 +106,4 @@ The updated video feed is then rendered using the HTML canvas API and streamed v
 - Run Docker container: `docker run -p 8080:80 ryanachten/echo-app`
 - App should then be accessible on http://localhost:8080
 
-![Echo login](https://github.com/ryanachten/echo/raw/master/docs/echo_login.jpg?raw=true)
+![Echo login](https://github.com/ryanachten/echo/raw/master/docs/echo_login.jpg)
