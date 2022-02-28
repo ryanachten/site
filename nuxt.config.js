@@ -46,6 +46,13 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['three'],
+    extend(config) {
+      config.module.rules.push({
+        test: /\.(glsl|vs|fs|vert|frag)$/,
+        exclude: /node_modules/,
+        use: ['raw-loader'],
+      })
+    },
   },
 
   target: 'static',
