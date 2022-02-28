@@ -5,6 +5,7 @@
       <NuxtLink to="/projects">Projects</NuxtLink>
       <NuxtLink to="/cv">CV</NuxtLink>
     </div>
+    <ThreeTest />
   </div>
 </template>
 <script lang="ts">
