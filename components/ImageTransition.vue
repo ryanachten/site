@@ -1,9 +1,11 @@
 <template>
-  <canvas ref="canvas"></canvas>
+  <canvas ref="canvas" class="image-transition__canvas"></canvas>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+// Heavily inspired by:
+// - https://tympanus.net/codrops/2019/11/05/creative-webgl-image-transitions/
+import Vue, { PropType } from 'vue'
 import {
   DoubleSide,
   LinearFilter,
@@ -22,6 +24,21 @@ import fragmentShader from '../shaders/fragment.glsl'
 
 import { isWebGLAvailable } from '~/helpers'
 export default Vue.extend({
+  props: {
+    images: {
+      type: Array as PropType<Array<string>>,
+      required: true,
+    },
+    currentIndex: {
+      type: Number,
+      required: true,
+    },
+    nextIndex: {
+      type: Number,
+      required: true,
+    },
+  },
+
   data(): {
     camera: PerspectiveCamera
     textures: Texture[]
@@ -49,13 +66,14 @@ export default Vue.extend({
   mounted() {
     const canvas = this.$refs.canvas as HTMLCanvasElement
     this.init(canvas)
+    window.addEventListener('resize', this.resize)
   },
 
   methods: {
     resize() {
       const canvas = this.$refs.canvas as HTMLCanvasElement
-      this.width = canvas.width
-      this.height = canvas.height
+      this.width = canvas.offsetWidth
+      this.height = canvas.offsetHeight
       this.renderer?.setSize(this.width, this.height)
       this.camera.aspect = this.width / this.height
 
@@ -87,23 +105,18 @@ export default Vue.extend({
     },
 
     async loadTextures() {
-      const imageTexture1 = await new TextureLoader().loadAsync(
-        'hero-images/whosagoodboy.gif'
+      const textures = await Promise.all(
+        this.images.map(async (uri) => await new TextureLoader().loadAsync(uri))
       )
-      const imageTexture2 = await new TextureLoader().loadAsync(
-        'hero-images/robic.jpg'
-      )
-      imageTexture1.minFilter = LinearFilter
-      imageTexture2.minFilter = LinearFilter
+      textures.forEach((x) => {
+        x.minFilter = LinearFilter
+      })
 
-      this.textures.push(imageTexture1, imageTexture2)
+      this.textures = textures
     },
 
     createMaterial() {
       this.material = new ShaderMaterial({
-        // extensions: {
-        //   derivatives: "#extension GL_OES_standard_derivatives : enable"
-        // },
         side: DoubleSide,
         uniforms: {
           time: { value: 0 },
@@ -116,27 +129,21 @@ export default Vue.extend({
           swipe: { value: 0 },
           width: { value: 0 },
           radius: { value: 0 },
-          texture1: { value: this.textures[0] },
-          texture2: { value: this.textures[1] },
-          // displacement: { value: new TextureLoader().load('img/disp1.jpg') },
+          texture1: { value: this.textures[this.currentIndex] },
+          texture2: { value: this.textures[this.nextIndex] },
           resolution: { value: new Vector4() },
         },
-        // wireframe: true,
         vertexShader,
         fragmentShader,
       })
     },
 
-    // Useful references:
-    // - https://github.com/akella/webGLImageTransitions/blob/master/js/sketch.js
-    // - https://github.com/akella/webGLImageTransitions/blob/master/js/demo8.js
-    // - https://tympanus.net/codrops/2019/11/05/creative-webgl-image-transitions/
     async init(canvas: HTMLCanvasElement) {
       const hasWebGl = isWebGLAvailable(canvas)
       if (!hasWebGl) console.error('no webgl support')
 
-      this.height = canvas.height
-      this.width = canvas.width
+      this.height = canvas.offsetWidth
+      this.width = canvas.offsetWidth
 
       await this.loadTextures()
       this.createMaterial()
@@ -155,24 +162,38 @@ export default Vue.extend({
       this.scene.add(this.plane)
 
       this.renderer = new WebGLRenderer({ canvas })
-      this.renderer.setSize(this.width, this.height)
       this.renderer.setPixelRatio(window.devicePixelRatio)
 
       this.resize()
+      this.animate()
+    },
 
-      this.renderer.render(this.scene, this.camera)
+    start() {
+      this.material.uniforms.texture1.value = this.textures[this.currentIndex]
+      this.material.uniforms.texture2.value = this.textures[this.nextIndex]
+      this.animate()
     },
 
     animate() {
       const frame = requestAnimationFrame(this.animate)
-      this.renderer?.render(this.scene, this.camera)
       this.progress += 0.01
       this.material.uniforms.progress.value = this.progress
+      this.renderer?.render(this.scene, this.camera)
+
       if (this.progress >= 1) {
         cancelAnimationFrame(frame)
         this.progress = 0
+        this.$emit('animationComplete')
       }
     },
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.image-transition__canvas {
+  border-radius: 2px;
+  height: 100%;
+  width: 100%;
+}
+</style>

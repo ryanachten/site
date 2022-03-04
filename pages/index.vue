@@ -5,23 +5,12 @@
       <NuxtLink to="/projects">Projects</NuxtLink>
       <NuxtLink to="/cv">CV</NuxtLink>
     </div>
-    <button @click="triggerAnimation()">Animate</button>
-    <ThreeTest ref="three" @click="triggerAnimation()" />
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import ThreeTest from 'components/ThreeTest.vue'
-
 export default Vue.extend({
   name: 'IndexPage',
-
-  methods: {
-    triggerAnimation() {
-      const three = this.$refs.three as InstanceType<typeof ThreeTest>
-      three.animate()
-    },
-  },
 })
 </script>
 

@@ -17,7 +17,14 @@
       </ul>
     </div>
     <NuxtLink :to="projectLink" class="project-featured__selected-feature">
-      <div
+      <ImageTransition
+        ref="imageTransition"
+        :current-index="selectedProjectIndex"
+        :next-index="nextProjectIndex"
+        :images="projectImages"
+        @animationComplete="incrementProject()"
+      />
+      <!-- <div
         :style="{ backgroundImage: `url(${selectedProject.heroImage.local})` }"
         class="project-featured__banner"
       ></div>
@@ -25,7 +32,7 @@
         <strong>{{ selectedProject.name }}</strong
         ><span class="project-featured__description-divider">-</span>
         {{ selectedProject.description }} ({{ selectedProject.year }})
-      </p>
+      </p> -->
     </NuxtLink>
   </section>
 </template>
@@ -34,6 +41,7 @@
 import Vue, { PropType } from 'vue'
 import { Project } from '~/constants/interfaces'
 import { getProjectLink } from '~/helpers'
+import ImageTransition from '~/components/ImageTransition.vue'
 export default Vue.extend({
   props: {
     projects: {
@@ -43,16 +51,45 @@ export default Vue.extend({
   },
 
   data(): {
-    selectedProject: Project
+    selectedProjectIndex: number
   } {
     return {
-      selectedProject: this.projects[0],
+      selectedProjectIndex: 0,
     }
   },
 
   computed: {
+    selectedProject(): Project {
+      return this.projects[this.selectedProjectIndex]
+    },
     projectLink(): string {
       return getProjectLink(this.selectedProject.name)
+    },
+    nextProjectIndex(): number {
+      return this.selectedProjectIndex + 1 >= this.projects.length
+        ? 0
+        : this.selectedProjectIndex + 1
+    },
+    projectImages(): string[] {
+      return this.projects.map((x) => x.heroImage.local)
+    },
+  },
+
+  methods: {
+    incrementProject() {
+      // Delay before executing next transition
+      setTimeout(() => {
+        if (this.selectedProjectIndex + 1 >= this.projects.length) {
+          this.selectedProjectIndex = 0
+        } else {
+          this.selectedProjectIndex++
+        }
+
+        const transition = this.$refs.imageTransition as InstanceType<
+          typeof ImageTransition
+        >
+        transition.start()
+      }, 3000)
     },
   },
 })
@@ -80,6 +117,7 @@ export default Vue.extend({
   cursor: pointer;
   font-size: $l;
   font-family: $font-title;
+  transition: 0.3s;
 
   &:not(.selected) {
     color: darken($grey, 25%);
