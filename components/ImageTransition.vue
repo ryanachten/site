@@ -19,6 +19,7 @@ import {
   Vector4,
   WebGLRenderer,
 } from 'three'
+
 import vertexShader from '../shaders/vertex.glsl'
 import fragmentShader from '../shaders/fragment.glsl'
 
@@ -49,6 +50,7 @@ export default Vue.extend({
     plane: Mesh
     scene: Scene
     progress: number
+    time: number
   } {
     return {
       camera: new PerspectiveCamera(),
@@ -60,6 +62,7 @@ export default Vue.extend({
       plane: new Mesh(),
       scene: new Scene(),
       progress: 0,
+      time: 0,
     }
   },
 
@@ -74,7 +77,7 @@ export default Vue.extend({
       const canvas = this.$refs.canvas as HTMLCanvasElement
       this.width = canvas.offsetWidth
       this.height = canvas.offsetHeight
-      this.renderer?.setSize(this.width, this.height)
+      this.renderer?.setSize(this.width, this.height, false)
       this.camera.aspect = this.width / this.height
 
       const imageAspect =
@@ -142,7 +145,7 @@ export default Vue.extend({
       const hasWebGl = isWebGLAvailable(canvas)
       if (!hasWebGl) console.error('no webgl support')
 
-      this.height = canvas.offsetWidth
+      this.height = canvas.offsetHeight
       this.width = canvas.offsetWidth
 
       await this.loadTextures()
@@ -171,18 +174,22 @@ export default Vue.extend({
     start() {
       this.material.uniforms.texture1.value = this.textures[this.currentIndex]
       this.material.uniforms.texture2.value = this.textures[this.nextIndex]
+      this.resize()
       this.animate()
     },
 
     animate() {
       const frame = requestAnimationFrame(this.animate)
       this.progress += 0.01
+      this.time += 0.05
       this.material.uniforms.progress.value = this.progress
+      this.material.uniforms.time.value = this.time
       this.renderer?.render(this.scene, this.camera)
 
       if (this.progress >= 1) {
         cancelAnimationFrame(frame)
         this.progress = 0
+        this.time = 0
         this.$emit('animationComplete')
       }
     },
@@ -192,7 +199,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .image-transition__canvas {
-  border-radius: 2px;
   height: 100%;
   width: 100%;
 }

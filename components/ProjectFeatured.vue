@@ -22,17 +22,14 @@
         :current-index="selectedProjectIndex"
         :next-index="nextProjectIndex"
         :images="projectImages"
+        class="project-featured__banner"
         @animationComplete="incrementProject()"
       />
-      <!-- <div
-        :style="{ backgroundImage: `url(${selectedProject.heroImage.local})` }"
-        class="project-featured__banner"
-      ></div>
       <p class="project-featured__description">
         <strong>{{ selectedProject.name }}</strong
         ><span class="project-featured__description-divider">-</span>
         {{ selectedProject.description }} ({{ selectedProject.year }})
-      </p> -->
+      </p>
     </NuxtLink>
   </section>
 </template>
@@ -98,6 +95,19 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .project-featured {
   display: flex;
+
+  @media screen and (max-width: 800px) {
+    flex-flow: column;
+
+    .project-featured__list {
+      margin-bottom: $m;
+      text-align: left;
+    }
+
+    .project-featured__selected-feature {
+      width: 100%;
+    }
+  }
 }
 
 .project-featured__header {
@@ -135,7 +145,7 @@ export default Vue.extend({
 }
 
 .project-featured__banner {
-  @include responsive-background;
+  border-radius: 2px;
   margin-bottom: $m;
   height: 50vh;
 }
