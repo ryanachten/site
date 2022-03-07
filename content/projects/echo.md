@@ -22,7 +22,7 @@ githubUrl: https://github.com/ryanachten/echo
 description: DIY video conferencing ⚡
 heroImage:
   remote: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
-  local: assets/images/hero-images/echo.jpg
+  local: hero-images/echo.jpg
 ---
 # echo
 ![Echo loading](https://github.com/ryanachten/echo/raw/master/docs/echo_loading.gif)

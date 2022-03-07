@@ -16,7 +16,7 @@ githubUrl: https://github.com/ryanachten/robic
 description: Exercise app for people who like data 🏃‍♀️
 heroImage:
   remote: https://github.com/ryanachten/Robic/raw/master/info/images/Robic_Flow_1.jpg
-  local: assets/images/hero-images/robic.jpg
+  local: hero-images/robic.jpg
 ---
 # Robic
 

@@ -21,7 +21,7 @@ githubUrl: https://github.com/ryanachten/whosagoodboy
 description: Dog breed classification web app 🐶
 heroImage:
   remote: https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
-  local: assets/images/hero-images/whosagoodboy.gif
+  local: hero-images/whosagoodboy.jpg
 ---
 ![Loading](https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif)
 

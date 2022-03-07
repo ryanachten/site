@@ -19,7 +19,7 @@ description: >-
 heroImage:
   remote: >-
     https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/cd21ef64144681.5ac95f806b35b.jpg
-  local: assets/images/hero-images/vwm.jpg
+  local: hero-images/vwm.jpg
 ---
 # Visual Working Memory
 ## Psychology Web App

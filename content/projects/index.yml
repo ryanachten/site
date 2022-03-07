@@ -22,7 +22,7 @@ projects:
     heroImage:
       remote: >-
         https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
-      local: hero-images/whosagoodboy.gif
+      local: hero-images/whosagoodboy.jpg
   - name: echo
     year: 2021
     featured: true
@@ -221,4 +221,4 @@ projects:
     heroImage:
       remote: >-
         https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif
-      local: hero-images/oskelate.gif
+      local: hero-images/oskelate.jpg

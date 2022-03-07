@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import fetch from 'node-fetch'
+import sharp from 'sharp'
 
 import { Project } from '../constants/interfaces'
 import { IMAGE_DIR } from './constants'
@@ -13,6 +14,23 @@ export const cleanImageDirectory = () => {
     fs.rmSync(IMAGE_DIR, { recursive: true, force: true })
     fs.mkdirSync(IMAGE_DIR)
   }
+}
+
+// conform images to aspect ratio of 16:9 and converts to .jpg
+const transformImage = async (image: Buffer, outputPath: string) => {
+  const img = sharp(image)
+  const metadata = await img.metadata()
+  const updatedHeight = metadata.width
+    ? Math.round(metadata.width * 0.5625)
+    : metadata.height
+  return img
+    .resize(metadata.width, updatedHeight)
+    .jpeg()
+    .toFile(outputPath, (e) => {
+      if (e) {
+        console.error('Error transforming file:', outputPath, e)
+      }
+    })
 }
 
 export const downloadHeroImage = async ({
@@ -31,13 +49,11 @@ export const downloadHeroImage = async ({
     }
   }
 
-  // new file name is project name + original file extension
-  const writeImageName = `${name.toLowerCase()}${matches![0]}`
-  const imagePath = `${IMAGE_DIR}/${writeImageName}`
+  const imagePath = `${IMAGE_DIR}/${name.toLowerCase()}.jpg`
   try {
-    // console.log('Downloading ', heroImage, 'for project', name)
     const res = await fetch(remoteHeroImage)
-    res.body?.pipe(fs.createWriteStream(imagePath))
+    const image = await res.buffer()
+    await transformImage(image, imagePath)
     return {
       remote: remoteHeroImage,
       local: imagePath.replace('static/', ''),
