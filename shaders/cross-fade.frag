@@ -1,3 +1,4 @@
+precision mediump float;
 uniform float progress;
 uniform sampler2D texture1;
 uniform sampler2D texture2;

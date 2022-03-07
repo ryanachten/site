@@ -1,32 +1,9 @@
-uniform float time;
+precision mediump float;
 uniform float progress;
-uniform float intensity;
-uniform float width;
-uniform float scaleX;
-uniform float scaleY;
-uniform float transition;
-uniform float radius;
-uniform float swipe;
 uniform sampler2D texture1;
 uniform sampler2D texture2;
-uniform sampler2D displacement;
 uniform vec4 resolution;
 varying vec2 vUv;
-mat2 rotate(float a) {
-  float s = sin(a);
-  float c = cos(a);
-  return mat2(c, -s, s, c);
-}
-const float PI = 3.1415;
-const float angle1 = PI * 0.25;
-const float angle2 = -PI * 0.75;
-const float noiseSeed = 2.;
-float random() {
-  return fract(sin(noiseSeed + dot(gl_FragCoord.xy / resolution.xy / 10.0, vec2(12.9898, 4.1414))) * 43758.5453);
-}
-float hash(float n) {
-  return fract(sin(n) * 1e4);
-}
 float hash(vec2 p) {
   return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
 }

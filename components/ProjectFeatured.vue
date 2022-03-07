@@ -4,13 +4,13 @@
       <p class="project-featured__header">Selected projects</p>
       <ul class="project-featured__list">
         <li
-          v-for="project in projects"
+          v-for="(project, index) in projects"
           :key="project.name"
           :class="{
             'project-featured__list-item': true,
             selected: project.name === selectedProject.name,
           }"
-          @click="selectedProject = project"
+          @click="selectProject(index)"
         >
           {{ project.name }}
         </li>
@@ -18,12 +18,10 @@
     </div>
     <NuxtLink :to="projectLink" class="project-featured__selected-feature">
       <ImageTransition
-        ref="imageTransition"
-        :current-index="selectedProjectIndex"
-        :next-index="nextProjectIndex"
+        :previous-index="previousProjectIndex"
+        :current-index="currentProjectIndex"
         :images="projectImages"
         class="project-featured__banner"
-        @animationComplete="incrementProject()"
       />
       <p class="project-featured__description">
         <strong>{{ selectedProject.name }}</strong
@@ -38,7 +36,9 @@
 import Vue, { PropType } from 'vue'
 import { Project } from '~/constants/interfaces'
 import { getProjectLink } from '~/helpers'
-import ImageTransition from '~/components/ImageTransition.vue'
+
+const transitionDelay = 4000
+
 export default Vue.extend({
   props: {
     projects: {
@@ -48,45 +48,50 @@ export default Vue.extend({
   },
 
   data(): {
-    selectedProjectIndex: number
+    previousProjectIndex: number
+    currentProjectIndex: number
+    timeout: NodeJS.Timeout | null
   } {
     return {
-      selectedProjectIndex: 0,
+      previousProjectIndex: 0,
+      currentProjectIndex: 0,
+      timeout: null,
     }
   },
 
   computed: {
     selectedProject(): Project {
-      return this.projects[this.selectedProjectIndex]
+      return this.projects[this.currentProjectIndex]
     },
     projectLink(): string {
       return getProjectLink(this.selectedProject.name)
-    },
-    nextProjectIndex(): number {
-      return this.selectedProjectIndex + 1 >= this.projects.length
-        ? 0
-        : this.selectedProjectIndex + 1
     },
     projectImages(): string[] {
       return this.projects.map((x) => x.heroImage.local)
     },
   },
 
-  methods: {
-    incrementProject() {
-      // Delay before executing next transition
-      setTimeout(() => {
-        if (this.selectedProjectIndex + 1 >= this.projects.length) {
-          this.selectedProjectIndex = 0
-        } else {
-          this.selectedProjectIndex++
-        }
+  mounted() {
+    this.initInterval()
+  },
 
-        const transition = this.$refs.imageTransition as InstanceType<
-          typeof ImageTransition
-        >
-        transition.start()
-      }, 3000)
+  methods: {
+    initInterval() {
+      this.timeout = setInterval(() => this.incrementProject(), transitionDelay)
+    },
+    incrementProject() {
+      this.previousProjectIndex = this.currentProjectIndex
+      if (this.currentProjectIndex + 1 >= this.projects.length) {
+        this.currentProjectIndex = 0
+      } else {
+        this.currentProjectIndex++
+      }
+    },
+    selectProject(projectIndex: number) {
+      this.timeout !== null && clearInterval(this.timeout)
+      this.previousProjectIndex = this.currentProjectIndex
+      this.currentProjectIndex = projectIndex
+      this.initInterval()
     },
   },
 })

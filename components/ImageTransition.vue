@@ -21,7 +21,7 @@ import {
 } from 'three'
 
 import vertexShader from '../shaders/vertex.glsl'
-import fragmentShader from '../shaders/fragment.glsl'
+import fragmentShader from '../shaders/vertical-warp.frag'
 
 import { isWebGLAvailable } from '~/helpers'
 export default Vue.extend({
@@ -30,11 +30,11 @@ export default Vue.extend({
       type: Array as PropType<Array<string>>,
       required: true,
     },
-    currentIndex: {
+    previousIndex: {
       type: Number,
       required: true,
     },
-    nextIndex: {
+    currentIndex: {
       type: Number,
       required: true,
     },
@@ -51,6 +51,7 @@ export default Vue.extend({
     scene: Scene
     progress: number
     time: number
+    frame: number | null
   } {
     return {
       camera: new PerspectiveCamera(),
@@ -63,7 +64,14 @@ export default Vue.extend({
       scene: new Scene(),
       progress: 0,
       time: 0,
+      frame: null,
     }
+  },
+
+  watch: {
+    currentIndex() {
+      this.start()
+    },
   },
 
   mounted() {
@@ -132,8 +140,8 @@ export default Vue.extend({
           swipe: { value: 0 },
           width: { value: 0 },
           radius: { value: 0 },
-          texture1: { value: this.textures[this.currentIndex] },
-          texture2: { value: this.textures[this.nextIndex] },
+          texture1: { value: this.textures[this.previousIndex] },
+          texture2: { value: this.textures[this.currentIndex] },
           resolution: { value: new Vector4() },
         },
         vertexShader,
@@ -168,18 +176,25 @@ export default Vue.extend({
       this.renderer.setPixelRatio(window.devicePixelRatio)
 
       this.resize()
-      this.animate()
+      this.renderer?.render(this.scene, this.camera)
     },
 
     start() {
-      this.material.uniforms.texture1.value = this.textures[this.currentIndex]
-      this.material.uniforms.texture2.value = this.textures[this.nextIndex]
+      this.stop()
+      this.material.uniforms.texture1.value = this.textures[this.previousIndex]
+      this.material.uniforms.texture2.value = this.textures[this.currentIndex]
       this.resize()
       this.animate()
     },
 
+    stop() {
+      this.frame !== null && cancelAnimationFrame(this.frame)
+      this.progress = 0
+      this.time = 0
+    },
+
     animate() {
-      const frame = requestAnimationFrame(this.animate)
+      this.frame = requestAnimationFrame(this.animate)
       this.progress += 0.01
       this.time += 0.05
       this.material.uniforms.progress.value = this.progress
@@ -187,10 +202,7 @@ export default Vue.extend({
       this.renderer?.render(this.scene, this.camera)
 
       if (this.progress >= 1) {
-        cancelAnimationFrame(frame)
-        this.progress = 0
-        this.time = 0
-        this.$emit('animationComplete')
+        this.stop()
       }
     },
   },
