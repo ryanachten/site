@@ -75,6 +75,10 @@ export default Vue.extend({
     this.initInterval()
   },
 
+  beforeMount() {
+    this.timeout !== null && clearInterval(this.timeout)
+  },
+
   methods: {
     initInterval() {
       this.timeout = setInterval(() => this.incrementProject(), transitionDelay)

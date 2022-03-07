@@ -40,7 +40,7 @@ export default Vue.extend({
 
   &.navbar--inverted {
     a {
-      @include inverted-colors;
+      color: $black;
     }
   }
 }

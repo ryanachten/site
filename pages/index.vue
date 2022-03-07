@@ -1,47 +1,86 @@
 <template>
-  <div class="landing">
-    <LogoText class="landing__logo" />
-    <div class="landing__links">
-      <NuxtLink to="/projects">Projects</NuxtLink>
-      <NuxtLink to="/cv">CV</NuxtLink>
+  <main class="landing">
+    <div class="page__container landing__container">
+      <NavBar invert-colors />
     </div>
-  </div>
+    <div class="landing__canvas">
+      <ImageTransition
+        :previous-index="previousProjectIndex"
+        :current-index="currentProjectIndex"
+        :images="heroImages"
+        @animation-complete="incrementProject()"
+      />
+    </div>
+  </main>
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { Project, ProjectIndex } from '~/constants/interfaces'
+
 export default Vue.extend({
   name: 'IndexPage',
+
+  async asyncData({ $content }) {
+    const page = (await $content(
+      'projects',
+      'index'
+    ).fetch<ProjectIndex>()) as ProjectIndex
+
+    return {
+      projects: page.projects,
+    }
+  },
+
+  data(): {
+    projects: Project[]
+    previousProjectIndex: number
+    currentProjectIndex: number
+  } {
+    return {
+      projects: [],
+      previousProjectIndex: 0,
+      currentProjectIndex: 0,
+    }
+  },
+
+  computed: {
+    heroImages(): string[] {
+      return this.projects.map((x) => x.heroImage.local)
+    },
+  },
+
+  mounted() {
+    setTimeout(() => this.incrementProject(), 1000)
+  },
+
+  methods: {
+    incrementProject() {
+      this.previousProjectIndex = this.currentProjectIndex
+      if (this.currentProjectIndex + 1 >= this.heroImages.length) {
+        this.currentProjectIndex = 0
+      } else {
+        this.currentProjectIndex++
+      }
+    },
+  },
 })
 </script>
 
 <style lang="scss" scoped>
 .landing {
-  align-items: center;
   display: flex;
-  flex-flow: column;
+  justify-content: center;
+  position: relative;
+}
+
+.landing__container {
+  position: absolute;
+  width: calc(100% - $m * 2);
+}
+
+.landing__canvas {
+  border-radius: 2px;
   height: 100vh;
-  justify-content: center;
   width: 100vw;
-}
-
-.landing__logo {
-  margin-bottom: $s;
-}
-
-.landing__links {
-  display: flex;
-  justify-content: center;
-  margin-bottom: $l;
-
-  a {
-    @include subheader;
-    &:not(:last-child) {
-      margin-right: $m;
-    }
-
-    &.nuxt-link-active {
-      font-weight: bold;
-    }
-  }
 }
 </style>

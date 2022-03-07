@@ -203,6 +203,7 @@ export default Vue.extend({
 
       if (this.progress >= 1) {
         this.stop()
+        this.$emit('animation-complete')
       }
     },
   },
