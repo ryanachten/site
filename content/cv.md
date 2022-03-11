@@ -1,16 +1,3 @@
-<h1>CV</h1>
-
-
-<p>
-<strong><a href="http://ryanachten.io">Portfolio</a></strong> ~ http://ryanachten.io
-</p>
-<p>
-<strong><a href="https://www.behance.net/ryanachten">Bēhance</a></strong> ~ behance.net/ryanachten
-</p>
-<p>
-<strong><a href="https://github.com/ryanachten">GitHub</a></strong> ~ github.com/ryanachten
-</p>
-
 <h2>ABOUT</h2>
 
 

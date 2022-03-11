@@ -24,11 +24,11 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .logo {
   font-family: $font-title;
-  font-size: $m;
+  font-size: $font-m;
   font-weight: bold;
 
   &--large {
-    font-size: $l;
+    font-size: $font-l;
   }
 }
 </style>

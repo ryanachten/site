@@ -3,6 +3,8 @@
     <div class="page__container">
       <NavBar />
       <main class="cv__content">
+        <LogoImg class="cv__logo" />
+        <h1>curriculum vitae</h1>
         <nuxt-content :document="page" class="content" />
       </main>
     </div>
@@ -28,19 +30,25 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+.cv__logo {
+  display: block;
+  margin: $l auto $m auto;
+  min-width: 200px;
+  width: 35%;
+}
 .cv__content {
   margin: 0 auto;
-  text-align: center;
-  width: 80%;
+  max-width: 800px;
+  text-align: left;
 
   ul {
-    @include list-reset;
+    /* @include list-reset; */
   }
 
   table {
-    margin: 0 auto;
-
     td {
+      padding: 0;
+
       &:nth-child(2) {
         padding-left: $m;
         text-align: left;

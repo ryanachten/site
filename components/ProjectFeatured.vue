@@ -17,12 +17,13 @@
       </ul>
     </div>
     <NuxtLink :to="projectLink" class="project-featured__selected-feature">
-      <ImageTransition
-        :previous-index="previousProjectIndex"
-        :current-index="currentProjectIndex"
-        :images="projectImages"
-        class="project-featured__banner"
-      />
+      <div class="project-featured__banner">
+        <ImageTransition
+          :previous-index="previousProjectIndex"
+          :current-index="currentProjectIndex"
+          :images="projectImages"
+        />
+      </div>
       <p class="project-featured__description">
         <strong>{{ selectedProject.name }}</strong
         ><span class="project-featured__description-divider">-</span>
