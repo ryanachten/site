@@ -1,10 +1,15 @@
 <template>
   <main class="landing">
     <div class="page__container landing__container">
-      <NavBar invert-colors />
+      <LogoImg class="landing__logo" />
+      <LogoText class="landing__logo-text" />
+      <div class="landing__nav">
+        <NuxtLink to="/projects">Projects</NuxtLink>
+        <NuxtLink to="/cv">CV</NuxtLink>
+      </div>
     </div>
     <div class="landing__canvas">
-      <ImageTransition
+      <ImageBackground
         :previous-index="previousProjectIndex"
         :current-index="currentProjectIndex"
         :images="heroImages"
@@ -74,13 +79,46 @@ export default Vue.extend({
 }
 
 .landing__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - $m * 2);
+  justify-content: center;
   position: absolute;
   width: calc(100% - $m * 2);
+}
+
+.landing__logo {
+  margin-bottom: $m;
+  min-width: 200px;
+  width: 25%;
+}
+
+.landing__logo-text {
+  font-size: $font-l;
+  margin-bottom: $m;
 }
 
 .landing__canvas {
   border-radius: 2px;
   height: 100vh;
   width: 100vw;
+}
+
+.landing__nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $l;
+
+  a {
+    @include subheader;
+    &:not(:last-child) {
+      margin-right: $m;
+    }
+
+    &.nuxt-link-active {
+      font-weight: bold;
+    }
+  }
 }
 </style>

@@ -3,8 +3,7 @@
 </template>
 
 <script lang="ts">
-// Heavily inspired by:
-// - https://tympanus.net/codrops/2019/11/05/creative-webgl-image-transitions/
+// TODO: deduplicate logic in image transition
 import Vue, { PropType } from 'vue'
 import {
   DoubleSide,
@@ -21,7 +20,7 @@ import {
 } from 'three'
 
 import vertexShader from '../shaders/vertex.glsl'
-import fragmentShader from '../shaders/vertical-warp.frag'
+import fragmentShader from '../shaders/noise-warp.frag'
 
 import { isWebGLAvailable } from '~/helpers'
 
@@ -59,7 +58,7 @@ export default Vue.extend({
   } {
     return {
       camera: new PerspectiveCamera(),
-      material: new ShaderMaterial(),
+      material: new ShaderMaterial({ transparent: true }),
       textures: [],
       height: 0,
       width: 0,
@@ -177,7 +176,7 @@ export default Vue.extend({
       this.plane = new Mesh(geometry, this.material)
       this.scene.add(this.plane)
 
-      this.renderer = new WebGLRenderer({ canvas })
+      this.renderer = new WebGLRenderer({ canvas, alpha: true })
       this.renderer.setPixelRatio(window.devicePixelRatio)
 
       this.resize()
@@ -195,7 +194,7 @@ export default Vue.extend({
     stop() {
       this.frame !== null && cancelAnimationFrame(this.frame)
       this.progress = 0
-      this.time = 0
+      // this.time = 0
     },
 
     animate() {
@@ -210,8 +209,9 @@ export default Vue.extend({
     },
 
     draw() {
-      this.progress += 0.02
-      this.time += 1
+      this.progress += 0.01
+      this.time += 0.01
+
       this.material.uniforms.progress.value = this.progress
       this.material.uniforms.time.value = this.time
       this.renderer?.render(this.scene, this.camera)

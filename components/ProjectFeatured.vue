@@ -128,7 +128,7 @@ export default Vue.extend({
 .project-featured__list {
   @include list-reset;
   flex-grow: 1;
-  margin-right: $font-l;
+  margin-right: $font-xl;
   text-align: right;
 }
 
