@@ -9,10 +9,11 @@
       </div>
     </div>
     <div class="landing__canvas">
-      <ImageBackground
+      <ImageTransition
         :previous-index="previousProjectIndex"
         :current-index="currentProjectIndex"
         :images="heroImages"
+        shader="noise-warp"
         @animation-complete="incrementProject()"
       />
     </div>

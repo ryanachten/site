@@ -1,5 +1,9 @@
 <template>
-  <canvas ref="canvas" class="image-transition__canvas"></canvas>
+  <canvas
+    ref="canvas"
+    class="image-transition__canvas"
+    :class="{ 'image-transition--loaded': textures.length > 0 }"
+  ></canvas>
 </template>
 
 <script lang="ts">
@@ -21,9 +25,12 @@ import {
 } from 'three'
 
 import vertexShader from '../shaders/vertex.glsl'
-import fragmentShader from '../shaders/vertical-warp.frag'
+import noiseWarpFrag from '../shaders/noise-warp.frag'
+import verticalWarpFrag from '../shaders/vertical-warp.frag'
 
 import { isWebGLAvailable } from '~/helpers'
+
+type ShaderOptions = 'vertical-warp' | 'noise-warp'
 
 const fps = 30
 const fpsInterval = 1000 / fps
@@ -31,6 +38,10 @@ export default Vue.extend({
   props: {
     images: {
       type: Array as PropType<Array<string>>,
+      required: true,
+    },
+    shader: {
+      type: String as PropType<ShaderOptions>,
       required: true,
     },
     previousIndex: {
@@ -56,7 +67,12 @@ export default Vue.extend({
     time: number
     frame: number | null
     then: number
+    fragmentShader: string
   } {
+    const fragmentShader =
+      <ShaderOptions>this.$props.shader === 'vertical-warp'
+        ? verticalWarpFrag
+        : noiseWarpFrag
     return {
       camera: new PerspectiveCamera(),
       material: new ShaderMaterial(),
@@ -70,6 +86,7 @@ export default Vue.extend({
       time: 0,
       frame: null,
       then: Date.now(),
+      fragmentShader,
     }
   },
 
@@ -137,20 +154,12 @@ export default Vue.extend({
         uniforms: {
           time: { value: 0 },
           progress: { value: 0 },
-          border: { value: 0 },
-          intensity: { value: 50 },
-          scaleX: { value: 40 },
-          scaleY: { value: 40 },
-          transition: { value: 40 },
-          swipe: { value: 0 },
-          width: { value: 0 },
-          radius: { value: 0 },
           texture1: { value: this.textures[this.previousIndex] },
           texture2: { value: this.textures[this.currentIndex] },
           resolution: { value: new Vector4() },
         },
         vertexShader,
-        fragmentShader,
+        fragmentShader: this.fragmentShader,
       })
     },
 
@@ -195,7 +204,6 @@ export default Vue.extend({
     stop() {
       this.frame !== null && cancelAnimationFrame(this.frame)
       this.progress = 0
-      this.time = 0
     },
 
     animate() {
@@ -211,7 +219,7 @@ export default Vue.extend({
 
     draw() {
       this.progress += 0.02
-      this.time += 1
+      this.time += 0.01
       this.material.uniforms.progress.value = this.progress
       this.material.uniforms.time.value = this.time
       this.renderer?.render(this.scene, this.camera)
@@ -227,7 +235,13 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .image-transition__canvas {
+  opacity: 0;
   height: 100%;
+  transition: 0.5s;
   width: 100%;
+
+  &.image-transition--loaded {
+    opacity: 1;
+  }
 }
 </style>

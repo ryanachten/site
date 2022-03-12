@@ -22,6 +22,7 @@
           :previous-index="previousProjectIndex"
           :current-index="currentProjectIndex"
           :images="projectImages"
+          shader="vertical-warp"
         />
       </div>
       <p class="project-featured__description">
