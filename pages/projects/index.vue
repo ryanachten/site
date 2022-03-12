@@ -6,34 +6,48 @@
         class="projects__featured"
         :projects="featuredProjects"
       />
-      <div v-if="loaded" class="projects__all-projects">
-        <ProjectGrid
-          class="projects__project-grid"
-          :projects="filteredProjects"
-        />
-        <aside class="projects__filters">
-          <ProjectFilter
-            v-model="selectedYears"
-            class="projects__filter"
-            title="Years"
-            :options="years"
-            :selected-values="selectedYears"
+      <div>
+        <div class="projects__header">
+          <p>All projects</p>
+          <span
+            role="button"
+            class="material-icons projects__filter-toggle"
+            @click="toggleFilterMenu()"
+            >{{ showFilterMenu ? 'filter_alt_off' : 'filter_alt' }}</span
+          >
+        </div>
+        <div v-if="loaded" class="projects__all-projects">
+          <ProjectGrid
+            class="projects__project-grid"
+            :projects="filteredProjects"
           />
-          <ProjectFilter
-            v-model="selectedLanguages"
-            class="projects__filter"
-            title="Languages"
-            :options="languages"
-            :selected-values="selectedLanguages"
-          />
-          <ProjectFilter
-            v-model="selectedTools"
-            class="projects__filter"
-            title="Tools"
-            :options="tools"
-            :selected-values="selectedTools"
-          />
-        </aside>
+          <aside
+            class="projects__filters"
+            :class="{ 'projects__filters--mobile': showFilterMenu }"
+          >
+            <ProjectFilter
+              v-model="selectedYears"
+              class="projects__filter"
+              title="Years"
+              :options="years"
+              :selected-values="selectedYears"
+            />
+            <ProjectFilter
+              v-model="selectedLanguages"
+              class="projects__filter"
+              title="Languages"
+              :options="languages"
+              :selected-values="selectedLanguages"
+            />
+            <ProjectFilter
+              v-model="selectedTools"
+              class="projects__filter"
+              title="Tools"
+              :options="tools"
+              :selected-values="selectedTools"
+            />
+          </aside>
+        </div>
       </div>
     </main>
   </div>
@@ -80,6 +94,7 @@ export default Vue.extend({
     selectedTools: string[]
     selectedYears: string[]
     loaded: boolean
+    showFilterMenu: boolean
   } {
     return {
       projects: [],
@@ -90,6 +105,7 @@ export default Vue.extend({
       selectedTools: [],
       selectedYears: [],
       loaded: false,
+      showFilterMenu: false,
     }
   },
 
@@ -143,6 +159,12 @@ export default Vue.extend({
     this.selectedTools = parseQueryParameters(queryParams.tools)
     this.loaded = true
   },
+
+  methods: {
+    toggleFilterMenu() {
+      this.showFilterMenu = !this.showFilterMenu
+    },
+  },
 })
 </script>
 
@@ -155,10 +177,38 @@ export default Vue.extend({
 
 .projects__all-projects {
   display: flex;
+  position: relative;
+}
+
+.projects__header {
+  @include subheader;
+  align-items: center;
+  display: flex;
+  font-size: $font-s;
+  justify-content: space-between;
+}
+
+.projects__filter-toggle {
+  @media screen and (min-width: 800px) {
+    display: none;
+  }
 }
 
 .projects__filters {
   margin-left: $l;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+
+    &.projects__filters--mobile {
+      background: $black;
+      display: block;
+      padding: 0 0 $m $m;
+      position: absolute;
+      right: -1px;
+      top: -1px;
+    }
+  }
 }
 
 .projects__filter {

@@ -8,8 +8,6 @@ languages:
   - CSS
   - Shell
   - Ruby
-heroImage: >-
-  https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg?raw=true
 tools:
   - wordpress
 archived: false
@@ -18,6 +16,10 @@ githubUrl: https://github.com/ryanachten/Hiko
 description: >-
   Digital publishing platform for Victoria University of Wellington. Built on
   top of Wordpress
+heroImage:
+  remote: >-
+    https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg
+  local: hero-images/hiko.jpg
 ---
 ![Hiko home page](https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg)
 

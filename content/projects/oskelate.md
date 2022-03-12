@@ -1,7 +1,6 @@
 ---
 name: Oskelate
 year: 2014
-heroImage: https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif
 branch: master
 languages:
   - Java
@@ -13,10 +12,14 @@ archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/Oskelate
 description: Interactive music visualiser responsive to both audio and performer
+heroImage:
+  remote: >-
+    https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif
+  local: hero-images/oskelate.jpg
 ---
 # Oskelate
 
-![heading](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_header.png?raw=true)
+![heading](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_header.png)
 Oskelate is a skeleton music visualiser built in Pure Data (Pd) and Java.
 
 There are two core sets of functionality built into this system:
@@ -26,7 +29,7 @@ There are two core sets of functionality built into this system:
 
 By combining these two responses, Oskelate looks to provide musicians with ability to create a unique visual component to their performance that represents not only the audio qualities of their music but also the kinetic movement of the performer on stage.
 
-![kinect](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_kinect.gif?raw=true)
+![kinect](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_kinect.gif)
 
 ## Setting up Kinect
 
@@ -34,25 +37,25 @@ Before you start using Oskelate, you will need to plugin and position your Kinec
 
 ## Effects
 
-![luma offset](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_luma.gif?raw=true)
+![luma offset](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_luma.gif)
 
 ### Luma Offset
 
 The luma offset module redistributes the pixels of the source footage by their luminosity values according to the setting defined by the user. The spacing between the pixel distribution and banding can be controlled by either audio or skeleton response. The fill closing the holes between the pixel spacing and smoothing can be turned off and on.
 
-![refraction](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif?raw=true)
+![refraction](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif)
 
 ### Refraction
 
 The refraction module divides the source signal into cells to give an appearance similar to glass refraction. The magnitude of refraction, height and width of these cells can be controlled by either audio or skeleton response while image magnification and be toggled on and off.
 
-![kalei](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_kalei.gif?raw=true)
+![kalei](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_kalei.gif)
 
 ### Kalei
 
 The kalei module creates a number of segments from the centre of the source video. The number of the segments (magnitude), the rotation of the video input and video output can be controlled using audio or skeleton response.
 
-![texcube](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_oskwave.gif?raw=true)
+![texcube](https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_oskwave.gif)
 
 ### OskWave
 

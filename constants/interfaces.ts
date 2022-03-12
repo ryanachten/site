@@ -9,7 +9,10 @@ interface GitHubRepoMetadata {
 
 interface CustomProjectMetadata {
   name: string
-  heroImage: string
+  heroImage: {
+    remote: string
+    local: string
+  }
   year: number
   featured?: boolean
 }

@@ -2,17 +2,10 @@ import * as fs from 'fs'
 import * as yaml from 'js-yaml'
 
 import { Project } from '../constants/interfaces'
-import { CONTENT_DIR, GITHUB_OWNER, octokit } from './constants'
+import { PROJECT_DIR, GITHUB_OWNER, octokit } from './constants'
 
-const getGithubUrl = (
-  project: string,
-  branch: string,
-  path: string,
-  markdown = false
-) =>
-  `https://github.com/ryanachten/${project}/blob/${branch}/${path}${
-    markdown ? '' : '?raw=true'
-  }`
+const getGithubUrl = (project: string, branch: string, path: string) =>
+  `https://github.com/ryanachten/${project}/blob/${branch}/${path}`
 
 const cleanReadMe = (
   rawReadMe: string,
@@ -25,9 +18,9 @@ const cleanReadMe = (
   const localFileRegExp = /\]\(\.\/[\w/-]+.[\w]+/g
   let updatedReadMe = rawReadMe.replaceAll(localFileRegExp, (str) => {
     const path = str.replace('](./', '')
-    const extension = path.substring(path.length - 3, path.length)
-    const isMarkdown = extension === '.md'
-    const newPath = getGithubUrl(projectName, branch, path, isMarkdown)
+    // const extension = path.substring(path.length - 3, path.length)
+    // const isMarkdown = extension === '.md'
+    const newPath = getGithubUrl(projectName, branch, path)
     return `${']('}${newPath}`
   })
 
@@ -58,7 +51,7 @@ export const downloadReadMe = async (project: Project, branch: string) => {
 
     // Once we're done postprocessing, we can write the file to disk
     fs.writeFile(
-      `${CONTENT_DIR}/${project.name.toLowerCase()}.md`,
+      `${PROJECT_DIR}/${project.name.toLowerCase()}.md`,
       updatedReadMe,
       (error) => {
         if (error) {

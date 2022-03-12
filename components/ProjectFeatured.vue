@@ -4,23 +4,26 @@
       <p class="project-featured__header">Selected projects</p>
       <ul class="project-featured__list">
         <li
-          v-for="project in projects"
+          v-for="(project, index) in projects"
           :key="project.name"
           :class="{
             'project-featured__list-item': true,
             selected: project.name === selectedProject.name,
           }"
-          @click="selectedProject = project"
+          @click="selectProject(index)"
         >
           {{ project.name }}
         </li>
       </ul>
     </div>
     <NuxtLink :to="projectLink" class="project-featured__selected-feature">
-      <div
-        :style="{ backgroundImage: `url(${selectedProject.heroImage})` }"
-        class="project-featured__banner"
-      ></div>
+      <div class="project-featured__banner">
+        <ImageTransition
+          :previous-index="previousProjectIndex"
+          :current-index="currentProjectIndex"
+          :images="projectImages"
+        />
+      </div>
       <p class="project-featured__description">
         <strong>{{ selectedProject.name }}</strong
         ><span class="project-featured__description-divider">-</span>
@@ -34,6 +37,9 @@
 import Vue, { PropType } from 'vue'
 import { Project } from '~/constants/interfaces'
 import { getProjectLink } from '~/helpers'
+
+const transitionDelay = 4000
+
 export default Vue.extend({
   props: {
     projects: {
@@ -43,16 +49,54 @@ export default Vue.extend({
   },
 
   data(): {
-    selectedProject: Project
+    previousProjectIndex: number
+    currentProjectIndex: number
+    timeout: NodeJS.Timeout | null
   } {
     return {
-      selectedProject: this.projects[0],
+      previousProjectIndex: 0,
+      currentProjectIndex: 0,
+      timeout: null,
     }
   },
 
   computed: {
+    selectedProject(): Project {
+      return this.projects[this.currentProjectIndex]
+    },
     projectLink(): string {
       return getProjectLink(this.selectedProject.name)
+    },
+    projectImages(): string[] {
+      return this.projects.map((x) => x.heroImage.local)
+    },
+  },
+
+  mounted() {
+    this.initInterval()
+  },
+
+  beforeMount() {
+    this.timeout !== null && clearInterval(this.timeout)
+  },
+
+  methods: {
+    initInterval() {
+      this.timeout = setInterval(() => this.incrementProject(), transitionDelay)
+    },
+    incrementProject() {
+      this.previousProjectIndex = this.currentProjectIndex
+      if (this.currentProjectIndex + 1 >= this.projects.length) {
+        this.currentProjectIndex = 0
+      } else {
+        this.currentProjectIndex++
+      }
+    },
+    selectProject(projectIndex: number) {
+      this.timeout !== null && clearInterval(this.timeout)
+      this.previousProjectIndex = this.currentProjectIndex
+      this.currentProjectIndex = projectIndex
+      this.initInterval()
     },
   },
 })
@@ -61,6 +105,19 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .project-featured {
   display: flex;
+
+  @media screen and (max-width: 800px) {
+    flex-flow: column;
+
+    .project-featured__list {
+      margin-bottom: $m;
+      text-align: left;
+    }
+
+    .project-featured__selected-feature {
+      width: 100%;
+    }
+  }
 }
 
 .project-featured__header {
@@ -72,7 +129,7 @@ export default Vue.extend({
 .project-featured__list {
   @include list-reset;
   flex-grow: 1;
-  margin-right: $font-l;
+  margin-right: $font-xl;
   text-align: right;
 }
 
@@ -80,6 +137,7 @@ export default Vue.extend({
   cursor: pointer;
   font-size: $l;
   font-family: $font-title;
+  transition: 0.3s;
 
   &:not(.selected) {
     color: darken($grey, 25%);
@@ -97,7 +155,7 @@ export default Vue.extend({
 }
 
 .project-featured__banner {
-  @include responsive-background;
+  border-radius: 2px;
   margin-bottom: $m;
   height: 50vh;
 }
