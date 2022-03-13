@@ -90,6 +90,7 @@ export default Vue.extend({
 }
 
 .landing__logo {
+  height: fit-content;
   margin-bottom: $m;
   min-width: 200px;
   width: 25%;
