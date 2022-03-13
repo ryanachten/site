@@ -25,7 +25,7 @@ const transformImage = async (image: Buffer, outputPath: string) => {
     : metadata.height
   return img
     .resize(metadata.width, updatedHeight)
-    .jpeg()
+    .webp()
     .toFile(outputPath, (e) => {
       if (e) {
         console.error('Error transforming file:', outputPath, e)
@@ -49,7 +49,7 @@ export const downloadHeroImage = async ({
     }
   }
 
-  const imagePath = `${IMAGE_DIR}/${name.toLowerCase()}.jpg`
+  const imagePath = `${IMAGE_DIR}/${name.toLowerCase()}.webp`
   try {
     const res = await fetch(remoteHeroImage)
     const image = await res.buffer()

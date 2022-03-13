@@ -22,7 +22,7 @@ projects:
     heroImage:
       remote: >-
         https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
-      local: hero-images/whosagoodboy.jpg
+      local: hero-images/whosagoodboy.webp
   - name: echo
     year: 2021
     featured: true
@@ -46,7 +46,7 @@ projects:
     description: DIY video conferencing ⚡
     heroImage:
       remote: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
-      local: hero-images/echo.jpg
+      local: hero-images/echo.webp
   - name: robic
     year: 2020
     featured: true
@@ -65,7 +65,7 @@ projects:
     heroImage:
       remote: >-
         https://github.com/ryanachten/Robic/raw/master/info/images/Robic_Flow_1.jpg
-      local: hero-images/robic.jpg
+      local: hero-images/robic.webp
   - name: Oscil
     year: 2018
     branch: master
@@ -86,7 +86,7 @@ projects:
     heroImage:
       remote: >-
         https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/fdf89d64019463.5ad99b8e4940a.jpg
-      local: hero-images/oscil.jpg
+      local: hero-images/oscil.webp
   - name: Lucid
     year: 2018
     branch: master
@@ -106,7 +106,7 @@ projects:
     heroImage:
       remote: >-
         https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/d57e2166084939.5b0a8310b4178.jpg
-      local: hero-images/lucid.jpg
+      local: hero-images/lucid.webp
   - name: Vertice
     year: 2016
     branch: master
@@ -127,7 +127,7 @@ projects:
     heroImage:
       remote: >-
         https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/ee5cbd60149489.5a3e1aab93972.jpg
-      local: hero-images/vertice.jpg
+      local: hero-images/vertice.webp
   - name: achtenio
     year: 2018
     repo: achtenio-18
@@ -149,7 +149,7 @@ projects:
     heroImage:
       remote: >-
         https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/00f4b764975707.5ae5158da7f11.jpg
-      local: hero-images/achtenio.jpg
+      local: hero-images/achtenio.webp
   - name: Hiko
     year: 2017
     branch: master
@@ -170,7 +170,7 @@ projects:
     heroImage:
       remote: >-
         https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg
-      local: hero-images/hiko.jpg
+      local: hero-images/hiko.webp
   - name: VWM
     year: 2017
     branch: master
@@ -191,7 +191,7 @@ projects:
     heroImage:
       remote: >-
         https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/cd21ef64144681.5ac95f806b35b.jpg
-      local: hero-images/vwm.jpg
+      local: hero-images/vwm.webp
   - name: SomaVision
     year: 2014
     branch: master
@@ -204,7 +204,7 @@ projects:
     description: Hardware interface for music visualisation
     heroImage:
       remote: https://github.com/ryanachten/SomaVision/raw/master/docs/SomVis_01.jpg
-      local: hero-images/somavision.jpg
+      local: hero-images/somavision.webp
   - name: Oskelate
     year: 2014
     branch: master
@@ -221,4 +221,4 @@ projects:
     heroImage:
       remote: >-
         https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif
-      local: hero-images/oskelate.jpg
+      local: hero-images/oskelate.webp
