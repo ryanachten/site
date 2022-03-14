@@ -36,9 +36,18 @@ export default Vue.extend({
 
 .project__wrapper {
   display: flex;
+
+  @media screen and (max-width: $desktop) {
+    flex-flow: wrap;
+  }
 }
 
 .project__metadata {
-  margin-left: $l;
+  margin-top: $m;
+
+  @media screen and (min-width: $desktop) {
+    margin-top: 0;
+    margin-left: $l;
+  }
 }
 </style>

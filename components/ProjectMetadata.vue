@@ -1,5 +1,5 @@
 <template>
-  <aside>
+  <aside class="project-metadata">
     <ProjectMetadataSection
       external
       title="Homepage"
@@ -89,6 +89,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.project-metadata {
+  width: 100%;
+}
+
 .project-metadata__section {
   &:not(:last-child) {
     @include divider;

@@ -197,7 +197,7 @@ export default Vue.extend({
 .projects__filters {
   margin-left: $l;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: $desktop) {
     display: none;
 
     &.projects__filters--mobile {
