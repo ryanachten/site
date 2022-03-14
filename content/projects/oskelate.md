@@ -15,7 +15,7 @@ description: Interactive music visualiser responsive to both audio and performer
 heroImage:
   remote: >-
     https://github.com/ryanachten/Oskelate/raw/master/docs/oskelate_refraction.gif
-  local: hero-images/oskelate.jpg
+  local: hero-images/oskelate.webp
 ---
 # Oskelate
 

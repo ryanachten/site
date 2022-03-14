@@ -18,7 +18,7 @@ description: Realtime web-based mixed-reality 👓 ✨
 heroImage:
   remote: >-
     https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/d57e2166084939.5b0a8310b4178.jpg
-  local: hero-images/lucid.jpg
+  local: hero-images/lucid.webp
 ---
 # Lucid
 ## Mixed-Reality Psychedelia

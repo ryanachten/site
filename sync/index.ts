@@ -36,6 +36,7 @@ projects.forEach(async (project, index) => {
     branch,
     description,
   } = repoMetadata
+
   // Update project with metadata from GitHub
   projects[index] = {
     ...projects[index],

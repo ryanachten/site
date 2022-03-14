@@ -42,13 +42,39 @@ export default Vue.extend({
   max-width: 800px;
   text-align: left;
 
+  h2 {
+    &:not(:first-child) {
+      border-top: 1px solid $dark-grey;
+      padding-top: $m;
+    }
+  }
+
+  strong {
+    display: inline-block;
+    margin-top: $s;
+  }
+
   table {
     td {
       padding: 0;
+      vertical-align: top;
+
+      p,
+      strong {
+        margin: 0;
+      }
 
       &:nth-child(2) {
         padding-left: $m;
         text-align: left;
+      }
+    }
+
+    tr {
+      &:not(:last-child) {
+        td {
+          padding-bottom: $s;
+        }
       }
     }
   }

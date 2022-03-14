@@ -11,7 +11,7 @@ homepage: ''
 description: Hardware interface for music visualisation
 heroImage:
   remote: https://github.com/ryanachten/SomaVision/raw/master/docs/SomVis_01.jpg
-  local: hero-images/somavision.jpg
+  local: hero-images/somavision.webp
 ---
 ![promocover](https://github.com/ryanachten/SomaVision/raw/master/docs/PromoCoverUpload.jpg)
 
