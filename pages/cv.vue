@@ -32,6 +32,7 @@ export default Vue.extend({
 <style lang="scss">
 .cv__logo {
   display: block;
+  height: fit-content;
   margin: $l auto $m auto;
   min-width: 200px;
   width: 35%;
@@ -40,10 +41,6 @@ export default Vue.extend({
   margin: 0 auto;
   max-width: 800px;
   text-align: left;
-
-  ul {
-    /* @include list-reset; */
-  }
 
   table {
     td {
