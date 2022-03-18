@@ -1,6 +1,6 @@
 export default {
   head: {
-    title: 'ryanachten',
+    title: 'Ryan Achten',
     htmlAttrs: {
       lang: 'en',
     },

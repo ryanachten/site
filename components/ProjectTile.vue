@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="projectLink"
-    :style="{ backgroundImage: `url(${project.heroImage.local})` }"
+    :style="{ backgroundImage: `url(${project.heroImage.remote})` }"
     class="project-tile"
   >
   </NuxtLink>
