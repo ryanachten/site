@@ -46,14 +46,14 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .project-metadata-section {
   min-width: 150px;
-  text-align: right;
+
+  @media screen and (min-width: $desktop) {
+    text-align: right;
+  }
 }
 
 .project-metadata-section__header {
-  display: flex;
-  flex-flow: row-reverse;
   font-weight: bold;
-  justify-content: space-between;
   margin-bottom: $s;
   text-transform: lowercase;
 }

@@ -18,7 +18,7 @@ description: Personal portfolio site for Ryan Achten using React, Three.js and S
 heroImage:
   remote: >-
     https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/00f4b764975707.5ae5158da7f11.jpg
-  local: hero-images/achtenio.jpg
+  local: hero-images/achtenio.webp
 ---
 # R/A Portfolio Site
 

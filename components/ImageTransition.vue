@@ -97,9 +97,17 @@ export default Vue.extend({
   },
 
   mounted() {
-    const canvas = this.$refs.canvas as HTMLCanvasElement
-    this.init(canvas)
-    window.addEventListener('resize', this.resize)
+    const setup = () => {
+      const canvas = this.$refs.canvas as HTMLCanvasElement | undefined
+      if (canvas) {
+        this.init(canvas)
+        window.addEventListener('resize', this.resize)
+      } else {
+        // This shouldn't be necessary, but sometimes the ref is undefined...
+        setTimeout(() => setup(), 100)
+      }
+    }
+    this.$nextTick(setup)
   },
 
   methods: {

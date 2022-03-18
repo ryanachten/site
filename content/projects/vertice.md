@@ -19,7 +19,7 @@ description: Virtual artefact 3D archive 🏺
 heroImage:
   remote: >-
     https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/ee5cbd60149489.5a3e1aab93972.jpg
-  local: hero-images/vertice.jpg
+  local: hero-images/vertice.webp
 ---
 # Vertice
 ## 3D Archive Interface

@@ -10,9 +10,6 @@ Graduating with a Bachelor of Communication Design, I made the move to delve int
 <p>
 Today, I focus on fullstack development, producing polished digital experiences for a variety of clients and projects, while progressing my interests in related areas such as dev-ops and machine learning.
 </p>
-<h2></h2>
-
-
 <h2>EMPLOYMENT</h2>
 
 
@@ -59,14 +56,14 @@ Today, I focus on fullstack development, producing polished digital experiences 
 <p>
 <strong>References can be provided upon request</strong>
 </p>
-<h2>TOOLS</h2>
+<h2>CURRENT TOOLS</h2>
 
 
 
 <table>
   <tr>
    <td><p style="text-align: right">
-<strong>Front-end</strong></p>
+<strong>Frontend</strong></p>
 
    </td>
    <td>React (+ Native), Redux, Vue, Cypress, SCSS
@@ -74,7 +71,7 @@ Today, I focus on fullstack development, producing polished digital experiences 
   </tr>
   <tr>
    <td><p style="text-align: right">
-<strong>Back-end</strong></p>
+<strong>Backend</strong></p>
 
    </td>
    <td>.NET (Core & Framework), Node.js, Docker
@@ -109,7 +106,7 @@ Today, I focus on fullstack development, producing polished digital experiences 
 <strong>Creative Code</strong></p>
 
    </td>
-   <td>Three.js, p5.js, Unity3D
+   <td>Three.js, WebGL
    </td>
   </tr>
 </table>
@@ -184,10 +181,10 @@ Otago Polytechnic (2013)
 <p>
 Otago Polytechnic (2011)
 </p>
-<h2>PERSONAL PROJECTS</h2>
+<h2>SELECTED PROJECTS</h2>
 
 
-<h5><strong>Whosagoodboy </strong>(2022)</h5>
+<h5><strong>Whosagoodboy</strong> - Self-initiated <strong> </strong>(2022)</h5>
 
 
 <p>
@@ -199,12 +196,10 @@ Dog classification web application. Uses a machine learning model trained on the
 
 <li><strong>Technologies (backend):</strong> Next.js, Tensorflow, Jupyter Notebook, Google Colab
 
-<li><strong>Roles: </strong>Frontend development, backend development, machine learning development
-
 <li><strong>Website: </strong><a href="https://thatsagoodboy.herokuapp.com/">https://thatsagoodboy.herokuapp.com</a> 
 </li>
 </ul>
-<h5><strong>Echo</strong> (2021)</h5>
+<h5><strong>Echo</strong> - Self-initiated  (2021)</h5>
 
 
 <p>
@@ -216,12 +211,10 @@ Do-it-yourself video conferencing software. Uses WebRTC and .NET’s SignalR to 
 
 <li><strong>Technologies (backend):</strong> .NET, SignalR, Docker
 
-<li><strong>Roles: </strong>Front-end development, back-end development
-
 <li><strong>Website: </strong><a href="https://strangeecho.herokuapp.com">https://strangeecho.herokuapp.com</a>
 </li>
 </ul>
-<h5><strong>Robic</strong> (2020 - 2021)</h5>
+<h5><strong>Robic</strong> - Self-initiated (2020 - 2021)</h5>
 
 
 <p>
@@ -233,34 +226,36 @@ Robic is an exercise mobile application which provides insights and analytics ba
 
 <li><strong>Technologies (API):</strong> C#, .NET Core, MediatR, MongoDB
 
-<li><strong>Roles: </strong>Web and mobile development, back-end development
+<li><strong>App: </strong><a href="https://play.google.com/store/apps/details?id=com.app.robic">https://play.google.com/store/apps/details?id=com.app.robic</a>
 </li>
 </ul>
-<h5><strong>Oscil</strong> (2017 - 2018)</h5>
+<h5><strong>Inland Revenue Department</strong> - AKQA (2019 - 2021)</h5>
 
 
 <p>
-An audio-visual web application which takes audio information from a user’s microphone input and uses the resulting waveform to drive various visualisations.
+As lead frontend developer on the IRD account, in addition to shipping features, my responsibilities also encompassed modernising the inherited codebase and improving the build system. I was also involved in backend development, developing using the Sitecore CMS and .NET Framework.
 </p>
 <ul>
 
-<li><strong>Technologies:</strong> React, Redux, Webpack, Three.js, P5.js, Canvas API
+<li><strong>Technologies (frontend):</strong> Typescript, React, Coveo, Webpack, Gulp, SCSS
 
-<li><strong>Roles: </strong>Web development
+<li><strong>Technologies (backend):</strong> Sitecore CMS, .NET Framework, Powershell
 
-<li><strong>Website: </strong><a href="https://oscil.herokuapp.com/">https://oscil.herokuapp.com/</a>
+<li><strong>Website: </strong><a href="https://www.ird.govt.nz/">https://www.ird.govt.nz/</a>
 </li>
 </ul>
-<h5><strong>Vertice</strong> - Victoria University of Wellington / VicLink (2015 - 2016)</h5>
+<h5><strong>BRANZ Artisan</strong> - Certus Solutions (2018 - 2019)</h5>
 
 
 <p>
-3D archive interface for cultural institutions to import, browse and collect digitised and born-digital 3D artefacts. Awarded <em>Formway Design Award</em> and <em>VicLink Award. </em>Commercialised through VicLink.
+Artisan facilities building construction council compliance by providing building participants with an interactive means of documenting construction processes. Comprised of both a web console and mobile application.
 </p>
 <ul>
 
-<li><strong>Software: </strong>Agisoft Photoscan, Maxon Cinema 4D, MeshLab, ZBrush, Unity3D
+<li><strong>Technologies (mobile):</strong> TypeScript, React Native, Expo, Redux
 
-<li><strong>Technologies: </strong>Unity3D (WebGL and standalone builds), C#, JavaScript
+<li><strong>Technologies (web):</strong> Ember.js, Handlebars, SCSS
 
-<li><strong>Roles:</strong> Researcher, UI/UX, Unity development
+<li><strong>Website: </strong><a href="https://branzartisan.com">https://branzartisan.com</a>
+
+<li><strong>App: </strong><a href="https://play.google.com/store/apps/details?id=nz.co.branz.artizan.prod">https://play.google.com/store/apps/details?id=nz.co.branz.artizan.prod</a>

@@ -1,12 +1,48 @@
-# ryanachten
+# site
+![landing page](./docs/site-landing.gif)
+Statically generated site using a Node.js data ingestion pipeline for consuming markdown and images stored in GitHub. Site also features some sweet, sweet shaders using GLSL and Three.js.  
 
-## Build Setup
+## Data Ingestion
+![data ingestion pipeline](./docs/data-sync.png)
+
+One of the key problems with my old website was that it was cumbersome to maintain. It required a lot of content duplicated from what I was already writing in GitHub, as well as manual image processing steps.
+
+To solve all of this, I wanted to make the new website as automated as possible. Hence the need for a data ingestion pipeline. The pipeline does the following:
+### Metadata
+- Given a list of projects (via `index.yml`), the pipeline will retrieve repository metadata from GitHub such as project languages, topics and archive status
+- This metadata is written back to the `index.yml` file and in each project markdown file for Nuxt functionality
+### Images
+- Hero images defined in `index.yml` are downloaded locally
+- Image transformations are applied
+  - Crop image to specified aspect ratio for easier consistency in WebGL
+  - Convert to `.webp` format for SEO purposes
+### ReadMe
+- Retrieve the main ReadMe file for each project
+- It will then perform a number of post-processing tasks
+  - replacing local repository references and
+  - adding the metadata retrieved earlier for Nuxt page functionality
+
+## Shader Pipeline
+![Shader pipeline](./docs/shader-pipeline.png)
+The pipeline used by shaders in this site are fairly simple 
+- Images are loaded from Nuxt static content and used to generated Three.js textures. 
+- vertex and fragment shader files are loaded using Webpack
+- textures and shader files are combined to create a Three.js shader material which is applied to a plane to be rendered
+
+![projects page](./docs/site-projects.gif)
+
+## Infrastructure
+![Infrastructure pipeline](./docs/infrastructure.png)
+Website is deployed using AWS Amplify, with infrastructure managed using Terraform. Because the site is statically generated, we only need to use an frontend Amplify build for this project.
+
+## Development
+General site development uses common Nuxt commands.
 
 ```bash
 # install dependencies
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:8000
 $ yarn dev
 
 # build for production and launch server
@@ -16,53 +52,6 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+Guides for specific aspects of site development can be found below:
+- [Infrastructure development](./infra/README.md)
+- [Sync pipeline development](./sync/README.md)

@@ -19,7 +19,7 @@ description: >-
 heroImage:
   remote: >-
     https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg
-  local: hero-images/hiko.jpg
+  local: hero-images/hiko.webp
 ---
 ![Hiko home page](https://github.com/ryanachten/Hiko/raw/master/wp-content/themes/hiko/assets/images/wiki/HeroImages/Hiko_HeroImage_Header.jpg)
 

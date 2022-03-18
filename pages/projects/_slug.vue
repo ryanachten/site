@@ -1,12 +1,13 @@
 <template>
   <div class="page">
-    <main class="page__container">
+    <div class="page__container">
       <NavBar invert-colors />
-      <div class="project__wrapper">
+      <main class="project__wrapper">
         <ProjectDetail :content="page" class="project__detail" />
         <ProjectMetadata :project="page" class="project__metadata" />
-      </div>
-    </main>
+      </main>
+      <FooterNav invert-colors />
+    </div>
   </div>
 </template>
 
@@ -36,9 +37,19 @@ export default Vue.extend({
 
 .project__wrapper {
   display: flex;
+
+  @media screen and (max-width: $desktop) {
+    flex-flow: wrap;
+  }
 }
 
 .project__metadata {
-  margin-left: $l;
+  margin-top: $m;
+
+  @media screen and (min-width: $desktop) {
+    margin-top: 0;
+    margin-left: $l;
+    max-width: 300px;
+  }
 }
 </style>
