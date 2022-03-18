@@ -7,6 +7,7 @@
         <h1>curriculum vitae</h1>
         <nuxt-content :document="page" class="content" />
       </main>
+      <FooterNav />
     </div>
   </div>
 </template>
@@ -38,8 +39,10 @@ export default Vue.extend({
   width: 35%;
 }
 .cv__content {
-  margin: 0 auto;
+  @include divider;
+  margin: 0 auto $m auto;
   max-width: 800px;
+  padding-bottom: $l;
   text-align: left;
 
   h2 {
@@ -52,6 +55,11 @@ export default Vue.extend({
   strong {
     display: inline-block;
     margin-top: $s;
+    white-space: pre-wrap;
+  }
+
+  li {
+    font-size: $font-xs;
   }
 
   table {

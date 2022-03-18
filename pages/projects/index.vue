@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <main class="page__container">
+    <div class="page__container">
       <NavBar />
       <ProjectFeatured
         class="projects__featured"
@@ -49,7 +49,8 @@
           </aside>
         </div>
       </div>
-    </main>
+      <FooterNav />
+    </div>
   </div>
 </template>
 <script lang="ts">

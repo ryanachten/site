@@ -196,7 +196,7 @@ Dog classification web application. Uses a machine learning model trained on the
 
 <li><strong>Technologies (backend):</strong> Next.js, Tensorflow, Jupyter Notebook, Google Colab
 
-<li><strong>Website: </strong> <a href="https://thatsagoodboy.herokuapp.com/">https://thatsagoodboy.herokuapp.com</a> 
+<li><strong>Website: </strong><a href="https://thatsagoodboy.herokuapp.com/">https://thatsagoodboy.herokuapp.com</a> 
 </li>
 </ul>
 <h5><strong>Echo</strong> - Self-initiated  (2021)</h5>
@@ -211,7 +211,7 @@ Do-it-yourself video conferencing software. Uses WebRTC and .NET’s SignalR to 
 
 <li><strong>Technologies (backend):</strong> .NET, SignalR, Docker
 
-<li><strong>Website: </strong> <a href="https://strangeecho.herokuapp.com">https://strangeecho.herokuapp.com</a>
+<li><strong>Website: </strong><a href="https://strangeecho.herokuapp.com">https://strangeecho.herokuapp.com</a>
 </li>
 </ul>
 <h5><strong>Robic</strong> - Self-initiated (2020 - 2021)</h5>
@@ -226,10 +226,10 @@ Robic is an exercise mobile application which provides insights and analytics ba
 
 <li><strong>Technologies (API):</strong> C#, .NET Core, MediatR, MongoDB
 
-<li><strong>App: </strong> <a href="https://play.google.com/store/apps/details?id=com.app.robic">https://play.google.com/store/apps/details?id=com.app.robic</a>
+<li><strong>App: </strong><a href="https://play.google.com/store/apps/details?id=com.app.robic">https://play.google.com/store/apps/details?id=com.app.robic</a>
 </li>
 </ul>
-<h5><strong>Inland Revenue Department</strong> - AKQA (In development)</h5>
+<h5><strong>Inland Revenue Department</strong> - AKQA (2019 - 2021)</h5>
 
 
 <p>
@@ -241,10 +241,10 @@ As lead frontend developer on the IRD account, in addition to shipping features,
 
 <li><strong>Technologies (backend):</strong> Sitecore CMS, .NET Framework, Powershell
 
-<li><strong>Website: </strong> <a href="https://www.ird.govt.nz/">https://www.ird.govt.nz/</a>
+<li><strong>Website: </strong><a href="https://www.ird.govt.nz/">https://www.ird.govt.nz/</a>
 </li>
 </ul>
-<h5><strong>BRANZ Artisan</strong> - Certus Solutions (2018 / 2019)</h5>
+<h5><strong>BRANZ Artisan</strong> - Certus Solutions (2018 - 2019)</h5>
 
 
 <p>
@@ -256,6 +256,6 @@ Artisan facilities building construction council compliance by providing buildin
 
 <li><strong>Technologies (web):</strong> Ember.js, Handlebars, SCSS
 
-<li><strong>Website: </strong> <a href="https://branzartisan.com">https://branzartisan.com</a>
+<li><strong>Website: </strong><a href="https://branzartisan.com">https://branzartisan.com</a>
 
-<li><strong>App:</strong> <a href="https://play.google.com/store/apps/details?id=nz.co.branz.artizan.prod">https://play.google.com/store/apps/details?id=nz.co.branz.artizan.prod</a>
+<li><strong>App: </strong><a href="https://play.google.com/store/apps/details?id=nz.co.branz.artizan.prod">https://play.google.com/store/apps/details?id=nz.co.branz.artizan.prod</a>

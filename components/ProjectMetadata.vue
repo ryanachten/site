@@ -1,28 +1,33 @@
 <template>
   <aside class="project-metadata">
     <ProjectMetadataSection
+      v-if="homepage.length"
       external
       title="Homepage"
       :options="homepage"
       class="project-metadata__section"
     />
     <ProjectMetadataSection
+      v-if="repository.length"
       external
       title="Repository"
       :options="repository"
       class="project-metadata__section"
     />
     <ProjectMetadataSection
+      v-if="year.length"
       title="Year"
       :options="year"
       class="project-metadata__section"
     />
     <ProjectMetadataSection
+      v-if="languages.length"
       title="Languages"
       :options="languages"
       class="project-metadata__section"
     />
     <ProjectMetadataSection
+      v-if="tools.length"
       title="Tools"
       :options="tools"
       class="project-metadata__section"
@@ -77,12 +82,14 @@ export default Vue.extend({
       ]
     },
     homepage(): MetaLink[] {
-      return [
-        {
-          name: this.project.homepage,
-          href: this.project.homepage,
-        },
-      ]
+      return this.project.homepage
+        ? [
+            {
+              name: this.project.homepage,
+              href: this.project.homepage,
+            },
+          ]
+        : []
     },
   },
 })
