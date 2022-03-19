@@ -50,7 +50,7 @@ void main() {
   color = vec3(1.) * smoothstep(.36, .4, noise(st)); // big drops - original .18,.2,noise(st)
   color += smoothstep(.30, .4, noise(st * 10.)); // splatter - original .15,.2, noise(st*10.)
   color -= smoothstep(.70, .8, noise(st * 10.)); // splatter holes - original .35,.4,noise(st*10.)
-  vec4 mask = vec4(color, 0.0);
+  vec4 mask = vec4(color, color.r);
 
   gl_FragColor = image * mask;
 }
