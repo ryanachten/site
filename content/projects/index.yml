@@ -1,4 +1,27 @@
 projects:
+  - name: site
+    year: 2022
+    heroImage:
+      remote: >-
+        https://raw.githubusercontent.com/ryanachten/site/main/docs/site-landing.gif
+      local: hero-images/site.webp
+    archived: false
+    languages:
+      - Vue
+      - TypeScript
+      - GLSL
+      - JavaScript
+      - SCSS
+      - HCL
+    description: Statically generated portfolio and blog 🚀
+    homepage: ''
+    githubUrl: https://github.com/ryanachten/site
+    tools:
+      - amplify
+      - nodejs
+      - nuxtjs
+      - terraform
+      - three-js
   - name: whosagoodboy
     featured: true
     year: 2022

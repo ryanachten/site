@@ -92,7 +92,9 @@ export default Vue.extend({
 
   watch: {
     currentIndex() {
-      this.start()
+      if (this.textures.length > 0) {
+        this.start()
+      }
     },
   },
 
