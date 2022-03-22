@@ -4,23 +4,30 @@ year: 2020
 featured: true
 languages:
   - TypeScript
+  - C#
+  - HCL
   - JavaScript
+  - Dockerfile
 branch: master
 tools:
+  - docker
+  - dotnet
   - expo
+  - mongodb
   - react
   - react-native
+  - terraform
 archived: false
 homepage: https://play.google.com/store/apps/details?id=com.app.robic
 githubUrl: https://github.com/ryanachten/robic
 description: Exercise app for people who like data 🏃‍♀️
 heroImage:
-  remote: https://github.com/ryanachten/Robic/raw/master/info/images/Robic_Flow_1.jpg
-  local: hero-images/robic.webp
+  remote: https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Flow_1.jpg
+  local: ''
 ---
 # Robic
 
-![Robic Feature Image](https://github.com/ryanachten/robic/raw/master/info/images/Robic_FeatureImage_2.jpg "Robic Feature Image")
+![Robic Feature Image](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_FeatureImage_2.jpg "Robic Feature Image")
 
 ## What is Robic?
 
@@ -28,7 +35,7 @@ Robic is a mobile application for simple exercise tracking and analysis.
 
 Robic helps athletes and enthusiasts track their workouts and provides analytics to follow their progress.
 
-![Robic Workout User Flow](https://github.com/ryanachten/robic/raw/master/info/images/Robic_Flow_1.jpg "Robic Workout User Flow")
+![Robic Workout User Flow](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Flow_1.jpg "Robic Workout User Flow")
 
 Some of the features Robic provides are:
 
@@ -39,7 +46,7 @@ Some of the features Robic provides are:
 
 More features to come!
 
-![Robic Stack](https://github.com/ryanachten/robic/raw/master/info/images/Robic_Stack.jpg "Robic Stack")
+![Robic Stack](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Stack.jpg "Robic Stack")
 
 ## Robic Stack
 
@@ -47,27 +54,19 @@ More features to come!
 
 Built using React Native, Expo, TypeScript and UI Kitten.
 
-**Robic Server**
+**Robic API**
 
-Build usng .NET and MongoDB.
+Built using .NET and MongoDB.
 
-Repository for the Robic API - `RobicServer` can be found [here](https://github.com/ryanachten/RobicServer).
-
-![Robic Exercise User Flow](https://github.com/ryanachten/robic/raw/master/info/images/Robic_Flow_2.jpg "Robic Exercise User Flow")
+![Robic Exercise User Flow](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Flow_2.jpg "Robic Exercise User Flow")
 
 ## Developing with Robic
+Documentation specific to different aspects of Robic development can be found in their respective directories.
+Of specific note are:
+- [Developing the Robic App](https://github.com/ryanachten/robic/raw/master/app/README.md)
+- [Developing the Robic API](https://github.com/ryanachten/robic/raw/master/api/README.md)
+- [Developing the Robic infrastructure](https://github.com/ryanachten/robic/raw/master/infra/README.md)
 
-**Running Robic**
-
-- Install Node, Yarn and Expo CLI
-- Run `yarn start` and select target platform (iOS and Android actively maintained)
-- See instructions on the `RobicServer` repo for running against local environments
-
-**Building Robic**
-
-- Run Expo Build against target platform `expo build:android -t app-bundle`
-- You can then test the latest build on a real mobile device using the Expo Go application
-
-![Robic Analytics User Flow](https://github.com/ryanachten/robic/raw/master/info/images/Robic_Flow_3.jpg "Robic Analytics User Flow")
+![Robic Analytics User Flow](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Flow_3.jpg "Robic Analytics User Flow")
 
 Developed and designed by Ryan Achten
