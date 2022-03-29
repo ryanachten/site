@@ -148,8 +148,14 @@ export default Vue.extend({
     },
 
     async loadTextures() {
+      // Statically generated pages will attempt to load these assets
+      // relative to the current pathname, resulting a 404
+      // ensure these are loaded related to origin instead to prevent this
+      const host = window.location.origin
       const textures = await Promise.all(
-        this.images.map(async (uri) => await new TextureLoader().loadAsync(uri))
+        this.images.map(
+          async (uri) => await new TextureLoader().loadAsync(`${host}/${uri}`)
+        )
       )
       textures.forEach((x) => {
         x.minFilter = LinearFilter

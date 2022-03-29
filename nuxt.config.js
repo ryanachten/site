@@ -1,3 +1,6 @@
+import * as fs from 'fs'
+import * as yaml from 'js-yaml'
+
 export default {
   head: {
     title: 'Ryan Achten',
@@ -88,6 +91,18 @@ export default {
         exclude: /node_modules/,
         use: ['raw-loader'],
       })
+    },
+  },
+
+  generate: {
+    routes() {
+      // Crawler doesn't seem to pick up all the projects
+      // so we need to request them to be generated explicitly
+      const yamlFile = yaml.load(
+        fs.readFileSync(`./content/projects/index.yml`, 'utf8')
+      )
+      const projects = yamlFile.projects
+      return projects.map((p) => `/projects/${p.name.toLowerCase()}`)
     },
   },
 
