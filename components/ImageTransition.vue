@@ -99,17 +99,13 @@ export default Vue.extend({
   },
 
   mounted() {
-    const setup = () => {
-      const canvas = this.$refs.canvas as HTMLCanvasElement | undefined
-      if (canvas) {
-        this.init(canvas)
-        window.addEventListener('resize', this.resize)
-      } else {
-        // This shouldn't be necessary, but sometimes the ref is undefined...
-        setTimeout(() => setup(), 100)
-      }
+    const canvas = this.$refs.canvas as HTMLCanvasElement | undefined
+    if (!canvas) {
+      console.error('Canvas not found')
+    } else {
+      this.$nextTick(() => this.init(canvas))
+      window.addEventListener('resize', this.resize)
     }
-    this.$nextTick(setup)
   },
 
   methods: {
@@ -207,6 +203,7 @@ export default Vue.extend({
 
       this.resize()
       this.renderer?.render(this.scene, this.camera)
+      this.start()
     },
 
     start() {
