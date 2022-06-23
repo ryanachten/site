@@ -7,15 +7,14 @@ export default {
     htmlAttrs: {
       lang: 'en',
     },
-    description:
-      'Portfolio site of Ryan Achten, software engineer and designer.',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'Ryan Achten portfolio',
+        content:
+          'Portfolio site of Ryan Achten, software engineer and designer.',
       },
       { name: 'format-detection', content: 'telephone=no' },
     ],
