@@ -17,6 +17,16 @@ export default {
           'Portfolio site of Ryan Achten, software engineer and designer.',
       },
       { name: 'format-detection', content: 'telephone=no' },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: '/open-graph/og-cropped.jpg',
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: '/open-graph/og-cropped.jpg',
+      },
     ],
     link: [
       {
