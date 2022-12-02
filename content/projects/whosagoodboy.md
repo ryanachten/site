@@ -16,7 +16,6 @@ tools:
   - tensorflowjs
   - terraform
 archived: false
-homepage: https://thatsagoodboy.herokuapp.com/
 githubUrl: https://github.com/ryanachten/whosagoodboy
 description: Dog breed classification web app 🐶
 heroImage:

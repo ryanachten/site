@@ -8,10 +8,10 @@ archived: false
 languages:
   - Vue
   - TypeScript
-  - GLSL
   - JavaScript
-  - SCSS
+  - GLSL
   - HCL
+  - SCSS
 description: Statically generated portfolio and blog 🚀
 homepage: ''
 githubUrl: https://github.com/ryanachten/site
