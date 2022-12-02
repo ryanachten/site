@@ -13,7 +13,6 @@ tools:
   - three-js
   - webpack
 archived: false
-homepage: https://oscil.herokuapp.com/
 githubUrl: https://github.com/ryanachten/Oscil
 description: 'Audio visualisation experiments 🌈 '
 heroImage:

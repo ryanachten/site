@@ -9,10 +9,10 @@ projects:
     languages:
       - Vue
       - TypeScript
-      - GLSL
       - JavaScript
-      - SCSS
+      - GLSL
       - HCL
+      - SCSS
     description: Statically generated portfolio and blog 🚀
     homepage: ''
     githubUrl: https://github.com/ryanachten/site
@@ -39,7 +39,6 @@ projects:
       - tensorflowjs
       - terraform
     archived: false
-    homepage: https://thatsagoodboy.herokuapp.com/
     githubUrl: https://github.com/ryanachten/whosagoodboy
     description: Dog breed classification web app 🐶
     heroImage:
@@ -64,7 +63,6 @@ projects:
       - tensorflowjs
       - webrtc
     archived: false
-    homepage: http://strangeecho.herokuapp.com/
     githubUrl: https://github.com/ryanachten/echo
     description: DIY video conferencing ⚡
     heroImage:
@@ -83,13 +81,15 @@ projects:
     tools:
       - docker
       - dotnet
+      - ec2
       - expo
+      - github-actions
       - mongodb
       - react
       - react-native
       - terraform
     archived: false
-    homepage: https://play.google.com/store/apps/details?id=com.app.robic
+    homepage: https://ryanachten.github.io/robic/
     githubUrl: https://github.com/ryanachten/robic
     description: Exercise app for people who like data 🏃‍♀️
     heroImage:
@@ -110,7 +110,6 @@ projects:
       - three-js
       - webpack
     archived: false
-    homepage: https://oscil.herokuapp.com/
     githubUrl: https://github.com/ryanachten/Oscil
     description: 'Audio visualisation experiments 🌈 '
     heroImage:

@@ -17,7 +17,6 @@ tools:
   - tensorflowjs
   - webrtc
 archived: false
-homepage: http://strangeecho.herokuapp.com/
 githubUrl: https://github.com/ryanachten/echo
 description: DIY video conferencing ⚡
 heroImage:
