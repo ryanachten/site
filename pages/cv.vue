@@ -4,7 +4,7 @@
       <NavBar />
       <main class="cv__content">
         <LogoImg class="cv__logo" />
-        <h1>curriculum vitae</h1>
+        <h1 class="cv__header">Curriculum Vitae</h1>
         <nuxt-content :document="page" class="content" />
       </main>
       <FooterNav />
@@ -34,9 +34,12 @@ export default Vue.extend({
 .cv__logo {
   display: block;
   height: fit-content;
-  margin: $l auto $m auto;
+  margin: $m auto 0 auto;
   min-width: 200px;
-  width: 35%;
+  width: 40%;
+}
+.cv__header {
+  margin-top: 0;
 }
 .cv__content {
   @include divider;
