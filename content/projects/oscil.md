@@ -4,7 +4,7 @@ year: 2018
 branch: master
 languages:
   - JavaScript
-  - CSS
+  - SCSS
   - HTML
 tools:
   - p5js

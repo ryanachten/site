@@ -21,6 +21,7 @@ description: Dog breed classification web app 🐶
 heroImage:
   remote: https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
   local: hero-images/whosagoodboy.webp
+homepage: https://whosagoodboy.vercel.app/
 ---
 ![Loading](https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif)
 

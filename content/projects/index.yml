@@ -45,6 +45,7 @@ projects:
       remote: >-
         https://github.com/ryanachten/whosagoodboy/raw/main/docs/wagb_loading.gif
       local: hero-images/whosagoodboy.webp
+    homepage: https://whosagoodboy.vercel.app/
   - name: echo
     year: 2021
     featured: true
@@ -101,7 +102,7 @@ projects:
     branch: master
     languages:
       - JavaScript
-      - CSS
+      - SCSS
       - HTML
     tools:
       - p5js
