@@ -19,6 +19,7 @@ heroImage:
   remote: >-
     https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/fdf89d64019463.5ad99b8e4940a.jpg
   local: hero-images/oscil.webp
+homepage: https://ryanachten.github.io/Oscil/
 ---
 # Oscil
 ## Audio-Visual Web Application
