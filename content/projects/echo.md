@@ -7,6 +7,7 @@ languages:
   - TypeScript
   - C#
   - HTML
+  - HCL
   - Dockerfile
   - CSS
 tools:
@@ -15,6 +16,7 @@ tools:
   - react
   - signalr
   - tensorflowjs
+  - terraform
   - webrtc
 archived: false
 githubUrl: https://github.com/ryanachten/echo
@@ -22,13 +24,16 @@ description: DIY video conferencing ⚡
 heroImage:
   remote: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
   local: hero-images/echo.webp
+homepage: https://echo-video.fly.dev
 ---
 # echo
+
 ![Echo loading](https://github.com/ryanachten/echo/raw/master/docs/echo_loading.gif)
 
 **echo** is a DIY video conferencing software hacked together while coping with endless online meetings during COVID lockdowns.
 
 echo currently provides the following features:
+
 - Video calling with multiple peers
 - Calls are restricted to groups requiring valid pass code
 - Limited video effects, such as background blurring and replacement
@@ -37,13 +42,15 @@ echo currently provides the following features:
 ![Echo call](https://github.com/ryanachten/echo/raw/master/docs/echo_call.jpg)
 
 In the future, the following features might be considered:
+
 - Inserting images into background replacement
 - Other cool WebGL background / foreground effects
 - Better mobile support
-  
-However, I've moved onto other projects now, so will have to see if this ever happens 😉 
+
+However, I've moved onto other projects now, so will have to see if this ever happens 😉
 
 ![Echo group call](https://github.com/ryanachten/echo/raw/master/docs/echo_group.jpg)
+
 ## Architecture
 
 ![Echo architecture](https://github.com/ryanachten/echo/raw/master/docs/echo_architecture.png)
@@ -51,33 +58,37 @@ However, I've moved onto other projects now, so will have to see if this ever ha
 Echo is comprised of the following components:
 
 ### Backend
+
 .NET and SignalR are used for websockets communication. Websockets makes it easier and more efficient to fulfill the necessary peer-2-peer handshakes required as part of the WebRTC signaling process.
 
 ![Echo network components](https://github.com/ryanachten/echo/raw/master/docs/echo_network1.png)
 
 ### Frontend
+
 React is used as the front-end library in this project, alongside SignalR to receive and send Websockets signals to the SignalR hub on the backend. `simple-peer` is used to help handle the peer-2-peer negotiations when setting up WebRTC connections.
 
-Grommet is used as the UI component and theming library, allowing us to make use of `styled-components` alongside pre-made components for efficient development. 
+Grommet is used as the UI component and theming library, allowing us to make use of `styled-components` alongside pre-made components for efficient development.
 
 ## Connection lifecycle
 
 ![Echo network flow](https://github.com/ryanachten/echo/raw/master/docs/echo_network2.png)
 
 The process for a new peer joining a call can broken down into the following lifecycle phases:
+
 1. **Initialisation** (blue)
-     - A new users opens the echo web page, initialising a new SignalR Websocket connection between client and server
+   - A new users opens the echo web page, initialising a new SignalR Websocket connection between client and server
 2. **Group setup** (green)
    - User chooses between creating a new group call or existing and existing one
    - In the case they choose an existing group call, a signal will be sent to other peers which exist as part of that group to add the user to their group
    - If no group exists, a group does not exist signal will be returned
 3. **Connection setup** (yellow)
-   -  If the user provides echo with permission to access their video and audio, and connection request will be made to other group members to establish a peer-to-peer connection
+   - If the user provides echo with permission to access their video and audio, and connection request will be made to other group members to establish a peer-to-peer connection
 4. **Streaming** (orange)
-    - Once the user is successfully connected with another peer, their are able to send and receive WebRTC signals which can be used to stream video and audio
+
+   - Once the user is successfully connected with another peer, their are able to send and receive WebRTC signals which can be used to stream video and audio
 
 5. **Disconnection** (red)
-    - When a user closes the webpage, or leaves the call - a disconnection signal is sent to all other peers to remove the user from the call
+   - When a user closes the webpage, or leaves the call - a disconnection signal is sent to all other peers to remove the user from the call
 
 ## Effects
 
@@ -90,6 +101,7 @@ The updated video feed is then rendered using the HTML canvas API and streamed v
 ![Echo effects](https://github.com/ryanachten/echo/raw/master/docs/echo_effects.jpg)
 
 ## Developing
+
 ### Requirements
 
 - .NET CLI v5.0
@@ -101,8 +113,11 @@ The updated video feed is then rendered using the HTML canvas API and streamed v
 
 ### Running Docker container locally
 
-- Build Docker container: `docker build -t ryanachten/echo-app .`
-- Run Docker container: `docker run -p 8080:80 ryanachten/echo-app`
+- Build Docker container: `docker build -t ryanachten/echo .`
+- Run Docker container: `docker run -p 8080:80 ryanachten/echo`
 - App should then be accessible on http://localhost:8080
+
+- To update the Docker image in Docker Hub with the latest image tag:
+  - `docker push ryanachten/echo`
 
 ![Echo login](https://github.com/ryanachten/echo/raw/master/docs/echo_login.jpg)

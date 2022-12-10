@@ -7,6 +7,7 @@ languages:
   - SCSS
   - HTML
 tools:
+  - github-actions
   - p5js
   - react
   - redux

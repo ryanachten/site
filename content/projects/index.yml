@@ -54,6 +54,7 @@ projects:
       - TypeScript
       - C#
       - HTML
+      - HCL
       - Dockerfile
       - CSS
     tools:
@@ -62,6 +63,7 @@ projects:
       - react
       - signalr
       - tensorflowjs
+      - terraform
       - webrtc
     archived: false
     githubUrl: https://github.com/ryanachten/echo
@@ -69,6 +71,7 @@ projects:
     heroImage:
       remote: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
       local: hero-images/echo.webp
+    homepage: https://echo-video.fly.dev
   - name: robic
     year: 2020
     featured: true
