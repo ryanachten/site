@@ -69,10 +69,10 @@ export default Vue.extend({
     then: number
     fragmentShader: string
   } {
-    const fragmentShader =
+    const isVerticalShader =
       <ShaderOptions>this.$props.shader === 'vertical-warp'
-        ? verticalWarpFrag
-        : noiseWarpFrag
+    const fragmentShader = isVerticalShader ? verticalWarpFrag : noiseWarpFrag
+    const startTime = isVerticalShader ? 0 : 0.5 // For noise effect, we want to fast forward to start at a more interesting point
     return {
       camera: new PerspectiveCamera(),
       material: new ShaderMaterial(),
@@ -83,7 +83,7 @@ export default Vue.extend({
       plane: new Mesh(),
       scene: new Scene(),
       progress: 0,
-      time: 0,
+      time: startTime,
       frame: null,
       then: Date.now(),
       fragmentShader,
