@@ -1,7 +1,7 @@
 <template>
   <main class="landing">
     <div class="page__container landing__container">
-      <LogoImg class="landing__logo" />
+      <LogoImg class="landing__logo" is-transparent />
       <LogoText size="large" class="landing__logo-text" />
       <div class="landing__nav">
         <NuxtLink to="/projects">Projects</NuxtLink>
