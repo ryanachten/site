@@ -1,4 +1,24 @@
 projects:
+  - name: hertz
+    year: 2023
+    heroImage:
+      remote: >-
+        https://raw.githubusercontent.com/ryanachten/hertz/main/docs/hertz_banner.png
+      local: hero-images/hertz.webp
+    archived: false
+    languages:
+      - TypeScript
+      - HTML
+      - JavaScript
+      - CSS
+    description: Generative noise machine 💀
+    homepage: https://ryanachten.github.io/hertz/
+    githubUrl: https://github.com/ryanachten/hertz
+    tools:
+      - github-actions
+      - react
+      - redux
+      - tailwindcss
   - name: site
     year: 2022
     heroImage:
