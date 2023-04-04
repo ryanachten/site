@@ -22,7 +22,8 @@ archived: false
 githubUrl: https://github.com/ryanachten/echo
 description: DIY video conferencing ⚡
 heroImage:
-  remote: https://github.com/ryanachten/Echo/raw/master/docs/echo_group.jpg
+  remote: >-
+    https://raw.githubusercontent.com/ryanachten/echo/master/docs/echo_loading.gif
   local: hero-images/echo.webp
 homepage: https://echo-video.fly.dev
 ---
