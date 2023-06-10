@@ -14,6 +14,7 @@ tools:
   - docker
   - dotnet
   - react
+  - redux
   - signalr
   - tensorflowjs
   - terraform

@@ -1,4 +1,29 @@
 projects:
+  - name: ensemble
+    featured: true
+    year: 2023
+    heroImage:
+      remote: >-
+        https://raw.githubusercontent.com/ryanachten/ensemble/main/docs/ensemble_splash.png
+      local: hero-images/ensemble.webp
+    archived: false
+    languages:
+      - Go
+      - TypeScript
+      - Svelte
+      - JavaScript
+      - HTML
+      - CSS
+    description: Visualising connections between bands, artists and genres
+    homepage: https://ryanachten.github.io/ensemble/
+    githubUrl: https://github.com/ryanachten/ensemble
+    tools:
+      - gin
+      - github-actions
+      - k6
+      - nodejs
+      - sveltekit
+      - tailwindcss
   - name: hertz
     year: 2023
     heroImage:
@@ -81,6 +106,7 @@ projects:
       - docker
       - dotnet
       - react
+      - redux
       - signalr
       - tensorflowjs
       - terraform

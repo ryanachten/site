@@ -13,7 +13,7 @@ languages:
   - HCL
   - SCSS
 description: Statically generated portfolio and blog 🚀
-homepage: ''
+homepage: https://ryanachten.com/
 githubUrl: https://github.com/ryanachten/site
 tools:
   - amplify
