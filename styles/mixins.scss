@@ -3,6 +3,14 @@
   color: $black;
 }
 
+@mixin text-background {
+  @include inverted-colors;
+  border-radius: $border-radius;
+  display: inline-block;
+  font-weight: bold;
+  padding: $xs $s;
+}
+
 @mixin subheader {
   color: $grey;
   text-decoration: none;

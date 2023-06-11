@@ -1,7 +1,7 @@
 <template>
   <section class="project-featured">
     <div class="project-featured__info">
-      <p class="project-featured__header">Selected projects</p>
+      <p class="project-featured__header">Featured personal projects</p>
       <ul class="project-featured__list">
         <li
           v-for="(project, index) in projects"
@@ -133,6 +133,7 @@ export default Vue.extend({
 
 .project-featured__header {
   @include subheader;
+  @include text-background;
   font-size: $font-s;
   margin: 0 0 $m 0;
 }

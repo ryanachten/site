@@ -8,7 +8,7 @@
       />
       <div>
         <div class="projects__header">
-          <p>All projects</p>
+          <span class="projects__header-label">All personal projects</span>
           <span
             role="button"
             class="material-icons projects__filter-toggle"
@@ -186,11 +186,20 @@ export default Vue.extend({
   align-items: center;
   display: flex;
   font-size: $font-s;
-  justify-content: space-between;
+  justify-content: flex-end;
+  margin-bottom: $m;
+
+  @media screen and (max-width: $desktop) {
+    justify-content: space-between;
+  }
+}
+
+.projects__header-label {
+  @include text-background;
 }
 
 .projects__filter-toggle {
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: $desktop) {
     display: none;
   }
 }
@@ -199,15 +208,20 @@ export default Vue.extend({
   margin-left: $l;
 
   @media screen and (max-width: $desktop) {
-    display: none;
+    margin-left: 0;
+    max-width: 0;
+    overflow: hidden;
 
     &.projects__filters--mobile {
-      background: $black;
+      backdrop-filter: blur($s);
+      background: transparentize($color: $black, $amount: 0.1);
       display: block;
+      max-width: 300px;
       padding: 0 0 $m $m;
       position: absolute;
       right: -1px;
       top: -1px;
+      transition: 1s;
     }
   }
 }
