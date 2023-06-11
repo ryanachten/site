@@ -1,6 +1,6 @@
 <template>
   <section class="project-featured">
-    <div>
+    <div class="project-featured__info">
       <p class="project-featured__header">Selected projects</p>
       <ul class="project-featured__list">
         <li
@@ -12,7 +12,12 @@
           }"
           @click="selectProject(index)"
         >
-          {{ project.name }}
+          <span class="project-featured__list-item-name">
+            {{ project.name }}
+          </span>
+          <p class="project-featured__list-item-description">
+            {{ project.description }}
+          </p>
         </li>
       </ul>
     </div>
@@ -26,11 +31,6 @@
           shader="vertical-warp"
         />
       </div>
-      <p class="project-featured__description">
-        <strong>{{ selectedProject.name }}</strong
-        ><span class="project-featured__description-divider">-</span>
-        {{ selectedProject.description }} ({{ selectedProject.year }})
-      </p>
     </NuxtLink>
   </section>
 </template>
@@ -108,18 +108,27 @@ export default Vue.extend({
 .project-featured {
   display: flex;
 
-  @media screen and (max-width: 800px) {
-    flex-flow: column;
+  @media screen and (max-width: $desktop) {
+    flex-flow: column-reverse;
 
-    .project-featured__list {
-      margin-bottom: $m;
+    .project-featured__info {
+      margin-right: 0;
       text-align: left;
+    }
+
+    .project-featured__header {
+      margin-top: $m;
     }
 
     .project-featured__selected-feature {
       width: 100%;
     }
   }
+}
+
+.project-featured__info {
+  margin-right: $l;
+  text-align: right;
 }
 
 .project-featured__header {
@@ -131,14 +140,10 @@ export default Vue.extend({
 .project-featured__list {
   @include list-reset;
   flex-grow: 1;
-  margin-right: $font-xl;
-  text-align: right;
 }
 
 .project-featured__list-item {
   cursor: pointer;
-  font-size: $l;
-  font-family: $font-title;
   transition: 0.3s;
 
   &:not(.selected) {
@@ -146,8 +151,19 @@ export default Vue.extend({
   }
 
   &:not(:last-child) {
-    margin-bottom: $s;
+    margin-bottom: $m;
   }
+}
+
+.project-featured__list-item-name {
+  display: block;
+  font-size: $l;
+  font-family: $font-title;
+  margin-bottom: $xs;
+}
+
+.project-featured__list-item-description {
+  margin: 0;
 }
 
 .project-featured__selected-feature {
@@ -157,19 +173,10 @@ export default Vue.extend({
 }
 
 .project-featured__banner {
-  margin-bottom: $m;
   height: 50vh;
 }
 
 .project-featured__banner-image {
   border-radius: $border-radius;
-}
-
-.project-featured__description {
-  text-align: center;
-}
-
-.project-featured__description-divider {
-  margin: 0 $s;
 }
 </style>
