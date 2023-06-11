@@ -22,6 +22,7 @@
           :previous-index="previousProjectIndex"
           :current-index="currentProjectIndex"
           :images="projectImages"
+          class-name="project-featured__banner-image"
           shader="vertical-warp"
         />
       </div>
@@ -55,7 +56,7 @@ export default Vue.extend({
     timeout: NodeJS.Timeout | null
   } {
     return {
-      previousProjectIndex: 0,
+      previousProjectIndex: this.projects.length - 1,
       currentProjectIndex: 0,
       timeout: null,
     }
@@ -156,9 +157,12 @@ export default Vue.extend({
 }
 
 .project-featured__banner {
-  border-radius: 2px;
   margin-bottom: $m;
   height: 50vh;
+}
+
+.project-featured__banner-image {
+  border-radius: $border-radius;
 }
 
 .project-featured__description {

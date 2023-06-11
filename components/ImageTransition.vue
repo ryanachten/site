@@ -2,7 +2,10 @@
   <canvas
     ref="canvas"
     class="image-transition__canvas"
-    :class="{ 'image-transition--loaded': textures.length > 0 }"
+    :class="{
+      'image-transition--loaded': textures.length > 0,
+      [className]: Boolean(className),
+    }"
   ></canvas>
 </template>
 
@@ -51,6 +54,9 @@ export default Vue.extend({
     currentIndex: {
       type: Number,
       required: true,
+    },
+    className: {
+      type: String,
     },
   },
 

@@ -101,7 +101,7 @@ export default Vue.extend({
 }
 
 .landing__canvas {
-  border-radius: 2px;
+  border-radius: $border-radius;
   height: 100vh;
   width: 100vw;
 }
