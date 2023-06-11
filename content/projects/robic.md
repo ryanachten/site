@@ -2,6 +2,8 @@
 name: robic
 year: 2020
 featured: true
+topics:
+  - mobile development
 languages:
   - TypeScript
   - C#

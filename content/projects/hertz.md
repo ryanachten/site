@@ -1,6 +1,9 @@
 ---
 name: hertz
 year: 2023
+topics:
+  - signal processing
+  - audio generation
 heroImage:
   remote: >-
     https://raw.githubusercontent.com/ryanachten/hertz/main/docs/hertz_banner.png

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as fs from 'fs'
 import * as yaml from 'js-yaml'
 
@@ -30,7 +31,7 @@ projects.forEach(async (project, index) => {
 
   const {
     homepage,
-    topics = [],
+    topics: tools = [],
     archived,
     url,
     branch,
@@ -46,7 +47,7 @@ projects.forEach(async (project, index) => {
     description: description ?? undefined,
     homepage: homepage ?? undefined,
     githubUrl: url,
-    tools: topics,
+    tools,
   }
 
   await downloadReadMe(project, branch)

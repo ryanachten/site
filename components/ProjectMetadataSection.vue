@@ -5,7 +5,7 @@
     </div>
     <ul class="project-metadata-section__list">
       <li
-        v-for="option in options"
+        v-for="option in sortedOptions"
         :key="option.name"
         class="project-metadata-section__item"
       >
@@ -38,6 +38,12 @@ export default Vue.extend({
     },
     external: {
       type: Boolean,
+    },
+  },
+  computed: {
+    sortedOptions() {
+      const opts = [...this.options]
+      return opts.sort((a, b) => (a.name > b.name ? 1 : -1))
     },
   },
 })

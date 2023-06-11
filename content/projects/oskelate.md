@@ -1,6 +1,8 @@
 ---
 name: Oskelate
 year: 2014
+topics:
+  - audio visualisation
 branch: master
 languages:
   - Java

@@ -21,6 +21,12 @@
       class="project-metadata__section"
     />
     <ProjectMetadataSection
+      v-if="topics.length"
+      title="Topics"
+      :options="topics"
+      class="project-metadata__section"
+    />
+    <ProjectMetadataSection
       v-if="languages.length"
       title="Languages"
       :options="languages"
@@ -54,6 +60,16 @@ export default Vue.extend({
           name: x,
           href: `${projectPageUrl}languages=${x}`,
         })
+      )
+    },
+    topics(): MetaLink[] {
+      return (
+        this.project.topics?.map(
+          (x: string): MetaLink => ({
+            name: x,
+            href: `${projectPageUrl}topics=${x}`,
+          })
+        ) ?? []
       )
     },
     tools(): MetaLink[] {

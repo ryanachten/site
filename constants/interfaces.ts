@@ -15,6 +15,7 @@ interface CustomProjectMetadata {
   }
   year: number
   featured?: boolean
+  topics?: string[]
 }
 
 export interface Project extends GitHubRepoMetadata, CustomProjectMetadata {}

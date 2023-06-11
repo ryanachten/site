@@ -2,6 +2,10 @@
 name: ensemble
 featured: true
 year: 2023
+topics:
+  - graph analysis
+  - web scraping
+  - performance testing
 heroImage:
   remote: >-
     https://raw.githubusercontent.com/ryanachten/ensemble/main/docs/ensemble_splash.png

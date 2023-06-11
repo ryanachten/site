@@ -2,6 +2,8 @@
 name: echo
 year: 2021
 featured: true
+topics:
+  - video streaming
 branch: master
 languages:
   - TypeScript

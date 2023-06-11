@@ -1,6 +1,9 @@
 ---
 name: whosagoodboy
 featured: true
+topics:
+  - machine learning
+  - image classification
 year: 2022
 languages:
   - Jupyter Notebook

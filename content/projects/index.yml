@@ -2,6 +2,10 @@ projects:
   - name: ensemble
     featured: true
     year: 2023
+    topics:
+      - graph analysis
+      - web scraping
+      - performance testing
     heroImage:
       remote: >-
         https://raw.githubusercontent.com/ryanachten/ensemble/main/docs/ensemble_splash.png
@@ -26,6 +30,9 @@ projects:
       - tailwindcss
   - name: hertz
     year: 2023
+    topics:
+      - signal processing
+      - audio generation
     heroImage:
       remote: >-
         https://raw.githubusercontent.com/ryanachten/hertz/main/docs/hertz_banner.png
@@ -46,6 +53,9 @@ projects:
       - tailwindcss
   - name: site
     year: 2022
+    topics:
+      - shaders
+      - static site generation
     heroImage:
       remote: >-
         https://raw.githubusercontent.com/ryanachten/site/main/docs/site-landing.gif
@@ -69,6 +79,9 @@ projects:
       - three-js
   - name: whosagoodboy
     featured: true
+    topics:
+      - machine learning
+      - image classification
     year: 2022
     languages:
       - Jupyter Notebook
@@ -94,6 +107,8 @@ projects:
   - name: echo
     year: 2021
     featured: true
+    topics:
+      - video streaming
     branch: master
     languages:
       - TypeScript
@@ -122,6 +137,8 @@ projects:
   - name: robic
     year: 2020
     featured: true
+    topics:
+      - mobile development
     languages:
       - TypeScript
       - C#
@@ -149,6 +166,9 @@ projects:
       local: hero-images/robic.webp
   - name: Oscil
     year: 2018
+    topics:
+      - signal processing
+      - audio visualisation
     branch: master
     languages:
       - JavaScript
@@ -171,6 +191,9 @@ projects:
     homepage: https://ryanachten.github.io/Oscil/
   - name: Lucid
     year: 2018
+    topics:
+      - mixed reality
+      - shaders
     branch: master
     languages:
       - JavaScript
@@ -191,6 +214,8 @@ projects:
       local: hero-images/lucid.webp
   - name: Vertice
     year: 2016
+    topics:
+      - game development
     branch: master
     languages:
       - C#
@@ -276,6 +301,9 @@ projects:
       local: hero-images/vwm.webp
   - name: SomaVision
     year: 2014
+    topics:
+      - hardware development
+      - audio visualisation
     branch: master
     languages: []
     tools:
@@ -289,6 +317,8 @@ projects:
       local: hero-images/somavision.webp
   - name: Oskelate
     year: 2014
+    topics:
+      - audio visualisation
     branch: master
     languages:
       - Java

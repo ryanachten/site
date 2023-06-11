@@ -26,6 +26,13 @@
             :class="{ 'projects__filters--mobile': showFilterMenu }"
           >
             <ProjectFilter
+              v-model="selectedTopics"
+              class="projects__filter"
+              title="Topics"
+              :options="topics"
+              :selected-values="selectedTopics"
+            />
+            <ProjectFilter
               v-model="selectedYears"
               class="projects__filter"
               title="Years"
@@ -73,24 +80,33 @@ export default Vue.extend({
     const unsortedLanguages = projects.map((x) => x.languages).flat()
     const unsortedTools = projects.map((x) => x.tools).flat()
     const unsortedYears = projects.map((x) => x.year)
+    const unsortedTopics = projects
+      .filter((x) => Boolean(x.topics))
+      .map((x) => x.topics!)
+      .flat()
+
     const sortedLanguages = getSortedTotals(unsortedLanguages)
     const sortedTools = getSortedTotals(unsortedTools)
     const sortedYears = getSortedTotals(unsortedYears, SortTotal.BY_NAME_DESC)
+    const sortedTopics = getSortedTotals(unsortedTopics)
 
     return {
       projects,
       languages: sortedLanguages,
       tools: sortedTools,
       years: sortedYears,
+      topics: sortedTopics,
       featuredProjects,
     }
   },
 
   data(): {
     projects: Project[]
+    topics: Count[]
     languages: Count[]
     tools: Count[]
     years: Count[]
+    selectedTopics: string[]
     selectedLanguages: string[]
     selectedTools: string[]
     selectedYears: string[]
@@ -99,12 +115,14 @@ export default Vue.extend({
   } {
     return {
       projects: [],
+      topics: [],
       languages: [],
       tools: [],
       years: [],
       selectedLanguages: [],
       selectedTools: [],
       selectedYears: [],
+      selectedTopics: [],
       loaded: false,
       showFilterMenu: false,
     }
@@ -115,7 +133,8 @@ export default Vue.extend({
       const hasFilters =
         this.selectedLanguages.length ||
         this.selectedTools.length ||
-        this.selectedYears.length
+        this.selectedYears.length ||
+        this.selectedTopics.length
       const filteredProjects = hasFilters
         ? this.projects.filter((x) => {
             if (!hasFilters) {
@@ -132,24 +151,17 @@ export default Vue.extend({
             const containsYear = this.selectedYears.length
               ? this.selectedYears.includes(x.year.toString())
               : false
-            return containsLanguage || containsTool || containsYear
+            const containsTopic = this.selectedTopics.length
+              ? x.topics?.some((topic) => this.selectedTopics.includes(topic))
+              : false
+
+            return (
+              containsLanguage || containsTool || containsYear || containsTopic
+            )
           })
         : this.projects
+
       return filteredProjects.sort((a, b) => b.year - a.year)
-    },
-    filteredLanguages(): Count[] {
-      const selectedLanguages = this.filteredProjects
-        .map((x) => x.languages)
-        .flat()
-      return this.languages.filter((x) => selectedLanguages.includes(x.name))
-    },
-    filteredTools(): Count[] {
-      const selectedTools = this.filteredProjects.map((x) => x.tools).flat()
-      return this.tools.filter((x) => selectedTools.includes(x.name))
-    },
-    filteredYears(): Count[] {
-      const selectedYears = this.filteredProjects.map((x) => x.year)
-      return this.years.filter((x) => selectedYears.includes(parseInt(x.name)))
     },
   },
 
@@ -158,6 +170,7 @@ export default Vue.extend({
     this.selectedYears = parseQueryParameters(queryParams.years)
     this.selectedLanguages = parseQueryParameters(queryParams.languages)
     this.selectedTools = parseQueryParameters(queryParams.tools)
+    this.selectedTopics = parseQueryParameters(queryParams.topics)
     this.loaded = true
   },
 

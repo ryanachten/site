@@ -1,6 +1,9 @@
 ---
 name: Oscil
 year: 2018
+topics:
+  - signal processing
+  - audio visualisation
 branch: master
 languages:
   - JavaScript

@@ -1,6 +1,8 @@
 ---
 name: Vertice
 year: 2016
+topics:
+  - game development
 branch: master
 languages:
   - C#

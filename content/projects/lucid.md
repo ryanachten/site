@@ -1,6 +1,9 @@
 ---
 name: Lucid
 year: 2018
+topics:
+  - mixed reality
+  - shaders
 branch: master
 languages:
   - JavaScript

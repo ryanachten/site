@@ -1,6 +1,9 @@
 ---
 name: SomaVision
 year: 2014
+topics:
+  - hardware development
+  - audio visualisation
 branch: master
 languages: []
 tools:
