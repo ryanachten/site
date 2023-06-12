@@ -3,6 +3,7 @@
     <NuxtLink
       :to="projectLink"
       :style="{ backgroundImage: `url(${project.heroImage.remote})` }"
+      :class="{ 'project-tile__link--double-height': doubleHeight }"
       class="project-tile__link"
     >
       <div class="project-tile__content">
@@ -22,6 +23,10 @@ export default Vue.extend({
   props: {
     project: {
       type: Object as PropType<Project>,
+      required: true,
+    },
+    doubleHeight: {
+      type: Boolean,
       required: true,
     },
   },
@@ -44,6 +49,10 @@ export default Vue.extend({
   height: 200px;
   text-decoration: none;
   width: 100%;
+
+  &--double-height {
+    height: 400px;
+  }
 }
 .project-tile__content {
   @include blurred-background(0.5);

@@ -1,9 +1,10 @@
 <template>
-  <div class="project-grid__wrapper">
+  <div ref="grid" class="project-grid__wrapper">
     <ProjectTile
       v-for="project in projects"
       :key="project.name"
       :project="project"
+      :double-height="isSingleRow"
     />
   </div>
 </template>
@@ -17,6 +18,29 @@ export default Vue.extend({
     projects: {
       type: Array as PropType<Array<Project>>,
       required: true,
+    },
+  },
+  data() {
+    return {
+      cellsPerRow: 0,
+    }
+  },
+  computed: {
+    isSingleRow(): boolean {
+      return this.projects.length <= this.cellsPerRow
+    },
+  },
+  mounted() {
+    this.calculateRows()
+    window.addEventListener('resize', this.calculateRows)
+  },
+  methods: {
+    calculateRows() {
+      const grid = this.$refs.grid as HTMLDivElement | null
+      if (!grid) return false
+
+      const cellWidth = 240 // must align with SCSS below
+      this.cellsPerRow = Math.floor(grid.clientWidth / cellWidth)
     },
   },
 })
