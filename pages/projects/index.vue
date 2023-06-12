@@ -226,8 +226,7 @@ export default Vue.extend({
     overflow: hidden;
 
     &.projects__filters--mobile {
-      backdrop-filter: blur($s);
-      background: transparentize($color: $black, $amount: 0.1);
+      @include blurred-background;
       display: block;
       max-width: 300px;
       padding: 0 0 $m $m;

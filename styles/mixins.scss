@@ -27,6 +27,11 @@
   background-position: center;
 }
 
+@mixin blurred-background($opacity: 0.1) {
+  backdrop-filter: blur($s);
+  background: transparentize($color: $black, $amount: $opacity);
+}
+
 @mixin list-reset {
   margin: 0;
   padding: 0;
