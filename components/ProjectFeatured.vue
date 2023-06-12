@@ -145,10 +145,11 @@ export default Vue.extend({
 
 .project-featured__list-item {
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.5s;
+  opacity: 1;
 
   &:not(.selected) {
-    color: darken($grey, 25%);
+    opacity: 0.4;
   }
 
   &:not(:last-child) {

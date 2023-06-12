@@ -1,15 +1,11 @@
 <template>
-  <div
-    class="project-tile"
-    @mouseover="isHovering = true"
-    @mouseout="isHovering = false"
-  >
+  <div class="project-tile">
     <NuxtLink
       :to="projectLink"
       :style="{ backgroundImage: `url(${project.heroImage.remote})` }"
       class="project-tile__link"
     >
-      <div v-if="isHovering" class="project-tile__content">
+      <div class="project-tile__content">
         <span class="project-tile__title">{{ project.name }}</span>
         <p class="project-tile__description">{{ project.description }}</p>
       </div>
@@ -28,11 +24,6 @@ export default Vue.extend({
       type: Object as PropType<Project>,
       required: true,
     },
-  },
-  data() {
-    return {
-      isHovering: false,
-    }
   },
   computed: {
     projectLink(): string {
@@ -61,9 +52,14 @@ export default Vue.extend({
   flex-flow: row wrap;
   height: 100%;
   justify-content: center;
-  pointer-events: none;
+  opacity: 0;
   text-align: center;
+  transition: 0.3s;
   width: 100%;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 .project-tile__title {
   font-family: $font-title;
