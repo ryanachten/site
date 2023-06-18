@@ -45,6 +45,10 @@ export default Vue.extend({
 
 .project__metadata {
   margin-top: $m;
+  max-height: 100vh;
+  overflow-y: auto;
+  position: sticky;
+  top: $m;
 
   @media screen and (min-width: $desktop) {
     margin-top: 0;
