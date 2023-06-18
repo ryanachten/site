@@ -16,7 +16,7 @@
             >{{ showFilterMenu ? 'filter_alt_off' : 'filter_alt' }}</span
           >
         </div>
-        <div v-if="loaded" class="projects__all-projects">
+        <div class="projects__all-projects">
           <ProjectGrid
             class="projects__project-grid"
             :projects="filteredProjects"
@@ -110,7 +110,6 @@ export default Vue.extend({
     selectedLanguages: string[]
     selectedTools: string[]
     selectedYears: string[]
-    loaded: boolean
     showFilterMenu: boolean
   } {
     return {
@@ -123,7 +122,6 @@ export default Vue.extend({
       selectedTools: [],
       selectedYears: [],
       selectedTopics: [],
-      loaded: false,
       showFilterMenu: false,
     }
   },
@@ -171,7 +169,6 @@ export default Vue.extend({
     this.selectedLanguages = parseQueryParameters(queryParams.languages)
     this.selectedTools = parseQueryParameters(queryParams.tools)
     this.selectedTopics = parseQueryParameters(queryParams.topics)
-    this.loaded = true
   },
 
   methods: {

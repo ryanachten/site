@@ -1,5 +1,5 @@
 <template>
-  <div class="project-tile">
+  <div class="project-tile" :class="className">
     <NuxtLink
       :to="projectLink"
       :style="{ backgroundImage: `url(${project.heroImage.remote})` }"
@@ -21,6 +21,10 @@ import { getProjectLink } from '~/helpers'
 
 export default Vue.extend({
   props: {
+    className: {
+      type: String,
+      required: true,
+    },
     project: {
       type: Object as PropType<Project>,
       required: true,
