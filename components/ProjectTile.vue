@@ -1,9 +1,20 @@
 <template>
-  <div class="project-tile" :class="className">
+  <div
+    class="project-tile"
+    :class="{
+      'project-tile--active': imageLoaded,
+    }"
+  >
     <NuxtLink
       :to="projectLink"
-      :style="{ backgroundImage: `url(${project.heroImage.remote})` }"
-      :class="{ 'project-tile__link--double-height': doubleHeight }"
+      :style="{
+        backgroundImage: imageLoaded
+          ? `url(${project.heroImage.remote})`
+          : 'unset',
+      }"
+      :class="{
+        'project-tile__link--double-height': doubleHeight,
+      }"
       class="project-tile__link"
     >
       <div class="project-tile__content">
@@ -21,10 +32,6 @@ import { getProjectLink } from '~/helpers'
 
 export default Vue.extend({
   props: {
-    className: {
-      type: String,
-      required: true,
-    },
     project: {
       type: Object as PropType<Project>,
       required: true,
@@ -34,9 +41,24 @@ export default Vue.extend({
       required: true,
     },
   },
+  data() {
+    return { imageLoaded: false }
+  },
   computed: {
     projectLink(): string {
       return getProjectLink(this.project.name)
+    },
+  },
+  mounted() {
+    this.loadImage()
+  },
+  methods: {
+    loadImage() {
+      const image = new Image()
+      image.src = this.project.heroImage.remote
+      image.onload = () => {
+        this.imageLoaded = true
+      }
     },
   },
 })
@@ -44,7 +66,14 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .project-tile {
+  filter: blur($s);
   border-radius: $border-radius;
+  opacity: 0;
+  transition: 0.5s;
+}
+.project-tile--active {
+  filter: blur(0);
+  opacity: 1;
 }
 .project-tile__link {
   @include responsive-background;

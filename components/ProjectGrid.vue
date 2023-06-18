@@ -5,9 +5,6 @@
       :key="project.name"
       :project="project"
       :double-height="isSingleRow"
-      :class-name="`project-grid__item ${
-        imagesLoaded ? 'project-grid__item--active' : ''
-      }`"
     />
   </div>
 </template>
@@ -37,7 +34,6 @@ export default Vue.extend({
   mounted() {
     this.calculateRows()
     window.addEventListener('resize', this.calculateRows)
-    this.loadImages()
   },
   methods: {
     calculateRows() {
@@ -46,20 +42,6 @@ export default Vue.extend({
 
       const cellWidth = 240 // must align with SCSS below
       this.cellsPerRow = Math.floor(grid.clientWidth / cellWidth)
-    },
-    loadImages() {
-      let loadedImages = 0
-      this.projects.forEach((x) => {
-        const image = new Image()
-        image.src = x.heroImage.remote
-        image.onload = () => {
-          loadedImages++
-          if (loadedImages === this.projects.length) {
-            this.imagesLoaded = true
-          }
-        }
-        return image
-      })
     },
   },
 })
@@ -72,12 +54,5 @@ export default Vue.extend({
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-template-rows: 200px;
   row-gap: $m;
-}
-.project-grid__item {
-  opacity: 0;
-  transition: 0.5s;
-}
-.project-grid__item--active {
-  opacity: 1;
 }
 </style>
