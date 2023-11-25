@@ -1,4 +1,27 @@
 projects:
+  - name: cmdo
+    featured: true
+    year: 2023
+    topics:
+      - command-line tool
+    heroImage:
+      remote: >-
+        https://raw.githubusercontent.com/ryanachten/cmdo/main/docs/cmdo_promo.png
+      local: hero-images/cmdo.webp
+    archived: false
+    languages:
+      - Go
+      - JavaScript
+      - CSS
+      - PowerShell
+      - HTML
+    description: Command runner and log viewer 🔫
+    homepage: ""
+    githubUrl: https://github.com/ryanachten/cmdo
+    tools:
+      - github-actions
+      - preact
+      - websockets
   - name: ensemble
     featured: true
     year: 2023
@@ -18,7 +41,7 @@ projects:
       - JavaScript
       - HTML
       - CSS
-    description: Visualising connections between bands, artists and genres
+    description: Visualise musical connections ✨
     homepage: https://ryanachten.github.io/ensemble/
     githubUrl: https://github.com/ryanachten/ensemble
     tools:
@@ -27,29 +50,6 @@ projects:
       - k6
       - nodejs
       - sveltekit
-      - tailwindcss
-  - name: hertz
-    year: 2023
-    topics:
-      - signal processing
-      - audio generation
-    heroImage:
-      remote: >-
-        https://raw.githubusercontent.com/ryanachten/hertz/main/docs/hertz_banner.png
-      local: hero-images/hertz.webp
-    archived: false
-    languages:
-      - TypeScript
-      - HTML
-      - JavaScript
-      - CSS
-    description: Generative noise machine 💀
-    homepage: https://ryanachten.github.io/hertz/
-    githubUrl: https://github.com/ryanachten/hertz
-    tools:
-      - github-actions
-      - react
-      - redux
       - tailwindcss
   - name: site
     year: 2022
@@ -106,7 +106,6 @@ projects:
     homepage: https://whosagoodboy.vercel.app/
   - name: echo
     year: 2021
-    featured: true
     topics:
       - video streaming
     branch: master
@@ -126,6 +125,7 @@ projects:
       - tensorflowjs
       - terraform
       - webrtc
+      - websockets
     archived: false
     githubUrl: https://github.com/ryanachten/echo
     description: DIY video conferencing ⚡
@@ -183,7 +183,7 @@ projects:
       - webpack
     archived: false
     githubUrl: https://github.com/ryanachten/Oscil
-    description: 'Audio visualisation experiments 🌈 '
+    description: "Audio visualisation experiments 🌈 "
     heroImage:
       remote: >-
         https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/fdf89d64019463.5ad99b8e4940a.jpg
@@ -205,7 +205,7 @@ projects:
       - three-js
       - webpack
     archived: false
-    homepage: ''
+    homepage: ""
     githubUrl: https://github.com/ryanachten/Lucid
     description: Realtime web-based mixed-reality 👓 ✨
     heroImage:
@@ -228,9 +228,9 @@ projects:
       - unity
       - webgl
     archived: false
-    homepage: ''
+    homepage: ""
     githubUrl: https://github.com/ryanachten/Vertice
-    description: Virtual artefact 3D archive 🏺
+    description: Virtual artefact 3D archive 🏛
     heroImage:
       remote: >-
         https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/ee5cbd60149489.5a3e1aab93972.jpg
@@ -249,7 +249,7 @@ projects:
       - webpack
     archived: false
     githubUrl: https://github.com/ryanachten/achtenio
-    homepage: ''
+    homepage: ""
     description: >-
       Personal portfolio site for Ryan Achten using React, Three.js and SVG
       filters.
@@ -269,7 +269,7 @@ projects:
     tools:
       - wordpress
     archived: false
-    homepage: ''
+    homepage: ""
     githubUrl: https://github.com/ryanachten/Hiko
     description: >-
       Digital publishing platform for Victoria University of Wellington. Built
@@ -290,7 +290,7 @@ projects:
       - firebase
       - three-js
     archived: true
-    homepage: ''
+    homepage: ""
     githubUrl: https://github.com/ryanachten/VWM
     description: >-
       Development of Visual Working Memory, a psychology test web app. Built
@@ -310,7 +310,7 @@ projects:
       - arduino
     archived: false
     githubUrl: https://github.com/ryanachten/SomaVision
-    homepage: ''
+    homepage: ""
     description: Hardware interface for music visualisation
     heroImage:
       remote: https://github.com/ryanachten/SomaVision/raw/master/docs/SomVis_01.jpg
@@ -327,7 +327,7 @@ projects:
     tools:
       - kinect
     archived: false
-    homepage: ''
+    homepage: ""
     githubUrl: https://github.com/ryanachten/Oskelate
     description: Interactive music visualiser responsive to both audio and performer
     heroImage:

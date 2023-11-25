@@ -21,6 +21,7 @@ tools:
   - tensorflowjs
   - terraform
   - webrtc
+  - websockets
 archived: false
 githubUrl: https://github.com/ryanachten/echo
 description: DIY video conferencing ⚡

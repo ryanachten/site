@@ -17,7 +17,7 @@ tools:
 archived: false
 homepage: ''
 githubUrl: https://github.com/ryanachten/Vertice
-description: Virtual artefact 3D archive 🏺
+description: Virtual artefact 3D archive 🏛
 heroImage:
   remote: >-
     https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/ee5cbd60149489.5a3e1aab93972.jpg

@@ -18,7 +18,7 @@ languages:
   - JavaScript
   - HTML
   - CSS
-description: Visualising connections between bands, artists and genres
+description: Visualise musical connections ✨
 homepage: https://ryanachten.github.io/ensemble/
 githubUrl: https://github.com/ryanachten/ensemble
 tools:
