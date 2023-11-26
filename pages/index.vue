@@ -76,6 +76,7 @@ export default Vue.extend({
 .landing {
   display: flex;
   justify-content: center;
+  overflow: hidden;
   position: relative;
 }
 
@@ -113,6 +114,8 @@ export default Vue.extend({
 
   a {
     @include subheader;
+    @include text-background;
+
     &:not(:last-child) {
       margin-right: $m;
     }
