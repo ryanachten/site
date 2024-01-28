@@ -8,8 +8,9 @@ languages:
   - TypeScript
   - C#
   - HCL
-  - JavaScript
+  - PowerShell
   - Dockerfile
+  - JavaScript
 branch: master
 tools:
   - docker
@@ -38,7 +39,8 @@ Robic is a mobile application for simple exercise tracking and analysis.
 Robic helps athletes and enthusiasts track their workouts and provides analytics to follow their progress.
 
 ### Get started!
-- Download for Android at the [Google Play Store](https://play.google.com/store/apps/details?id=com.app.robic) 
+
+- Download for Android at the [Google Play Store](https://play.google.com/store/apps/details?id=com.app.robic)
 - View our [Privacy Policy](https://github.com/ryanachten/robic/raw/master/docs/PrivacyPolicy.md)
 
 ![Robic Workout User Flow](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Flow_1.jpg "Robic Workout User Flow")
@@ -52,7 +54,7 @@ Some of the features Robic provides are:
 
 More features to come!
 
-![Robic Stack](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Stack.jpg "Robic Stack")
+![Robic Stack](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Stack_1.jpg "Robic Stack")
 
 ## Robic Stack
 
@@ -62,13 +64,15 @@ Built using React Native, Expo, TypeScript and UI Kitten.
 
 **Robic API**
 
-Built using .NET and MongoDB.
+Built using .NET and MySQL.
 
 ![Robic Exercise User Flow](https://github.com/ryanachten/robic/raw/master/docs/images/Robic_Flow_2.jpg "Robic Exercise User Flow")
 
 ## Developing with Robic
+
 Documentation specific to different aspects of Robic development can be found in their respective directories.
 Of specific note are:
+
 - [Developing the Robic App](https://github.com/ryanachten/robic/raw/master/app/README.md)
 - [Developing the Robic API](https://github.com/ryanachten/robic/raw/master/api/README.md)
 - [Developing the Robic Infrastructure](https://github.com/ryanachten/robic/raw/master/infra/README.md)
