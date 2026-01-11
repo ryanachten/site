@@ -1,176 +1,90 @@
-<h2>ABOUT</h2>
+Lead engineer with experience in fullstack system design, development and delivery. 
 
-<p>
-My name is Ryan Achten, I am a senior software engineer currently working for the cloud accounting software company, Xero. 
-</p>
-<p>
-Graduating with a Bachelor of Communication Design, I made the move to delve into the world of code and undertake my Masters in Design Innovation. Since then, I have worked as a designer and developer, fulfilling roles from user experience research and design, all the way through to software development and deployment.
-</p>
-<p>
-Today, I focus on fullstack development, producing polished digital experiences for a variety of clients and projects, while progressing my interests in related areas such as dev-ops and machine learning.
-</p>
-<h2>EMPLOYMENT</h2>
+Proven track record leading global products and cross-functional teams.
 
-<p>
-<strong>Senior Engineer - </strong>Xero (2021 - Present)
-</p>
-<ul>
 
-<li>Full-stack development of US tax products. Backend development using .NET Framework monolith and .NET Core microservices, with frontend development using TypeScript, React and Redux. DevOps development using AWS services, Terraform, Octopus, and TeamCity (Kotlin DSL).
-</li>
-</ul>
-<p>
-<strong>Senior Front-end Developer - </strong>AKQA (2019 - 2021)
-</p>
-<ul>
+## **Contact**
+* **GitHub**: [github.com/ryanachten](https://github.com/ryanachten)
+* **LinkedIn**: [linkedin.com/in/ryanachten](https://www.linkedin.com/in/ryanachten)
 
-<li>Front-end development of web applications using TypeScript, React, Webpack, Gulp and Coveo (machine learning-assisted search). Back-end development using Sitecore CMS and .NET Framework. Mentoring and leadership across the front-end engineering team. 
-</li>
-</ul>
-<p>
-<strong>UI / UX Developer - </strong>Certus Solutions (2018 - 2019)
-</p>
-<ul>
 
-<li>Development of web and mobile applications using various frameworks including React, React Native and Ember.js. Close collaboration with stakeholders to produce elegant user interfaces and experiences.
-</li>
-</ul>
-<p>
-<strong>Design Researcher - </strong>Victoria University of Wellington (2014-2016, 2017-2018)
-</p>
-<ul>
+## **Employment**
 
-<li>Designing and developing websites and interactive media for VUW-funded research projects<em> </em>using PHP-based CMS’ such as Silverstripe and Wordpress.
-</li>
-</ul>
-<p>
-<strong>Software Developer & Commercialisation Assistant - </strong>VicLink, VUW (2016)
-</p>
-<ul>
+#### **Lead Engineer – Xero**
+*February 2024 – Present*
 
-<li>Funded to develop 3D archive interface, <em>Vertice</em>, from masters project to commercially-viable software.
-</li>
-</ul>
-<p>
-<strong>References can be provided upon request</strong>
-</p>
-<h2>CURRENT TOOLS</h2>
+* Defined architectural direction and technical strategy across multiple high-impact initiatives.
+* Led technical discovery and design for complex, ambiguous problem spaces.
+* Provided senior technical leadership across multiple teams (~6 engineers), driving alignment and delivery.
+* Designed and delivered globally scalable tax platforms across the UK, New Zealand, and Canada.
+* Led modernisation of legacy monolithic systems into cloud-native, service-oriented architectures.
+* Remained hands-on across distributed systems using .NET, React, SQL Server, and AWS.
 
-<table>
-  <tr>
-   <td><p style="text-align: right">
-<strong>Frontend</strong></p>
+#### **Senior Engineer – Xero**
+*November 2021 – February 2024*
 
-   </td>
-   <td>React (+ Native), Redux, Vue, Cypress, SCSS
-   </td>
-  </tr>
-  <tr>
-   <td><p style="text-align: right">
-<strong>Backend</strong></p>
+* Designed and delivered full-stack tax products for the US and UK markets in regulated domains.
+* Owned end-to-end development across distributed systems using .NET and React.
+* Established performance test suite using k6, introducing load, stress, and soak testing to improve system reliability at scale.
+* Built cloud infrastructure using AWS and infrastructure-as-code (Terraform), integrated with CI/CD pipelines.
+* Designed and optimised data models across DynamoDB and SQL Server to support scalable workloads.
+* Acted as a quality advocate within the team, coaching engineers on automated testing and quality-driven development practices.
 
-   </td>
-   <td>.NET (Core & Framework), Node.js, Docker
-   </td>
-  </tr>
-  <tr>
-   <td><p style="text-align: right">
-<strong>Infrastructure</strong></p>
+#### **Engineer – Xero**
+*March 2021 – November 2021*
 
-   </td>
-   <td>AWS, Terraform, Octopus, TeamCity (+ Kotlin DSL)
-   </td>
-  </tr>
-  <tr>
-   <td><p style="text-align: right">
-<strong>Data</strong></p>
+* Full-stack development of US and UK tax products using .NET and React.
+* Modernisation of legacy monolithic .NET Framework systems into .NET Core microservices.
+* Built serverless components using AWS services including Lambda and DynamoDB.
 
-   </td>
-   <td>Python, Tensorflow, Jupyter Notebook
-   </td>
-  </tr>
-  <tr>
-   <td><p style="text-align: right">
-<strong>Monitoring</strong></p>
+#### **Senior Frontend Developer – AKQA**
+*2019 – 2021*
 
-   </td>
-   <td>New Relic, Sumo Logic
-   </td>
-  </tr>
-  <tr>
-   <td><p style="text-align: right">
-<strong>Creative Code</strong></p>
+* Led frontend development for client products using React within large, cross-functional delivery teams.
+* Drove frontend modernisation initiatives, migrating JavaScript to TypeScript and CSS to SCSS.
+* Mentored frontend engineers, uplifting automated testing practices and overall code quality.
 
-   </td>
-   <td>Three.js, WebGL
-   </td>
-  </tr>
-</table>
+#### **UI/UX Developer – Certus Solutions**
+*2018 – 2019*
 
-<h2>EDUCATION</h2>
+* Built web and mobile products using React, Ember, and React Native across public and private sector clients.
 
-<p>
-<strong>Master of Design Innovation</strong>
-</p>
-<p>
-Specialising in Media Design (Data.mine stream)
-</p>
-<p>
-Graduated with Merit, 2017
-</p>
-<p>
-Victoria University of Wellington, 2014-16
-</p>
-<p>
-<strong>Bachelor of Communication Design</strong>
-</p>
-<p>
-Graduated with Distinction, 2013
-</p>
-<p>
-Otago Polytechnic, 2011-13
-</p>
-<h2>AWARDS</h2>
+#### **Design Researcher – Victoria University of Wellington**
+*2014 – 2018*
 
-<p>
-<strong>Formway Design Award - <em>for Best Project in Master of Design Innovation</em></strong>
-</p>
-<p>
-Victoria University of Wellington (2016)
-</p>
-<p>
-<strong>VicLink Award - <em>for the project with the most commercial potential</em></strong>
-</p>
-<p>
-Victoria University of Wellington (2016)
-</p>
-<p>
-<strong>Master of Design Innovation Completion Scholarship</strong>
-</p>
-<p>
-Funded by Ministry of Business, Innovation and Employment
-</p>
-<p>
-Victoria University of Wellington (2015)
-</p>
-<p>
-<strong>VUW Summer Scholarship </strong>
-</p>
-<p>
-National Library of New Zealand collaboration
-</p>
-<p>
-Victoria University of Wellington (2014)
-</p>
-<p>
-<strong>Creative Excellence Award - <em>for Top Overall Student</em></strong>
-</p>
-<p>
-Otago Polytechnic (2013)
-</p>
-<p>
-<strong>Design Achievement Award</strong>
-</p>
-<p>
-Otago Polytechnic (2011)
-</p>
+* Designed and developed web applications using PHP-based platforms (SilverStripe, WordPress).
+
+
+## **Current Technology**
+
+I take pride in being language and framework agnostic; adopting tooling best suited for a given project. Frequently used technologies include:
+
+|  |  |
+| :--- | :--- |
+| **Languages** | C#, TypeScript, JavaScript, SQL |
+| **Backend** | .NET Core, .NET Framework, Docker, Kubernetes, Node.js |
+| **Frontend** | React, Redux, SCSS |
+| **Databases** | Microsoft SQL Server, DynamoDB |
+| **Quality** | K6, Playwright, XUnit, Jest, SonarQube |
+| **Infrastructure** | AWS, Terraform, Octopus, TeamCity, GitHub Actions |
+| **Monitoring** | New Relic, Sumo Logic |
+
+
+## **Education**
+
+* **Master of Design Innovation** (Specializing in Media Design - Data.mine stream)
+    * Graduated with Merit, 2017
+    * Victoria University of Wellington, 2014-16
+* **Bachelor of Communication Design**
+    * Graduated with Distinction, 2013
+    * Otago Polytechnic, 2011-13
+
+
+## **Awards**
+
+* **Formway Design Award**: Best Project in Master of Design Innovation, Victoria University of Wellington (2016)
+* **VicLink Award**: Project with the most commercial potential, Victoria University of Wellington (2016)
+* **Master of Design Innovation Completion Scholarship**: Funded by MBIE, Victoria University of Wellington (2015)
+* **VUW Summer Scholarship**: National Library of New Zealand & Victoria University of Wellington (2014)
+* **Creative Excellence Award**: Top Overall Student, Otago Polytechnic (2013)
+* **Design Achievement Award**: Otago Polytechnic (2011)
