@@ -126,7 +126,7 @@ export default {
   googleFonts: {
     display: 'swap',
     families: {
-      Lato: true,
+      Lato: [400, 700],
       Philosopher: [400, 700],
       'Material Icons': true,
     },
