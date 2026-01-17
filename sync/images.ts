@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import fetch from 'node-fetch'
 import sharp from 'sharp'
 
-import { Project } from '../constants/interfaces'
+import type { Project } from '../constants/interfaces'
 import { IMAGE_DIR } from './constants'
 
 export const cleanImageDirectory = () => {

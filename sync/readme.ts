@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as yaml from 'js-yaml'
 
-import { Project } from '../constants/interfaces'
+import type { Project } from '../constants/interfaces'
 import { PROJECT_DIR, GITHUB_OWNER, octokit } from './constants'
 
 const getGithubUrl = (project: string, branch: string, path: string) =>

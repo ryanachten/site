@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { Project } from '~/constants/interfaces'
+import type { Project } from '~/constants/interfaces'
 import { getProjectLink } from '~/helpers'
 
 const transitionDelay = 4000

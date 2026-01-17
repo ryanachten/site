@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { Count } from '~/constants/interfaces'
+import type { Count } from '~/constants/interfaces'
 
 const props = defineProps<{
   title: string

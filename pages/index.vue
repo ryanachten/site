@@ -21,7 +21,7 @@
 </template>
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { Project, ProjectIndex } from '~/constants/interfaces'
+import type { Project, ProjectIndex } from '~/constants/interfaces'
 
 const { data: page } = await useAsyncData('index', () =>
   queryContent<ProjectIndex>('projects', 'index').findOne()

@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { Project } from '~/constants/interfaces'
+import type { Project } from '~/constants/interfaces'
 import { getProjectLink } from '~/helpers'
 
 const props = defineProps<{

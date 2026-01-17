@@ -63,7 +63,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { Count, Project, ProjectIndex } from '~/constants/interfaces'
+import type { Count, Project, ProjectIndex } from '~/constants/interfaces'
 import { getSortedTotals, parseQueryParameters, SortTotal } from '~/helpers'
 
 const route = useRoute()

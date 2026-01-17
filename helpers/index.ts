@@ -1,4 +1,4 @@
-import { Count } from '../constants/interfaces'
+import type { Count } from '../constants/interfaces'
 
 export enum SortTotal {
   BY_COUNT,
