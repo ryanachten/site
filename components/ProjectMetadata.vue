@@ -108,6 +108,8 @@ const homepage = computed((): MetaLink[] =>
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .project-metadata {
   width: 100%;
 }

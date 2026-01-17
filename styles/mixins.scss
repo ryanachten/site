@@ -1,3 +1,5 @@
+@use './variables.scss' as *;
+
 @mixin inverted-colors {
   background-color: $light-grey;
   color: $black;

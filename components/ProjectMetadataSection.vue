@@ -41,6 +41,8 @@ const sortedOptions = computed(() => {
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .project-metadata-section {
   min-width: 150px;
 

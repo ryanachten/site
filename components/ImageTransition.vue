@@ -216,6 +216,7 @@ function draw() {
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
 .image-transition__canvas {
   opacity: 0;
   height: 100%;

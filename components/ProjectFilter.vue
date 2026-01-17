@@ -95,6 +95,8 @@ function updateQueryParams(values: string[]) {
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .project-filter {
   @include styled-scrollbar;
   max-height: 250px;

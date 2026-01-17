@@ -146,6 +146,8 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
 .projects__featured {
   @include divider;
   padding-bottom: $l;

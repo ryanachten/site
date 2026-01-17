@@ -22,6 +22,8 @@ const logoSizeClass = computed(() =>
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
+
 .logo {
   font-family: $font-title;
   font-size: $font-m;

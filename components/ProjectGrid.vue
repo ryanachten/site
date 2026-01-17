@@ -37,6 +37,8 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .project-grid__wrapper {
   column-gap: $m;
   display: grid;

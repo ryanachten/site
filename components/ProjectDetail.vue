@@ -11,6 +11,8 @@ defineProps<{
 </script>
 
 <style lang="scss">
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .project-detail {
   img {
     border-radius: $border-radius;

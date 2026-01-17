@@ -25,6 +25,9 @@ if (!page.value) {
 </script>
 
 <style lang="scss" scoped>
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
 .page {
   @include inverted-colors;
 }

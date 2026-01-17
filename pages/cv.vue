@@ -23,6 +23,8 @@ if (!page.value) {
 </script>
 
 <style lang="scss">
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .cv__logo {
   display: block;
   height: fit-content;
