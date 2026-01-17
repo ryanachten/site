@@ -97,6 +97,8 @@ function updateQueryParams(values: string[]) {
 <style lang="scss" scoped>
 @use '../styles/variables.scss' as *;
 @use '../styles/mixins.scss' as *;
+@use 'sass:color';
+
 .project-filter {
   @include styled-scrollbar;
   max-height: 250px;
@@ -135,7 +137,7 @@ function updateQueryParams(values: string[]) {
   }
 
   &:not(.selected) {
-    color: darken($grey, 25%);
+    color: color.adjust($grey, $lightness: -25%);
   }
 }
 
