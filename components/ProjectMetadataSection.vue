@@ -20,32 +20,23 @@
   </section>
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
+
 export interface MetaLink {
   name: string
   href: string
 }
-export default Vue.extend({
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    options: {
-      type: Array as PropType<Array<MetaLink>>,
-      required: true,
-    },
-    external: {
-      type: Boolean,
-    },
-  },
-  computed: {
-    sortedOptions() {
-      const opts = [...this.options]
-      return opts.sort((a, b) => (a.name > b.name ? 1 : -1))
-    },
-  },
+
+const props = defineProps<{
+  title: string
+  options: MetaLink[]
+  external?: boolean
+}>()
+
+const sortedOptions = computed(() => {
+  const opts = [...props.options]
+  return opts.sort((a, b) => (a.name > b.name ? 1 : -1))
 })
 </script>
 

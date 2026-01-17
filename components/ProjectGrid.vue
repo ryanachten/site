@@ -9,41 +9,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import { Project } from '~/constants/interfaces'
 
-export default Vue.extend({
-  props: {
-    projects: {
-      type: Array as PropType<Array<Project>>,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      cellsPerRow: 0,
-      imagesLoaded: false,
-    }
-  },
-  computed: {
-    isSingleRow(): boolean {
-      return this.projects.length <= this.cellsPerRow
-    },
-  },
-  mounted() {
-    this.calculateRows()
-    window.addEventListener('resize', this.calculateRows)
-  },
-  methods: {
-    calculateRows() {
-      const grid = this.$refs.grid as HTMLDivElement | null
-      if (!grid) return false
+const props = defineProps<{
+  projects: Project[]
+}>()
 
-      const cellWidth = 240 // must align with SCSS below
-      this.cellsPerRow = Math.floor(grid.clientWidth / cellWidth)
-    },
-  },
+const grid = ref<HTMLDivElement>()
+const cellsPerRow = ref(0)
+const imagesLoaded = ref(false)
+
+const isSingleRow = computed(() => props.projects.length <= cellsPerRow.value)
+
+function calculateRows() {
+  if (!grid.value) return false
+
+  const cellWidth = 240 // must align with SCSS below
+  cellsPerRow.value = Math.floor(grid.value.clientWidth / cellWidth)
+}
+
+onMounted(() => {
+  calculateRows()
+  window.addEventListener('resize', calculateRows)
 })
 </script>
 

@@ -33,76 +33,65 @@
   </section>
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { Count } from '~/constants/interfaces'
-export default Vue.extend({
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    options: {
-      type: Array as PropType<Array<Count>>,
-      required: true,
-    },
-    selectedValues: {
-      type: Array as PropType<Array<String>>,
-      required: true,
-    },
-  },
 
-  data(): {
-    expanded: boolean
-  } {
-    return {
-      expanded: false,
-    }
-  },
+const props = defineProps<{
+  title: string
+  options: Count[]
+  selectedValues: string[]
+}>()
 
-  computed: {
-    restrictedOptions(): Count[] {
-      const maxCollapsedItems = 5
-      return this.expanded
-        ? this.options
-        : this.options.slice(0, maxCollapsedItems)
-    },
-  },
+const emit = defineEmits<{
+  (e: 'input', value: string[]): void
+}>()
 
-  methods: {
-    toggleExpand() {
-      this.expanded = !this.expanded
-    },
-    toggleSelectedValue(name: string) {
-      const containsValue = this.selectedValues.includes(name)
-      let newValues = [...this.selectedValues] as string[]
-      if (containsValue) {
-        newValues = newValues.filter((x) => x !== name)
-      } else {
-        newValues.push(name)
-      }
-      this.$emit('input', newValues)
-      this.updateQueryParams(newValues)
-    },
-    clearSelectedValues() {
-      this.$emit('input', [])
-      this.updateQueryParams([])
-    },
-    updateQueryParams(values: string[]) {
-      const existingQueryParameters = this.$route.query
-      const query = { ...existingQueryParameters }
-      const paramKey = this.title.toLowerCase()
-      if (values.length) {
-        query[paramKey] = values.toString()
-      } else {
-        delete query[paramKey]
-      }
-      this.$router.push({
-        query,
-      })
-    },
-  },
+const router = useRouter()
+const route = useRoute()
+
+const expanded = ref(false)
+
+const restrictedOptions = computed(() => {
+  const maxCollapsedItems = 5
+  return expanded.value
+    ? props.options
+    : props.options.slice(0, maxCollapsedItems)
 })
+
+function toggleExpand() {
+  expanded.value = !expanded.value
+}
+
+function toggleSelectedValue(name: string) {
+  const containsValue = props.selectedValues.includes(name)
+  let newValues = [...props.selectedValues] as string[]
+  if (containsValue) {
+    newValues = newValues.filter((x) => x !== name)
+  } else {
+    newValues.push(name)
+  }
+  emit('input', newValues)
+  updateQueryParams(newValues)
+}
+
+function clearSelectedValues() {
+  emit('input', [])
+  updateQueryParams([])
+}
+
+function updateQueryParams(values: string[]) {
+  const existingQueryParameters = route.query
+  const query = { ...existingQueryParameters }
+  const paramKey = props.title.toLowerCase()
+  if (values.length) {
+    query[paramKey] = values.toString()
+  } else {
+    delete query[paramKey]
+  }
+  router.push({ query })
+}
 </script>
 
 <style lang="scss" scoped>

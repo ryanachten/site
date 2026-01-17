@@ -60,122 +60,88 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import Vue from 'vue'
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { Count, Project, ProjectIndex } from '~/constants/interfaces'
 import { getSortedTotals, parseQueryParameters, SortTotal } from '~/helpers'
 
-export default Vue.extend({
-  name: 'ProjectPage',
+const route = useRoute()
 
-  async asyncData({ $content }) {
-    const page = (await $content(
-      'projects',
-      'index'
-    ).fetch<ProjectIndex>()) as ProjectIndex
+const { data: page } = await useAsyncData('projects-index', () =>
+  queryContent<ProjectIndex>('projects', 'index').findOne()
+)
 
-    const projects = page.projects
-    const featuredProjects = page.projects.filter((x) => x.featured)
+const projects = computed(() => page.value?.projects || [])
+const featuredProjects = computed(() => projects.value.filter((x) => x.featured))
 
-    const unsortedLanguages = projects.map((x) => x.languages).flat()
-    const unsortedTools = projects.map((x) => x.tools).flat()
-    const unsortedYears = projects.map((x) => x.year)
-    const unsortedTopics = projects
-      .filter((x) => Boolean(x.topics))
-      .map((x) => x.topics!)
-      .flat()
+const unsortedLanguages = computed(() => projects.value.map((x) => x.languages).flat())
+const unsortedTools = computed(() => projects.value.map((x) => x.tools).flat())
+const unsortedYears = computed(() => projects.value.map((x) => x.year))
+const unsortedTopics = computed(() =>
+  projects.value
+    .filter((x) => Boolean(x.topics))
+    .map((x) => x.topics!)
+    .flat()
+)
 
-    const sortedLanguages = getSortedTotals(unsortedLanguages)
-    const sortedTools = getSortedTotals(unsortedTools)
-    const sortedYears = getSortedTotals(unsortedYears, SortTotal.BY_NAME_DESC)
-    const sortedTopics = getSortedTotals(unsortedTopics)
+const languages = computed(() => getSortedTotals(unsortedLanguages.value))
+const tools = computed(() => getSortedTotals(unsortedTools.value))
+const years = computed(() => getSortedTotals(unsortedYears.value, SortTotal.BY_NAME_DESC))
+const topics = computed(() => getSortedTotals(unsortedTopics.value))
 
-    return {
-      projects,
-      languages: sortedLanguages,
-      tools: sortedTools,
-      years: sortedYears,
-      topics: sortedTopics,
-      featuredProjects,
-    }
-  },
+const selectedTopics = ref<string[]>([])
+const selectedLanguages = ref<string[]>([])
+const selectedTools = ref<string[]>([])
+const selectedYears = ref<string[]>([])
+const showFilterMenu = ref(false)
 
-  data(): {
-    projects: Project[]
-    topics: Count[]
-    languages: Count[]
-    tools: Count[]
-    years: Count[]
-    selectedTopics: string[]
-    selectedLanguages: string[]
-    selectedTools: string[]
-    selectedYears: string[]
-    showFilterMenu: boolean
-  } {
-    return {
-      projects: [],
-      topics: [],
-      languages: [],
-      tools: [],
-      years: [],
-      selectedLanguages: [],
-      selectedTools: [],
-      selectedYears: [],
-      selectedTopics: [],
-      showFilterMenu: false,
-    }
-  },
-
-  computed: {
-    filteredProjects(): Project[] {
-      const hasFilters =
-        this.selectedLanguages.length ||
-        this.selectedTools.length ||
-        this.selectedYears.length ||
-        this.selectedTopics.length
-      const filteredProjects = hasFilters
-        ? this.projects.filter((x) => {
-            if (!hasFilters) {
-              return true
-            }
-            const containsLanguage = this.selectedLanguages.length
-              ? x.languages.some((lang) =>
-                  this.selectedLanguages.includes(lang)
-                )
-              : false
-            const containsTool = this.selectedTools.length
-              ? x.tools.some((tool) => this.selectedTools.includes(tool))
-              : false
-            const containsYear = this.selectedYears.length
-              ? this.selectedYears.includes(x.year.toString())
-              : false
-            const containsTopic = this.selectedTopics.length
-              ? x.topics?.some((topic) => this.selectedTopics.includes(topic))
-              : false
-
-            return (
-              containsLanguage || containsTool || containsYear || containsTopic
+const filteredProjects = computed(() => {
+  const hasFilters =
+    selectedLanguages.value.length ||
+    selectedTools.value.length ||
+    selectedYears.value.length ||
+    selectedTopics.value.length
+  
+  const filtered = hasFilters
+    ? projects.value.filter((x) => {
+        if (!hasFilters) {
+          return true
+        }
+        const containsLanguage = selectedLanguages.value.length
+          ? x.languages.some((lang) =>
+              selectedLanguages.value.includes(lang)
             )
-          })
-        : this.projects
+          : false
+        const containsTool = selectedTools.value.length
+          ? x.tools.some((tool) => selectedTools.value.includes(tool))
+          : false
+        const containsYear = selectedYears.value.length
+          ? selectedYears.value.includes(x.year.toString())
+          : false
+        const containsTopic = selectedTopics.value.length
+          ? x.topics?.some((topic) => selectedTopics.value.includes(topic))
+          : false
 
-      return filteredProjects.sort((a, b) => b.year - a.year)
-    },
-  },
+        return (
+          containsLanguage || containsTool || containsYear || containsTopic
+        )
+      })
+    : projects.value
 
-  mounted() {
-    const queryParams = this.$route.query
-    this.selectedYears = parseQueryParameters(queryParams.years)
-    this.selectedLanguages = parseQueryParameters(queryParams.languages)
-    this.selectedTools = parseQueryParameters(queryParams.tools)
-    this.selectedTopics = parseQueryParameters(queryParams.topics)
-  },
+  return filtered.sort((a, b) => b.year - a.year)
+})
 
-  methods: {
-    toggleFilterMenu() {
-      this.showFilterMenu = !this.showFilterMenu
-    },
-  },
+function toggleFilterMenu() {
+  showFilterMenu.value = !showFilterMenu.value
+}
+
+onMounted(() => {
+  const queryParams = route.query
+  selectedYears.value = parseQueryParameters(queryParams.years)
+  selectedLanguages.value = parseQueryParameters(queryParams.languages)
+  selectedTools.value = parseQueryParameters(queryParams.tools)
+  selectedTopics.value = parseQueryParameters(queryParams.topics)
 })
 </script>
 

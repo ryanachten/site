@@ -98,7 +98,9 @@ export default defineNuxtConfig({
           readFileSync('./content/projects/index.yml', 'utf8')
         )
         const projects = yamlFile.projects
-        const routes = projects.map((p: any) => `/projects/${p.name.toLowerCase()}`)
+        const routes = projects.map(
+          (p: any) => `/projects/${p.name.toLowerCase()}`
+        )
         for (const route of routes) {
           ctx.routes.add(route)
         }

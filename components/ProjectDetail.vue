@@ -1,21 +1,13 @@
 <template>
   <article class="project-detail">
-    <nuxt-content :document="content" />
+    <ContentRenderer :value="content" />
   </article>
 </template>
 
-<script lang="ts">
-import { FetchReturn } from '@nuxt/content/types/query-builder'
-import Vue, { PropType } from 'vue'
-
-export default Vue.extend({
-  props: {
-    content: {
-      type: Object as PropType<FetchReturn>,
-      required: true,
-    },
-  },
-})
+<script setup lang="ts">
+defineProps<{
+  content: any
+}>()
 </script>
 
 <style lang="scss">

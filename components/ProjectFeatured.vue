@@ -35,72 +35,51 @@
   </section>
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
+<script setup lang="ts">
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { Project } from '~/constants/interfaces'
 import { getProjectLink } from '~/helpers'
 
 const transitionDelay = 4000
 
-export default Vue.extend({
-  props: {
-    projects: {
-      type: Array as PropType<Array<Project>>,
-      required: true,
-    },
-  },
+const props = defineProps<{
+  projects: Project[]
+}>()
 
-  data(): {
-    previousProjectIndex: number
-    currentProjectIndex: number
-    timeout: NodeJS.Timeout | null
-  } {
-    return {
-      previousProjectIndex: this.projects.length - 1,
-      currentProjectIndex: 0,
-      timeout: null,
-    }
-  },
+const previousProjectIndex = ref(props.projects.length - 1)
+const currentProjectIndex = ref(0)
+const timeout = ref<NodeJS.Timeout | null>(null)
 
-  computed: {
-    selectedProject(): Project {
-      return this.projects[this.currentProjectIndex]
-    },
-    projectLink(): string {
-      return getProjectLink(this.selectedProject.name)
-    },
-    projectImages(): string[] {
-      return this.projects.map((x) => x.heroImage.local)
-    },
-  },
+const selectedProject = computed(() => props.projects[currentProjectIndex.value])
+const projectLink = computed(() => getProjectLink(selectedProject.value.name))
+const projectImages = computed(() => props.projects.map((x) => x.heroImage.local))
 
-  mounted() {
-    this.initInterval()
-  },
+function initInterval() {
+  timeout.value = setInterval(() => incrementProject(), transitionDelay)
+}
 
-  beforeMount() {
-    this.timeout !== null && clearInterval(this.timeout)
-  },
+function incrementProject() {
+  previousProjectIndex.value = currentProjectIndex.value
+  if (currentProjectIndex.value + 1 >= props.projects.length) {
+    currentProjectIndex.value = 0
+  } else {
+    currentProjectIndex.value++
+  }
+}
 
-  methods: {
-    initInterval() {
-      this.timeout = setInterval(() => this.incrementProject(), transitionDelay)
-    },
-    incrementProject() {
-      this.previousProjectIndex = this.currentProjectIndex
-      if (this.currentProjectIndex + 1 >= this.projects.length) {
-        this.currentProjectIndex = 0
-      } else {
-        this.currentProjectIndex++
-      }
-    },
-    selectProject(projectIndex: number) {
-      this.timeout !== null && clearInterval(this.timeout)
-      this.previousProjectIndex = this.currentProjectIndex
-      this.currentProjectIndex = projectIndex
-      this.initInterval()
-    },
-  },
+function selectProject(projectIndex: number) {
+  timeout.value !== null && clearInterval(timeout.value)
+  previousProjectIndex.value = currentProjectIndex.value
+  currentProjectIndex.value = projectIndex
+  initInterval()
+}
+
+onMounted(() => {
+  initInterval()
+})
+
+onBeforeUnmount(() => {
+  timeout.value !== null && clearInterval(timeout.value)
 })
 </script>
 

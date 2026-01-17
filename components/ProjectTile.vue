@@ -25,42 +25,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import { Project } from '~/constants/interfaces'
 import { getProjectLink } from '~/helpers'
 
-export default Vue.extend({
-  props: {
-    project: {
-      type: Object as PropType<Project>,
-      required: true,
-    },
-    doubleHeight: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  data() {
-    return { imageLoaded: false }
-  },
-  computed: {
-    projectLink(): string {
-      return getProjectLink(this.project.name)
-    },
-  },
-  mounted() {
-    this.loadImage()
-  },
-  methods: {
-    loadImage() {
-      const image = new Image()
-      image.src = this.project.heroImage.remote
-      image.onload = () => {
-        this.imageLoaded = true
-      }
-    },
-  },
+const props = defineProps<{
+  project: Project
+  doubleHeight: boolean
+}>()
+
+const imageLoaded = ref(false)
+
+const projectLink = computed(() => getProjectLink(props.project.name))
+
+function loadImage() {
+  const image = new Image()
+  image.src = props.project.heroImage.remote
+  image.onload = () => {
+    imageLoaded.value = true
+  }
+}
+
+onMounted(() => {
+  loadImage()
 })
 </script>
 

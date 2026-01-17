@@ -11,23 +11,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script setup lang="ts">
+const route = useRoute()
+const slug = route.params.slug
 
-export default Vue.extend({
-  async asyncData({ $content, params, error }) {
-    const slug = params.slug
-    const page = await $content('projects', slug)
-      .fetch()
-      .catch((_) => {
-        error({ statusCode: 404, message: 'Page not found' })
-      })
+const { data: page } = await useAsyncData(`project-${slug}`, () =>
+  queryContent('projects', slug as string).findOne()
+)
 
-    return {
-      page,
-    }
-  },
-})
+if (!page.value) {
+  throw createError({ statusCode: 404, message: 'Page not found' })
+}
 </script>
 
 <style lang="scss" scoped>

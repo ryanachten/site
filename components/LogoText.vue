@@ -4,21 +4,21 @@
   >
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
-export default Vue.extend({
-  props: {
-    size: {
-      type: String as PropType<'medium' | 'large'>,
-      default: 'medium',
-    },
-  },
-  computed: {
-    logoSizeClass(): string {
-      return this.size === 'medium' ? 'logo--medium' : 'logo--large'
-    },
-  },
-})
+<script setup lang="ts">
+import { computed } from 'vue'
+
+const props = withDefaults(
+  defineProps<{
+    size?: 'medium' | 'large'
+  }>(),
+  {
+    size: 'medium',
+  }
+)
+
+const logoSizeClass = computed(() => 
+  props.size === 'medium' ? 'logo--medium' : 'logo--large'
+)
 </script>
 
 <style lang="scss" scoped>
