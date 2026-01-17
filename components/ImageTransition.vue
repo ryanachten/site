@@ -12,7 +12,7 @@
 <script setup lang="ts">
 // Heavily inspired by:
 // - https://tympanus.net/codrops/2019/11/05/creative-webgl-image-transitions/
-import { ref, watch, onMounted, nextTick } from 'vue'
+import { ref, shallowRef, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import {
   DoubleSide,
   LinearFilter,
@@ -51,14 +51,14 @@ const emit = defineEmits<{
 }>()
 
 const canvas = ref<HTMLCanvasElement>()
-const camera = ref(new PerspectiveCamera())
-const textures = ref<Texture[]>([])
+const camera = shallowRef(new PerspectiveCamera())
+const textures = shallowRef<Texture[]>([])
 const height = ref(0)
 const width = ref(0)
-const material = ref(new ShaderMaterial())
-const renderer = ref<WebGLRenderer | null>(null)
-const plane = ref(new Mesh())
-const scene = ref(new Scene())
+const material = shallowRef(new ShaderMaterial())
+const renderer = shallowRef<WebGLRenderer | null>(null)
+const plane = shallowRef(new Mesh())
+const scene = shallowRef(new Scene())
 const progress = ref(0)
 const time = ref(props.shader === 'vertical-warp' ? 0 : 0.5)
 const frame = ref<number | null>(null)
@@ -82,8 +82,19 @@ onMounted(() => {
   }
 })
 
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', resize)
+  if (frame.value !== null) {
+    cancelAnimationFrame(frame.value)
+  }
+  if (renderer.value) {
+    renderer.value.dispose()
+    renderer.value = null
+  }
+})
+
 function resize() {
-  if (!canvas.value) return
+  if (!canvas.value || textures.value.length === 0) return
   
   width.value = canvas.value.offsetWidth
   height.value = canvas.value.offsetHeight
@@ -147,7 +158,7 @@ function createMaterial() {
 }
 
 async function init(canvasEl: HTMLCanvasElement) {
-  const hasWebGl = isWebGLAvailable(canvasEl)
+  const hasWebGl = isWebGLAvailable()
   if (!hasWebGl) console.error('no webgl support')
 
   height.value = canvasEl.offsetWidth

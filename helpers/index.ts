@@ -50,11 +50,12 @@ export const parseQueryParameters = (
 export const getProjectLink = (projectName: string) =>
   `/projects/${projectName.toLowerCase()}`
 
-export const isWebGLAvailable = (canvas: HTMLCanvasElement) => {
+export const isWebGLAvailable = () => {
   try {
+    const tempCanvas = document.createElement('canvas')
     return (
       window.WebGLRenderingContext &&
-      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+      (tempCanvas.getContext('webgl') || tempCanvas.getContext('experimental-webgl'))
     )
   } catch (error) {
     return false
