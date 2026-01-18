@@ -2,7 +2,7 @@
 import * as fs from 'fs'
 import * as yaml from 'js-yaml'
 
-import { Project, ProjectIndex } from '../constants/interfaces'
+import type { Project, ProjectIndex } from '../constants/interfaces'
 import { PROJECT_DIR } from './constants'
 import { cleanImageDirectory, downloadHeroImage } from './images'
 import { getProjectLanguages, getProjectRepo } from './metadata'

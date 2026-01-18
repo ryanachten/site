@@ -20,36 +20,25 @@
   </section>
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
-export interface MetaLink {
-  name: string
-  href: string
-}
-export default Vue.extend({
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    options: {
-      type: Array as PropType<Array<MetaLink>>,
-      required: true,
-    },
-    external: {
-      type: Boolean,
-    },
-  },
-  computed: {
-    sortedOptions() {
-      const opts = [...this.options]
-      return opts.sort((a, b) => (a.name > b.name ? 1 : -1))
-    },
-  },
+<script setup lang="ts">
+import { computed } from 'vue'
+import type { MetaLink } from '../constants/interfaces'
+
+const props = defineProps<{
+  title: string
+  options: MetaLink[]
+  external?: boolean
+}>()
+
+const sortedOptions = computed(() => {
+  const opts = [...props.options]
+  return opts.sort((a, b) => (a.name > b.name ? 1 : -1))
 })
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .project-metadata-section {
   min-width: 150px;
 

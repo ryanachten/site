@@ -41,77 +41,75 @@
   </aside>
 </template>
 
-<script lang="ts">
-import { FetchReturn } from '@nuxt/content/types/query-builder'
-import Vue, { PropType } from 'vue'
-import { MetaLink } from './ProjectMetadataSection.vue'
+<script setup lang="ts">
+import { computed } from 'vue'
+import type { MetaLink } from '../constants/interfaces'
+
 const projectPageUrl = '/projects?'
-export default Vue.extend({
-  props: {
-    project: {
-      type: Object as PropType<FetchReturn>,
-      required: true,
+
+const props = defineProps<{
+  project: any
+}>()
+
+const languages = computed((): MetaLink[] => 
+  props.project.languages.map(
+    (x: string): MetaLink => ({
+      name: x,
+      href: `${projectPageUrl}languages=${x}`,
+    })
+  )
+)
+
+const topics = computed((): MetaLink[] => 
+  props.project.topics?.map(
+    (x: string): MetaLink => ({
+      name: x,
+      href: `${projectPageUrl}topics=${x}`,
+    })
+  ) ?? []
+)
+
+const tools = computed((): MetaLink[] => 
+  props.project.tools.map(
+    (x: string): MetaLink => ({
+      name: x,
+      href: `${projectPageUrl}tools=${x}`,
+    })
+  )
+)
+
+const year = computed((): MetaLink[] => {
+  const yearValue = props.project.year
+  return [
+    {
+      name: yearValue,
+      href: `${projectPageUrl}years=${yearValue}`,
     },
-  },
-  computed: {
-    languages(): MetaLink[] {
-      return this.project.languages.map(
-        (x: string): MetaLink => ({
-          name: x,
-          href: `${projectPageUrl}languages=${x}`,
-        })
-      )
-    },
-    topics(): MetaLink[] {
-      return (
-        this.project.topics?.map(
-          (x: string): MetaLink => ({
-            name: x,
-            href: `${projectPageUrl}topics=${x}`,
-          })
-        ) ?? []
-      )
-    },
-    tools(): MetaLink[] {
-      return this.project.tools.map(
-        (x: string): MetaLink => ({
-          name: x,
-          href: `${projectPageUrl}tools=${x}`,
-        })
-      )
-    },
-    year(): MetaLink[] {
-      const year = this.project.year
-      return [
-        {
-          name: year,
-          href: `${projectPageUrl}years=${year}`,
-        },
-      ]
-    },
-    repository(): MetaLink[] {
-      return [
-        {
-          name: this.project.name,
-          href: this.project.githubUrl,
-        },
-      ]
-    },
-    homepage(): MetaLink[] {
-      return this.project.homepage
-        ? [
-            {
-              name: this.project.homepage,
-              href: this.project.homepage,
-            },
-          ]
-        : []
-    },
-  },
+  ]
 })
+
+const repository = computed((): MetaLink[] => [
+  {
+    name: props.project.name,
+    href: props.project.githubUrl,
+  },
+])
+
+const homepage = computed((): MetaLink[] => 
+  props.project.homepage
+    ? [
+        {
+          name: props.project.homepage,
+          href: props.project.homepage,
+        },
+      ]
+    : []
+)
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .project-metadata {
   width: 100%;
 }

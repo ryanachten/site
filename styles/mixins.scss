@@ -1,3 +1,6 @@
+@use './variables.scss' as *;
+@use 'sass:color';
+
 @mixin inverted-colors {
   background-color: $light-grey;
   color: $black;
@@ -29,7 +32,7 @@
 
 @mixin blurred-background($opacity: 0.1) {
   backdrop-filter: blur($s);
-  background: transparentize($color: $black, $amount: $opacity);
+  background: color.adjust($black, $alpha: -$opacity);
 }
 
 @mixin list-reset {

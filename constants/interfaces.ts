@@ -28,3 +28,8 @@ export interface Count {
   name: string
   count: number
 }
+
+export interface MetaLink {
+  name: string
+  href: string
+}

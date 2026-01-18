@@ -8,71 +8,51 @@
         <NuxtLink to="/cv">CV</NuxtLink>
       </div>
     </div>
-    <div class="landing__canvas">
-      <ImageTransition
-        :previous-index="previousProjectIndex"
-        :current-index="currentProjectIndex"
-        :images="heroImages"
-        shader="noise-warp"
-        @animation-complete="incrementProject()"
-      />
-    </div>
+    <ClientOnly>
+      <div class="landing__canvas">
+        <ImageTransition
+          :previous-index="previousProjectIndex"
+          :current-index="currentProjectIndex"
+          :images="heroImages"
+          shader="noise-warp"
+          @animation-complete="incrementProject()"
+        />
+      </div>
+    </ClientOnly>
   </main>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import { Project, ProjectIndex } from '~/constants/interfaces'
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import type { Project, ProjectIndex } from '~/constants/interfaces'
 
-export default Vue.extend({
-  name: 'IndexPage',
+const { data: page } = await useAsyncData('index', () =>
+  queryContent<ProjectIndex>('/projects').findOne()
+)
 
-  async asyncData({ $content }) {
-    const page = (await $content(
-      'projects',
-      'index'
-    ).fetch<ProjectIndex>()) as ProjectIndex
+const projects = computed(() => page.value?.projects || [])
+const previousProjectIndex = ref(0)
+const currentProjectIndex = ref(0)
 
-    return {
-      projects: page.projects,
-    }
-  },
+const heroImages = computed(() => projects.value.map((x) => x.heroImage.local))
 
-  data(): {
-    projects: Project[]
-    previousProjectIndex: number
-    currentProjectIndex: number
-  } {
-    return {
-      projects: [],
-      previousProjectIndex: 0,
-      currentProjectIndex: 0,
-    }
-  },
+function incrementProject() {
+  previousProjectIndex.value = currentProjectIndex.value
+  if (currentProjectIndex.value + 1 >= heroImages.value.length) {
+    currentProjectIndex.value = 0
+  } else {
+    currentProjectIndex.value++
+  }
+}
 
-  computed: {
-    heroImages(): string[] {
-      return this.projects.map((x) => x.heroImage.local)
-    },
-  },
-
-  mounted() {
-    setTimeout(() => this.incrementProject(), 1000)
-  },
-
-  methods: {
-    incrementProject() {
-      this.previousProjectIndex = this.currentProjectIndex
-      if (this.currentProjectIndex + 1 >= this.heroImages.length) {
-        this.currentProjectIndex = 0
-      } else {
-        this.currentProjectIndex++
-      }
-    },
-  },
+onMounted(() => {
+  setTimeout(() => incrementProject(), 1000)
 })
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
+
 .landing {
   display: flex;
   justify-content: center;

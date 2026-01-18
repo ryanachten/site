@@ -9,10 +9,10 @@
   ></canvas>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 // Heavily inspired by:
 // - https://tympanus.net/codrops/2019/11/05/creative-webgl-image-transitions/
-import Vue, { PropType } from 'vue'
+import { ref, shallowRef, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import {
   DoubleSide,
   LinearFilter,
@@ -27,9 +27,9 @@ import {
   WebGLRenderer,
 } from 'three'
 
-import vertexShader from '../shaders/vertex.glsl'
-import noiseWarpFrag from '../shaders/noise-warp.frag'
-import verticalWarpFrag from '../shaders/vertical-warp.frag'
+import vertexShader from '../shaders/vertex.glsl?raw'
+import noiseWarpFrag from '../shaders/noise-warp.frag?raw'
+import verticalWarpFrag from '../shaders/vertical-warp.frag?raw'
 
 import { isWebGLAvailable } from '~/helpers'
 
@@ -37,222 +37,198 @@ type ShaderOptions = 'vertical-warp' | 'noise-warp'
 
 const fps = 30
 const fpsInterval = 1000 / fps
-export default Vue.extend({
-  props: {
-    images: {
-      type: Array as PropType<Array<string>>,
-      required: true,
-    },
-    shader: {
-      type: String as PropType<ShaderOptions>,
-      required: true,
-    },
-    previousIndex: {
-      type: Number,
-      required: true,
-    },
-    currentIndex: {
-      type: Number,
-      required: true,
-    },
-    className: {
-      type: String,
-    },
-  },
 
-  data(): {
-    camera: PerspectiveCamera
-    textures: Texture[]
-    height: number
-    width: number
-    material: ShaderMaterial
-    renderer: WebGLRenderer | null
-    plane: Mesh
-    scene: Scene
-    progress: number
-    time: number
-    frame: number | null
-    then: number
-    fragmentShader: string
-  } {
-    const isVerticalShader =
-      <ShaderOptions>this.$props.shader === 'vertical-warp'
-    const fragmentShader = isVerticalShader ? verticalWarpFrag : noiseWarpFrag
-    const startTime = isVerticalShader ? 0 : 0.5 // For noise effect, we want to fast forward to start at a more interesting point
-    return {
-      camera: new PerspectiveCamera(),
-      material: new ShaderMaterial(),
-      textures: [],
-      height: 0,
-      width: 0,
-      renderer: null,
-      plane: new Mesh(),
-      scene: new Scene(),
-      progress: 0,
-      time: startTime,
-      frame: null,
-      then: Date.now(),
-      fragmentShader,
-    }
-  },
+const props = defineProps<{
+  images: string[]
+  shader: ShaderOptions
+  previousIndex: number
+  currentIndex: number
+  className?: string
+}>()
 
-  watch: {
-    currentIndex() {
-      if (this.textures.length > 0) {
-        this.start()
-      }
-    },
-  },
+const emit = defineEmits<{
+  (e: 'animation-complete'): void
+}>()
 
-  mounted() {
-    const canvas = this.$refs.canvas as HTMLCanvasElement | undefined
-    if (!canvas) {
-      console.error('Canvas not found')
-    } else {
-      this.$nextTick(() => this.init(canvas))
-      window.addEventListener('resize', this.resize)
-    }
-  },
+const canvas = ref<HTMLCanvasElement>()
+const camera = shallowRef(new PerspectiveCamera())
+const textures = shallowRef<Texture[]>([])
+const height = ref(0)
+const width = ref(0)
+const material = shallowRef(new ShaderMaterial())
+const renderer = shallowRef<WebGLRenderer | null>(null)
+const plane = shallowRef(new Mesh())
+const scene = shallowRef(new Scene())
+const progress = ref(0)
+const time = ref(props.shader === 'vertical-warp' ? 0 : 0.5)
+const frame = ref<number | null>(null)
+const then = ref(Date.now())
 
-  methods: {
-    resize() {
-      const canvas = this.$refs.canvas as HTMLCanvasElement
-      this.width = canvas.offsetWidth
-      this.height = canvas.offsetHeight
-      this.renderer?.setSize(this.width, this.height, false)
-      this.camera.aspect = this.width / this.height
+const isVerticalShader = props.shader === 'vertical-warp'
+const fragmentShader = isVerticalShader ? verticalWarpFrag : noiseWarpFrag
 
-      const imageAspect =
-        this.textures[0].image.height / this.textures[0].image.width
-      let a1
-      let a2
-      if (this.height / this.width > imageAspect) {
-        a1 = (this.width / this.height) * imageAspect
-        a2 = 1
-      } else {
-        a1 = 1
-        a2 = this.height / this.width / imageAspect
-      }
-
-      this.material.uniforms.resolution.value.x = this.width
-      this.material.uniforms.resolution.value.y = this.height
-      this.material.uniforms.resolution.value.z = a1
-      this.material.uniforms.resolution.value.w = a2
-
-      const dist = this.camera.position.z
-      const height = 1
-      this.camera.fov = 2 * (180 / Math.PI) * Math.atan(height / (2 * dist))
-
-      this.plane.scale.x = this.camera.aspect
-      this.plane.scale.y = 1
-
-      this.camera.updateProjectionMatrix()
-    },
-
-    async loadTextures() {
-      // Statically generated pages will attempt to load these assets
-      // relative to the current pathname, resulting a 404
-      // ensure these are loaded related to origin instead to prevent this
-      const host = window.location.origin
-      const textures = await Promise.all(
-        this.images.map(
-          async (uri) => await new TextureLoader().loadAsync(`${host}/${uri}`)
-        )
-      )
-      textures.forEach((x) => {
-        x.minFilter = LinearFilter
-      })
-
-      this.textures = textures
-    },
-
-    createMaterial() {
-      this.material = new ShaderMaterial({
-        side: DoubleSide,
-        uniforms: {
-          time: { value: 0 },
-          progress: { value: 0 },
-          texture1: { value: this.textures[this.previousIndex] },
-          texture2: { value: this.textures[this.currentIndex] },
-          resolution: { value: new Vector4() },
-        },
-        vertexShader,
-        fragmentShader: this.fragmentShader,
-      })
-    },
-
-    async init(canvas: HTMLCanvasElement) {
-      const hasWebGl = isWebGLAvailable(canvas)
-      if (!hasWebGl) console.error('no webgl support')
-
-      this.height = canvas.offsetHeight
-      this.width = canvas.offsetWidth
-
-      await this.loadTextures()
-      this.createMaterial()
-
-      const camera = new PerspectiveCamera(
-        70,
-        this.width / this.height,
-        0.001,
-        1000
-      )
-      camera.position.set(0, 0, 2)
-      this.camera = camera
-
-      const geometry = new PlaneGeometry(1, 1, 2, 2)
-      this.plane = new Mesh(geometry, this.material)
-      this.scene.add(this.plane)
-
-      this.renderer = new WebGLRenderer({ canvas })
-      this.renderer.setPixelRatio(window.devicePixelRatio)
-
-      this.resize()
-      this.renderer?.render(this.scene, this.camera)
-      this.start()
-    },
-
-    start() {
-      this.stop()
-      this.material.uniforms.texture1.value = this.textures[this.previousIndex]
-      this.material.uniforms.texture2.value = this.textures[this.currentIndex]
-      this.resize()
-      this.animate()
-    },
-
-    stop() {
-      this.frame !== null && cancelAnimationFrame(this.frame)
-      this.progress = 0
-    },
-
-    animate() {
-      this.frame = requestAnimationFrame(this.animate)
-
-      const now = Date.now()
-      const elapsed = now - this.then
-      if (elapsed < fpsInterval) return
-
-      this.then = now - (elapsed % fpsInterval)
-      this.draw()
-    },
-
-    draw() {
-      this.progress += 0.02
-      this.time += 0.01
-      this.material.uniforms.progress.value = this.progress
-      this.material.uniforms.time.value = this.time
-      this.renderer?.render(this.scene, this.camera)
-
-      if (this.progress >= 1) {
-        this.stop()
-        this.$emit('animation-complete')
-      }
-    },
-  },
+watch(() => props.currentIndex, () => {
+  if (textures.value.length > 0) {
+    start()
+  }
 })
+
+onMounted(() => {
+  if (!canvas.value) return
+  
+  nextTick(() => init(canvas.value!))
+  window.addEventListener('resize', resize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', resize)
+  if (frame.value !== null) {
+    cancelAnimationFrame(frame.value)
+  }
+  if (renderer.value) {
+    renderer.value.dispose()
+    renderer.value = null
+  }
+})
+
+function resize() {
+  if (!canvas.value || textures.value.length === 0) return
+  
+  width.value = canvas.value.offsetWidth
+  height.value = canvas.value.offsetHeight
+  renderer.value?.setSize(width.value, height.value, false)
+  camera.value.aspect = width.value / height.value
+
+  const imageAspect =
+    textures.value[0].image.height / textures.value[0].image.width
+  let a1
+  let a2
+  if (height.value / width.value > imageAspect) {
+    a1 = (width.value / height.value) * imageAspect
+    a2 = 1
+  } else {
+    a1 = 1
+    a2 = height.value / width.value / imageAspect
+  }
+
+  material.value.uniforms.resolution.value.x = width.value
+  material.value.uniforms.resolution.value.y = height.value
+  material.value.uniforms.resolution.value.z = a1
+  material.value.uniforms.resolution.value.w = a2
+
+  const dist = camera.value.position.z
+  const heightVal = 1
+  camera.value.fov = 2 * (180 / Math.PI) * Math.atan(heightVal / (2 * dist))
+
+  plane.value.scale.x = camera.value.aspect
+  plane.value.scale.y = 1
+
+  camera.value.updateProjectionMatrix()
+}
+
+async function loadTextures() {
+  const host = window.location.origin
+  const loadedTextures = await Promise.all(
+    props.images.map(
+      async (uri) => await new TextureLoader().loadAsync(`${host}/${uri}`)
+    )
+  )
+  loadedTextures.forEach((x) => {
+    x.minFilter = LinearFilter
+  })
+
+  textures.value = loadedTextures
+}
+
+function createMaterial() {
+  material.value = new ShaderMaterial({
+    side: DoubleSide,
+    uniforms: {
+      time: { value: 0 },
+      progress: { value: 0 },
+      texture1: { value: textures.value[props.previousIndex] },
+      texture2: { value: textures.value[props.currentIndex] },
+      resolution: { value: new Vector4() },
+    },
+    vertexShader,
+    fragmentShader,
+  })
+}
+
+async function init(canvasEl: HTMLCanvasElement) {
+  const hasWebGl = isWebGLAvailable()
+  if (!hasWebGl) return
+
+  height.value = canvasEl.offsetHeight
+  width.value = canvasEl.offsetWidth
+
+  await loadTextures()
+  
+  if (textures.value.length === 0) return
+  
+  createMaterial()
+
+  const cam = new PerspectiveCamera(
+    70,
+    width.value / height.value,
+    0.001,
+    1000
+  )
+  cam.position.set(0, 0, 2)
+  camera.value = cam
+
+  const geometry = new PlaneGeometry(1, 1, 2, 2)
+  plane.value = new Mesh(geometry, material.value)
+  scene.value.add(plane.value)
+
+  renderer.value = new WebGLRenderer({ canvas: canvasEl })
+  renderer.value.setPixelRatio(window.devicePixelRatio)
+
+  resize()
+  renderer.value?.render(scene.value, camera.value)
+  start()
+}
+
+function start() {
+  stop()
+  material.value.uniforms.texture1.value = textures.value[props.previousIndex]
+  material.value.uniforms.texture2.value = textures.value[props.currentIndex]
+  resize()
+  animate()
+}
+
+function stop() {
+  frame.value !== null && cancelAnimationFrame(frame.value)
+  progress.value = 0
+}
+
+function animate() {
+  frame.value = requestAnimationFrame(animate)
+
+  const now = Date.now()
+  const elapsed = now - then.value
+  if (elapsed < fpsInterval) return
+
+  then.value = now - (elapsed % fpsInterval)
+  draw()
+}
+
+function draw() {
+  progress.value += 0.02
+  time.value += 0.01
+  material.value.uniforms.progress.value = progress.value
+  material.value.uniforms.time.value = time.value
+  renderer.value?.render(scene.value, camera.value)
+
+  if (progress.value >= 1) {
+    stop()
+    emit('animation-complete')
+  }
+}
 </script>
 
 <style lang="scss" scoped>
+@use '../styles/variables.scss' as *;
 .image-transition__canvas {
   opacity: 0;
   height: 100%;

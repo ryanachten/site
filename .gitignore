@@ -95,3 +95,4 @@ sw.*
 terraform.tfstate*
 
 setup.ps1
+.output/*

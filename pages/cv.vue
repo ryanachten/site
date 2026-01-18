@@ -5,32 +5,26 @@
       <main class="cv__content">
         <LogoImg class="cv__logo" />
         <h1 class="cv__header">Curriculum Vitae</h1>
-        <nuxt-content :document="page" class="content" />
+        <ContentRenderer :value="page" class="content" />
       </main>
       <FooterNav />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  name: 'CvPage',
-  async asyncData({ $content, error }) {
-    const page = await $content('cv')
-      .fetch()
-      .catch((_) => {
-        error({ statusCode: 404, message: 'Page not found' })
-      })
+<script setup lang="ts">
+const { data: page } = await useAsyncData('cv', () =>
+  queryContent('cv').findOne()
+)
 
-    return {
-      page,
-    }
-  },
-})
+if (!page.value) {
+  throw createError({ statusCode: 404, message: 'Page not found' })
+}
 </script>
 
 <style lang="scss">
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
 .cv__logo {
   display: block;
   height: fit-content;
