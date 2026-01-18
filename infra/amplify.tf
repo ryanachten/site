@@ -9,7 +9,7 @@ resource "aws_amplify_app" "ryanachten" {
       phases:
         preBuild:
           commands:
-            - yarn install --frozen-lockfile --ignore-optional --network-timeout 600000
+            - npm ci --omit=optional --prefer-offline --no-audit --ignore-scripts
         build:
           commands:
             - yarn run generate
