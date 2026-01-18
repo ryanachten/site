@@ -90,21 +90,21 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ['/'],
+      failOnError: false,
     },
-    hooks: {
-      'prerender:routes'(ctx) {
-        // Generate project routes
-        const yamlFile: any = load(
-          readFileSync('./content/projects/index.yml', 'utf8')
-        )
-        const projects = yamlFile.projects
-        const routes = projects.map(
-          (p: any) => `/projects/${p.name.toLowerCase()}`
-        )
-        for (const route of routes) {
-          ctx.routes.add(route)
-        }
-      },
+  },
+
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      // Generate project routes for prerendering
+      const yamlFile: any = load(
+        readFileSync('./content/projects/index.yml', 'utf8')
+      )
+      const projects = yamlFile.projects
+      const routes = projects.map(
+        (p: any) => `/projects/${p.name.toLowerCase()}`
+      )
+      nitroConfig.prerender!.routes!.push(...routes)
     },
   },
 
