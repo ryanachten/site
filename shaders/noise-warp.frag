@@ -44,12 +44,17 @@ void main() {
   float speed = .3; // originall .1
   t = 1.0 - cos(time * speed) * complexity;
 
-  float frequency = 1.; // original 2
+  // Scale frequency based on resolution to maintain consistent noise across devices
+  float minResolution = min(resolution.x, resolution.y);
+  float scaleFactor = minResolution / 800.0; // normalize to a base resolution
+  float frequency = max(1.0, scaleFactor); // ensure minimum frequency of 1.0
+  
   st += noise(st * frequency) * t; // Animate the coordinate space - original noise(st*2.)
 
-  color = vec3(1.) * smoothstep(.36, .4, noise(st)); // big drops - original .18,.2,noise(st)
-  color += smoothstep(.30, .4, noise(st * 10.)); // splatter - original .15,.2, noise(st*10.)
-  color -= smoothstep(.70, .8, noise(st * 10.)); // splatter holes - original .35,.4,noise(st*10.)
+  // Adjusted smoothstep values for better visibility on mobile
+  color = vec3(1.) * smoothstep(.30, .42, noise(st)); // big drops - original .18,.2,noise(st)
+  color += smoothstep(.25, .42, noise(st * 10.)); // splatter - original .15,.2, noise(st*10.)
+  color -= smoothstep(.68, .82, noise(st * 10.)); // splatter holes - original .35,.4,noise(st*10.)
   vec4 mask = vec4(color, color.r);
 
   gl_FragColor = image * mask;

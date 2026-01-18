@@ -2,7 +2,7 @@ resource "aws_amplify_app" "ryanachten" {
   name         = "ryanachten"
   repository   = "https://github.com/ryanachten/site"
   access_token = var.github_access_token
-  platform     = "WEB_COMPUTE"
+  platform     = "WEB_COMPUTE" # TODO: we need to check this correctly sets the build image to Amplify Linux 2023 (default)
 
   build_spec = <<-EOT
     version: 1
