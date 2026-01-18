@@ -4,22 +4,23 @@ resource "aws_amplify_app" "ryanachten" {
   access_token = var.github_access_token
 
   build_spec = <<-EOT
-    version: 0.1
+    version: 1
     frontend:
       phases:
         preBuild:
           commands:
-            - yarn install
+            - yarn install --frozen-lockfile --ignore-optional --network-timeout 600000
         build:
           commands:
             - yarn run generate
       artifacts:
-        baseDirectory: dist
+        baseDirectory: .output/public
         files:
           - '**/*'
       cache:
         paths:
           - node_modules/**/*
+          - .nuxt/**/*
   EOT
 }
 

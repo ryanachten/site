@@ -95,4 +95,6 @@ sw.*
 terraform.tfstate*
 
 setup.ps1
-.output/*
+
+# Nuxt build output
+.output

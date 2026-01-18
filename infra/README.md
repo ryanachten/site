@@ -14,7 +14,7 @@ $env:TF_VAR_github_access_token="key created in GitHub"
 
 Once these have been set, we can proceed with infrastructure changes
 ```bash
-# intialise Terraform backend
+# initialise Terraform backend
 $ terraform init
 
 # run Terraform plan to ensure resource changes are as expected

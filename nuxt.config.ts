@@ -30,6 +30,10 @@ export default defineNuxtConfig({
           name: 'twitter:image',
           content: '/open-graph/og-cropped.jpg',
         },
+        {
+          name: 'theme-color',
+          content: '#E2E2E2',
+        },
       ],
       link: [
         {
@@ -57,10 +61,6 @@ export default defineNuxtConfig({
         {
           rel: 'msapplication-config',
           href: '/favicon/browserconfig.xml',
-        },
-        {
-          rel: 'theme-color',
-          content: '#E2E2E2',
         },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon/favicon.ico' },
       ],
