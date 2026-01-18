@@ -5,8 +5,8 @@
       'project-tile--active': imageLoaded,
     }"
   >
-    <NuxtLink
-      :to="projectLink"
+    <a
+      :href="projectLink"
       :style="{
         backgroundImage: imageLoaded
           ? `url(${project.heroImage.remote})`
@@ -21,14 +21,13 @@
         <span class="project-tile__title">{{ project.name }}</span>
         <p class="project-tile__description">{{ project.description }}</p>
       </div>
-    </NuxtLink>
+    </a>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import type { Project } from '~/constants/interfaces'
-import { getProjectLink } from '~/helpers'
 
 const props = defineProps<{
   project: Project
@@ -37,7 +36,7 @@ const props = defineProps<{
 
 const imageLoaded = ref(false)
 
-const projectLink = computed(() => getProjectLink(props.project.name))
+const projectLink = computed(() => `/projects/${props.project.name.toLowerCase()}`)
 
 function loadImage() {
   const image = new Image()
