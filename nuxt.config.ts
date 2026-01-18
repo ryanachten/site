@@ -80,7 +80,7 @@ export default defineNuxtConfig({
     plugins: [glsl()],
   },
 
-  modules: ['@nuxt/content'],
+  modules: ['@nuxt/content', '@nuxtjs/google-fonts'],
 
   content: {
     // Nuxt Content v2 configuration
