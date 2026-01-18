@@ -8,15 +8,17 @@
         <NuxtLink to="/cv">CV</NuxtLink>
       </div>
     </div>
-    <div class="landing__canvas">
-      <ImageTransition
-        :previous-index="previousProjectIndex"
-        :current-index="currentProjectIndex"
-        :images="heroImages"
-        shader="noise-warp"
-        @animation-complete="incrementProject()"
-      />
-    </div>
+    <ClientOnly>
+      <div class="landing__canvas">
+        <ImageTransition
+          :previous-index="previousProjectIndex"
+          :current-index="currentProjectIndex"
+          :images="heroImages"
+          shader="noise-warp"
+          @animation-complete="incrementProject()"
+        />
+      </div>
+    </ClientOnly>
   </main>
 </template>
 <script setup lang="ts">
@@ -24,7 +26,7 @@ import { ref, computed, onMounted } from 'vue'
 import type { Project, ProjectIndex } from '~/constants/interfaces'
 
 const { data: page } = await useAsyncData('index', () =>
-  queryContent<ProjectIndex>('projects', 'index').findOne()
+  queryContent<ProjectIndex>('/projects').findOne()
 )
 
 const projects = computed(() => page.value?.projects || [])

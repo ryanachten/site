@@ -62,14 +62,13 @@
 </template>
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
 import type { Count, Project, ProjectIndex } from '~/constants/interfaces'
 import { getSortedTotals, parseQueryParameters, SortTotal } from '~/helpers'
 
 const route = useRoute()
 
 const { data: page } = await useAsyncData('projects-index', () =>
-  queryContent<ProjectIndex>('projects', 'index').findOne()
+  queryContent<ProjectIndex>('/projects').findOne()
 )
 
 const projects = computed(() => page.value?.projects || [])

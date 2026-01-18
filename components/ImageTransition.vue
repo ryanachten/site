@@ -74,12 +74,10 @@ watch(() => props.currentIndex, () => {
 })
 
 onMounted(() => {
-  if (!canvas.value) {
-    console.error('Canvas not found')
-  } else {
-    nextTick(() => init(canvas.value!))
-    window.addEventListener('resize', resize)
-  }
+  if (!canvas.value) return
+  
+  nextTick(() => init(canvas.value!))
+  window.addEventListener('resize', resize)
 })
 
 onBeforeUnmount(() => {
@@ -159,12 +157,15 @@ function createMaterial() {
 
 async function init(canvasEl: HTMLCanvasElement) {
   const hasWebGl = isWebGLAvailable()
-  if (!hasWebGl) console.error('no webgl support')
+  if (!hasWebGl) return
 
-  height.value = canvasEl.offsetWidth
+  height.value = canvasEl.offsetHeight
   width.value = canvasEl.offsetWidth
 
   await loadTextures()
+  
+  if (textures.value.length === 0) return
+  
   createMaterial()
 
   const cam = new PerspectiveCamera(
