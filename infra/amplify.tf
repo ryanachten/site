@@ -2,6 +2,7 @@ resource "aws_amplify_app" "ryanachten" {
   name         = "ryanachten"
   repository   = "https://github.com/ryanachten/site"
   access_token = var.github_access_token
+  platform     = "WEB_COMPUTE"
 
   build_spec = <<-EOT
     version: 1
@@ -9,7 +10,10 @@ resource "aws_amplify_app" "ryanachten" {
       phases:
         preBuild:
           commands:
-            - npm ci --omit=optional --prefer-offline --no-audit --ignore-scripts
+            - node --version
+            - yarn --version
+            - yarn config set registry https://registry.npmjs.org/
+            - yarn install --frozen-lockfile
         build:
           commands:
             - yarn run generate
