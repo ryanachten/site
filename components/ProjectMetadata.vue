@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { MetaLink } from './ProjectMetadataSection.vue'
+import type { MetaLink } from '../constants/interfaces'
 
 const projectPageUrl = '/projects?'
 

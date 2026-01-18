@@ -22,11 +22,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-
-export interface MetaLink {
-  name: string
-  href: string
-}
+import type { MetaLink } from '../constants/interfaces'
 
 const props = defineProps<{
   title: string
