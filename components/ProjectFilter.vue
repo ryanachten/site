@@ -45,7 +45,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'input', value: string[]): void
+  (e: 'update:modelValue', value: string[]): void
 }>()
 
 const router = useRouter()
@@ -72,12 +72,12 @@ function toggleSelectedValue(name: string) {
   } else {
     newValues.push(name)
   }
-  emit('input', newValues)
+  emit('update:modelValue', newValues)
   updateQueryParams(newValues)
 }
 
 function clearSelectedValues() {
-  emit('input', [])
+  emit('update:modelValue', [])
   updateQueryParams([])
 }
 
