@@ -4,6 +4,38 @@ resource "aws_amplify_app" "ryanachten" {
   access_token = var.github_access_token
   platform     = "WEB"
 
+  # Pass through Nuxt payload files (must precede the clean URL rewrite)
+  custom_rule {
+    source = "/projects/_payload.json"
+    target = "/projects/_payload.json"
+    status = "200"
+  }
+
+  # Rewrite project subpages to their index.html
+  custom_rule {
+    source = "/projects/<name>"
+    target = "/projects/<name>/index.html"
+    status = "200"
+  }
+
+  custom_rule {
+    source = "/projects"
+    target = "/projects/index.html"
+    status = "200"
+  }
+
+  custom_rule {
+    source = "/projects/"
+    target = "/projects/index.html"
+    status = "200"
+  }
+
+  custom_rule {
+    source = "/cv"
+    target = "/cv/index.html"
+    status = "200"
+  }
+
   build_spec = <<-EOT
     version: 1
     frontend:
