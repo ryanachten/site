@@ -4,8 +4,8 @@
       <LogoImg class="landing__logo" is-transparent />
       <LogoText size="large" class="landing__logo-text" />
       <div class="landing__nav">
-        <NuxtLink to="/projects">Projects</NuxtLink>
-        <NuxtLink to="/cv">CV</NuxtLink>
+        <NuxtLink to="/projects/">Projects</NuxtLink>
+        <NuxtLink to="/cv/">CV</NuxtLink>
       </div>
     </div>
     <ClientOnly>

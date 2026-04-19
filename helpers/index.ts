@@ -48,7 +48,7 @@ export const parseQueryParameters = (
 }
 
 export const getProjectLink = (projectName: string) =>
-  `/projects/${projectName.toLowerCase()}`
+  `/projects/${projectName.toLowerCase()}/`
 
 export const isWebGLAvailable = () => {
   try {

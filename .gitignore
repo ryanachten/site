@@ -98,3 +98,5 @@ setup.ps1
 
 # Nuxt build output
 .output
+
+.claude/settings.local.json

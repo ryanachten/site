@@ -102,7 +102,7 @@ export default defineNuxtConfig({
       )
       const projects = yamlFile.projects
       const routes = projects.map(
-        (p: any) => `/projects/${p.name.toLowerCase()}`
+        (p: any) => `/projects/${p.name.toLowerCase()}/`
       )
       nitroConfig.prerender!.routes!.push(...routes)
     },

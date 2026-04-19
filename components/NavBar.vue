@@ -4,8 +4,8 @@
       <LogoText />
     </NuxtLink>
     <div>
-      <NuxtLink to="/projects">Projects</NuxtLink>
-      <NuxtLink to="/cv">CV</NuxtLink>
+      <NuxtLink to="/projects/">Projects</NuxtLink>
+      <NuxtLink to="/cv/">CV</NuxtLink>
     </div>
   </nav>
 </template>
